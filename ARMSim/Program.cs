@@ -50,8 +50,6 @@ namespace ARMSim
     {
         static void Main(string[] args)
         {
-            List<ELFTWO> programHeaders = new List<ELFTWO>();
-
             Options myOptions= new Options();
             if (args.Length > 1)
             {
@@ -64,62 +62,23 @@ namespace ARMSim
             }
 
             //initiate ram and size
-            RAMsim myRAM = new RAMsim(myOptions.getMemSize());
-            
-            //COMPLIMENT OF J
-            //opens given filename and identifies key elements 
-            string elfFilename = myOptions.getfileName();
-            using (FileStream strm = new FileStream(elfFilename, FileMode.Open))
+            if (myOptions.GetTest())
             {
-                ELF elfHeader = new ELF();
-                byte[] data = new byte[Marshal.SizeOf(elfHeader)];
-          
-                // Read ELF header data
-                strm.Read(data, 0, data.Length);
-                // Convert to struct
-                elfHeader = ByteArrayToStructure<ELF>(data);
-          
-                Console.WriteLine("Entry point: " + elfHeader.e_entry.ToString("X4"));
-                Console.WriteLine("Number of program header entries: " + elfHeader.e_phnum);
+                //set file name to test1
+                myOptions.SetFileName("test1.exe");
+            }
+            RAMsim myRam = new RAMsim(myOptions.GetMemSize());
+            Loader myLoader = new Loader(myOptions, myRam);
+            myLoader.Load();
 
-
-                // Read program header entries into programHeaders
-                strm.Seek(elfHeader.e_phoff, SeekOrigin.Begin);
-                for (int i = 0; i < elfHeader.e_phnum; i++) 
-                {
-                    data = new byte[elfHeader.e_phentsize];
-                    strm.Read(data, 0, (int)elfHeader.e_phentsize);
-                    programHeaders.Add(ByteArrayToStructure<ELFTWO>(data)); 
-                }
-
-                //read memory from program header and send to 
-                foreach (ELFTWO toRam in programHeaders)
-                {
-                    data = new byte[toRam.p_memsz];
-                    strm.Seek(toRam.p_offset, SeekOrigin.Begin);
-                    strm.Read(data, 0, (int)toRam.p_memsz);
-                    myRAM.PopulateRam(data, toRam.p_vaddr);
-                }
-
-                Debug.WriteLine(myRAM.getMDF());
-          
-                // Now, do something with it ... see cppreadelf for a hint
-                //TO HERE
+            if (myOptions.GetTest())
+            {
+                TestLoader.RunTests(myRam);
+                TestRAM.RunTests(myRam);
+                Environment.Exit(1);
             }
         }
-
-        //COMPLEMENTS OF J
-        // Converts a byte array to a struct
-        static T ByteArrayToStructure<T>(byte[] bytes) where T : struct
-        {
-            GCHandle handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
-            T stuff = (T)Marshal.PtrToStructure(handle.AddrOfPinnedObject(),
-                typeof(T));
-            handle.Free();
-            return stuff;
-        }
     }
-
 
     class Options
     {
@@ -158,22 +117,26 @@ namespace ARMSim
             }
         }
 
-        public int getMemSize() 
+        public int GetMemSize() 
         {
             return memSize;
         }
 
-        public string getfileName() 
+        public string GetFileName() 
         {
             return fileName;
         }
 
-        public bool getTest() 
+        public bool GetTest() 
         {
             return test;
         }
-    }
 
+        public void SetFileName(string toFileName)
+        {
+            fileName = toFileName;
+        }
+    }
 
     class RAMsim
     {
@@ -273,7 +236,126 @@ namespace ARMSim
                 word = word & bitLoc;
             }
 
-            WriteWord(word, addr);
+            WriteWord(addr, word);
         }
+    }
+
+    class Loader
+    {
+        private Options myOptions;
+        private RAMsim myRam;
+        List<ELFTWO> programHeaders = new List<ELFTWO>();
+
+        public Loader(Options toMyOptions, RAMsim toMyRam)
+        {
+            myOptions = toMyOptions;
+            myRam = toMyRam;
+        }
+
+        public void Load()
+        {
+            //COMPLIMENT OF J
+            //opens given filename and identifies key elements 
+            string elfFilename = myOptions.GetFileName();
+            using (FileStream strm = new FileStream(elfFilename, FileMode.Open))
+            {
+                ELF elfHeader = new ELF();
+                byte[] data = new byte[Marshal.SizeOf(elfHeader)];
+
+                // Read ELF header data
+                strm.Read(data, 0, data.Length);
+                // Convert to struct
+                elfHeader = ByteArrayToStructure<ELF>(data);
+
+                Console.WriteLine("Entry point: " + elfHeader.e_entry.ToString("X4"));
+                Console.WriteLine("Number of program header entries: " + elfHeader.e_phnum);
+
+
+                // Read program header entries into programHeaders
+                strm.Seek(elfHeader.e_phoff, SeekOrigin.Begin);
+                for (int i = 0; i < elfHeader.e_phnum; i++)
+                {
+                    data = new byte[elfHeader.e_phentsize];
+                    strm.Read(data, 0, (int)elfHeader.e_phentsize);
+                    programHeaders.Add(ByteArrayToStructure<ELFTWO>(data));
+                }
+
+                //read memory from program header and send to 
+                foreach (ELFTWO toRam in programHeaders)
+                {
+                    data = new byte[toRam.p_memsz];
+                    strm.Seek(toRam.p_offset, SeekOrigin.Begin);
+                    strm.Read(data, 0, (int)toRam.p_memsz);
+                    myRam.PopulateRam(data, toRam.p_vaddr);
+                }
+
+                //Debug.WriteLine(myRam.getMDF());
+
+            }
+        }
+
+        //COMPLEMENTS OF J
+        // Converts a byte array to a struct
+        static T ByteArrayToStructure<T>(byte[] bytes) where T : struct
+        {
+            GCHandle handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
+            T stuff = (T)Marshal.PtrToStructure(handle.AddrOfPinnedObject(),
+                typeof(T));
+            handle.Free();
+            return stuff;
+        }
+    }
+
+    //BEGIN UNIT TESTING
+    class TestLoader
+    {
+        public static void RunTests(RAMsim ram) 
+        {
+            Debug.WriteLine("testing loader...");
+            Debug.WriteLine("verifying MD5 hash...");
+            Debug.Assert(ram.getMDF() == "3500a8bef72dfed358b25b61b7602cf1");
+            Debug.WriteLine("success!");
+        }
+
+    }
+
+    class TestRAM
+    {
+        public static void RunTests(RAMsim ram)
+        {
+            Debug.WriteLine("testing RAM...");
+
+
+            //test set/test flag methods
+            Debug.WriteLine("verifying SetFlag/TestFlag...");
+            ram.SetFlag(1, 6, true);
+            Debug.Assert(ram.TestFlag(1, 6));
+            ram.SetFlag(1, 6, false);
+            Debug.Assert(!(ram.TestFlag(1, 6)));
+            Debug.WriteLine("success!");
+
+            //test read/write methods
+            Debug.WriteLine("testing Read/Write Word...");
+            ram.WriteWord(0, 0xFFFFFFFF);
+            Debug.Assert(ram.ReadWord(0) == 0xFFFFFFFF);
+            Debug.WriteLine("success!");
+            
+            Debug.WriteLine("testing Read/Write HalfWord...");
+            ram.WriteWord(0, 0xCCCC);
+            Debug.Assert(ram.ReadWord(0) == 0xCCCC);
+            Debug.WriteLine("success!");
+            
+            Debug.WriteLine("testing Read/Write Byte...");
+            ram.WriteWord(0, 0xAA);
+            Debug.Assert(ram.ReadWord(0) == 0xAA);
+            Debug.WriteLine("success!");
+
+            //test populate method
+            Debug.WriteLine("verifying Populate...");
+            ram.PopulateRam(new byte[] { 0xFF, 0xAA, 0xAA }, 2);
+            Debug.Assert(ram.ReadHalfWord(3) == 0xAAAA);
+            Debug.WriteLine("success!");
+        }
+
     }
 }
