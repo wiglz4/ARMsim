@@ -61,22 +61,16 @@ namespace ARMSim
                 Environment.Exit(0);
             }
 
-            //initiate ram and size
             if (myOptions.GetTest())
             {
-                //set file name to test1
-                myOptions.SetFileName("test1.exe");
+                TestRAM.RunTests();
+                TestLoader.RunTests(myOptions);
+                Environment.Exit(1);
             }
+
             RAMsim myRam = new RAMsim(myOptions.GetMemSize());
             Loader myLoader = new Loader(myOptions, myRam);
             myLoader.Load();
-
-            if (myOptions.GetTest())
-            {
-                TestLoader.RunTests(myRam);
-                TestRAM.RunTests(myRam);
-                Environment.Exit(1);
-            }
         }
     }
 
@@ -289,6 +283,7 @@ namespace ARMSim
                     myRam.PopulateRam(data, toRam.p_vaddr);
                 }
 
+                //use for testing MD5 HASH
                 //Debug.WriteLine(myRam.getMDF());
 
             }
@@ -309,11 +304,15 @@ namespace ARMSim
     //BEGIN UNIT TESTING
     class TestLoader
     {
-        public static void RunTests(RAMsim ram) 
+        public static void RunTests(Options myOptions) 
         {
-            Debug.WriteLine("testing loader...");
-            Debug.WriteLine("verifying MD5 hash...");
-            Debug.Assert(ram.getMDF() == "3500a8bef72dfed358b25b61b7602cf1");
+            myOptions.SetFileName("test1.exe");
+            RAMsim myRam = new RAMsim(myOptions.GetMemSize());
+            Loader myLoader = new Loader(myOptions, myRam);
+            Debug.WriteLine("testing Loader...");
+            myLoader.Load();
+            Debug.Write("verifying MD5 hash...");
+            Debug.Assert(myRam.getMDF() == "3500a8bef72dfed358b25b61b7602cf1");
             Debug.WriteLine("success!");
         }
 
@@ -321,13 +320,20 @@ namespace ARMSim
 
     class TestRAM
     {
-        public static void RunTests(RAMsim ram)
+        public static void RunTests()
         {
             Debug.WriteLine("testing RAM...");
-
+           
+            RAMsim ram = new RAMsim(7);
+            
+            //test populate method
+            Debug.Write("verifying Populate...");
+            ram.PopulateRam(new byte[] { 0xFF, 0xAA, 0xAA, 0xFF, 0xFF, 0xFF, 0xFF }, 0);
+            Debug.Assert(ram.ReadHalfWord(1) == 0xAAAA);
+            Debug.WriteLine("success!");
 
             //test set/test flag methods
-            Debug.WriteLine("verifying SetFlag/TestFlag...");
+            Debug.Write("verifying SetFlag/TestFlag...");
             ram.SetFlag(1, 6, true);
             Debug.Assert(ram.TestFlag(1, 6));
             ram.SetFlag(1, 6, false);
@@ -335,27 +341,21 @@ namespace ARMSim
             Debug.WriteLine("success!");
 
             //test read/write methods
-            Debug.WriteLine("testing Read/Write Word...");
+            Debug.Write("verifying Read/Write Word...");
             ram.WriteWord(0, 0xFFFFFFFF);
             Debug.Assert(ram.ReadWord(0) == 0xFFFFFFFF);
             Debug.WriteLine("success!");
-            
-            Debug.WriteLine("testing Read/Write HalfWord...");
+
+            Debug.Write("verifying Read/Write HalfWord...");
             ram.WriteWord(0, 0xCCCC);
             Debug.Assert(ram.ReadWord(0) == 0xCCCC);
             Debug.WriteLine("success!");
-            
-            Debug.WriteLine("testing Read/Write Byte...");
+
+            Debug.Write("verifying Read/Write Byte...");
             ram.WriteWord(0, 0xAA);
             Debug.Assert(ram.ReadWord(0) == 0xAA);
             Debug.WriteLine("success!");
-
-            //test populate method
-            Debug.WriteLine("verifying Populate...");
-            ram.PopulateRam(new byte[] { 0xFF, 0xAA, 0xAA }, 2);
-            Debug.Assert(ram.ReadHalfWord(3) == 0xAAAA);
-            Debug.WriteLine("success!");
-        }
+         }
 
     }
 }
