@@ -193,35 +193,46 @@ namespace ARMSim
             }
         }
 
-        public uint ReadWord(int addr)
+        public uint ReadWord(uint addr)
         {
-            //take some data, put into uint. flip bits around using int.
-            return 5;
+            return BitConverter.ToUInt32(ram, (int)addr);   
         }
 
-        public void WriteWord(uint word, int addr)
+        public void WriteWord(uint addr, uint toRam)
         {
-            
+            int counter = 0;
+            byte[] toRamBA = BitConverter.GetBytes(toRam);
+            foreach (byte x in toRamBA)
+            {
+                ram[addr + counter] = x;
+                counter++;
+            }            
         }
 
-        public void ReadHalfWord()
+        public uint ReadHalfWord(uint addr)
         {
-
+            return BitConverter.ToUInt16(ram, (int)addr);
         }
 
-        public void WriteHalfWord()
+        public void WriteHalfWord(uint addr, short toRam)
         {
-
+            int counter = 0;
+            byte[] toRamBA = BitConverter.GetBytes(toRam);
+            foreach (byte x in toRamBA)
+            {
+                ram[addr + counter] = x;
+                counter++;
+            }
         }
 
-        public void ReadByte()
+        public byte ReadByte(uint addr)
         {
-
+            return ram[addr];
         }
 
-        public void WriteByte()
+        public void WriteByte(uint addr, byte toRam)
         {
-            //a change
+            ram[addr] = toRam;
         }
 
         public string getMDF()
@@ -237,23 +248,32 @@ namespace ARMSim
         }
 
         //needs testing
-        public bool TestFlag(int addr, int bit) 
+        public bool TestFlag(uint addr, int bit) 
         {
             uint word = ReadWord(addr);
             word = word >> bit;
             return (word & 1)==1 ? true : false;
         }
         //needs testing
-        public void SetFlag(int addr, int bit, bool flag)
+        public void SetFlag(uint addr, int bit, bool flag)
         {
-            //logic for setting to 1
             uint bitLoc = 1;
             uint word = ReadWord(addr);
             bitLoc = bitLoc << bit;
-            word = word ^ bitLoc;
-            WriteWord(word, addr);
 
-            //need logic for setting it to 0
+            if (flag)
+            {
+                //logic for setting to 1
+                word = word ^ bitLoc;
+            }
+            else
+            {
+                //logic for setting to 0
+                bitLoc = ~(bitLoc);
+                word = word & bitLoc;
+            }
+
+            WriteWord(word, addr);
         }
     }
 }
