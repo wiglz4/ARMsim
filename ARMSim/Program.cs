@@ -51,21 +51,14 @@ namespace ARMSim
         static void Main(string[] args)
         {
             Options myOptions= new Options();
-            if (args.Length > 1)
-            {
-                myOptions.Parse(args);
-            }
-            else
-            {
-                Console.WriteLine("YOU DONE MESSED UP A-A-RON!!");
-                Environment.Exit(0);
-            }
+            myOptions.Parse(args);
 
+            
             if (myOptions.GetTest())
             {
                 TestRAM.RunTests();
                 TestLoader.RunTests(myOptions);
-                Environment.Exit(1);
+                Environment.Exit(0);
             }
 
             RAMsim myRam = new RAMsim(myOptions.GetMemSize());
@@ -83,24 +76,51 @@ namespace ARMSim
         public void Parse(string[] args)
         {
             //iterate through command line arguments and fill out variables
+            Debug.WriteLine("Options.Parse: parsing command line options");
+            
+            if (args.Length < 1)
+            {
+                Console.WriteLine("You have entered an invalid option \n Valid options are: \n --test: run unit tests and quit \n --mem: specify simluated RAM size \n --load: specify ELF file to open \n");
+                Environment.Exit(0);
+            }
+
             for (int i = 0; i < args.Length; i++)
             {
                 switch (args[i].ToLower())
                 {
                     case "--load":
-                        //need more error testing
-                        fileName = args[i + 1];
+                        try
+                        {
+                            fileName = args[i + 1];
+                        }
+                        catch
+                        {
+                            Console.WriteLine("please supply a file to load");
+                            Environment.Exit(0);
+                        }
                         i++;
+                        Debug.WriteLine("Options.Parse: --load and file accepted.");
                         break;
 
                     case "--mem":
-                        memSize = Convert.ToInt32(args[i + 1]);
+                        try 
+                        {
+                            memSize = Convert.ToInt32(args[i + 1]);
+                            if (memSize > 10000000) { throw new Exception(); } 
+                        } 
+                        catch 
+                        {
+                            Console.WriteLine("incorrect ram formatting (10MB max) quitting");
+                            Environment.Exit(0);
+                        }
                         i++;
+                        Debug.WriteLine("Options.Parse: --mem accepted.");
                         break;
 
                     case "--test":
                         //run unit tests and quit
                         test = true;
+                        Debug.WriteLine("Options.Parse: --test accepted. Unit tests will run.");
                         break;
 
                     default:
@@ -143,6 +163,7 @@ namespace ARMSim
 
         public void PopulateRam(byte[] toRam, uint loc)
         {
+            Debug.WriteLine("RAMsim.PopulateRam: PoplulatingRam at location: " + loc + " in byte[] ram");
             for (int i = 0; i < toRam.Length; i++)
             {
                 ram[loc] = toRam[i];
@@ -251,42 +272,55 @@ namespace ARMSim
             //COMPLIMENT OF J
             //opens given filename and identifies key elements 
             string elfFilename = myOptions.GetFileName();
-            using (FileStream strm = new FileStream(elfFilename, FileMode.Open))
+            try
             {
-                ELF elfHeader = new ELF();
-                byte[] data = new byte[Marshal.SizeOf(elfHeader)];
-
-                // Read ELF header data
-                strm.Read(data, 0, data.Length);
-                // Convert to struct
-                elfHeader = ByteArrayToStructure<ELF>(data);
-
-                Console.WriteLine("Entry point: " + elfHeader.e_entry.ToString("X4"));
-                Console.WriteLine("Number of program header entries: " + elfHeader.e_phnum);
-
-
-                // Read program header entries into programHeaders
-                strm.Seek(elfHeader.e_phoff, SeekOrigin.Begin);
-                for (int i = 0; i < elfHeader.e_phnum; i++)
+                Debug.WriteLine("Loader.Load: Opening " + elfFilename + "...");
+                using (FileStream strm = new FileStream(elfFilename, FileMode.Open))
                 {
-                    data = new byte[elfHeader.e_phentsize];
-                    strm.Read(data, 0, (int)elfHeader.e_phentsize);
-                    programHeaders.Add(ByteArrayToStructure<ELFTWO>(data));
+                    ELF elfHeader = new ELF();
+                    byte[] data = new byte[Marshal.SizeOf(elfHeader)];
+
+                    Debug.WriteLine("Loader.Load: Reading " + elfFilename + "...");
+                    // Read ELF header data
+                    strm.Read(data, 0, data.Length);
+
+                    Debug.WriteLine("Loader.Load: Converting to struct");
+                    // Convert to struct
+                    elfHeader = ByteArrayToStructure<ELF>(data);
+
+                    Debug.WriteLine("Loader.Load: Entry point: " + elfHeader.e_entry.ToString("X4"));
+                    Debug.WriteLine("Loader.Load: Number of program header entries: " + elfHeader.e_phnum);
+                    Debug.WriteLine("Loader.Load: Reading program header entries...");
+
+                    // Read program header entries into programHeaders
+                    strm.Seek(elfHeader.e_phoff, SeekOrigin.Begin);
+                    for (int i = 0; i < elfHeader.e_phnum; i++)
+                    {
+                        data = new byte[elfHeader.e_phentsize];
+                        strm.Read(data, 0, (int)elfHeader.e_phentsize);
+                        programHeaders.Add(ByteArrayToStructure<ELFTWO>(data));
+                    }
+
+                    Debug.WriteLine("Loader.Load: Reading memory from program headers...");
+                    //read memory from program header and send to 
+                    foreach (ELFTWO toRam in programHeaders)
+                    {
+                        data = new byte[toRam.p_memsz];
+                        strm.Seek(toRam.p_offset, SeekOrigin.Begin);
+                        strm.Read(data, 0, (int)toRam.p_memsz);
+                        myRam.PopulateRam(data, toRam.p_vaddr);
+                    }
+                    
+                    Console.WriteLine(myRam.getMDF());
+
                 }
-
-                //read memory from program header and send to 
-                foreach (ELFTWO toRam in programHeaders)
-                {
-                    data = new byte[toRam.p_memsz];
-                    strm.Seek(toRam.p_offset, SeekOrigin.Begin);
-                    strm.Read(data, 0, (int)toRam.p_memsz);
-                    myRam.PopulateRam(data, toRam.p_vaddr);
-                }
-
-                //use for testing MD5 HASH
-                //Debug.WriteLine(myRam.getMDF());
-
             }
+            catch
+            {
+                Console.WriteLine("error loading file. please check your file/filename and try again");
+                Environment.Exit(1);
+            }
+
         }
 
         //COMPLEMENTS OF J
@@ -309,11 +343,11 @@ namespace ARMSim
             myOptions.SetFileName("test1.exe");
             RAMsim myRam = new RAMsim(myOptions.GetMemSize());
             Loader myLoader = new Loader(myOptions, myRam);
-            Debug.WriteLine("testing Loader...");
+            Console.WriteLine("testing Loader...");
             myLoader.Load();
-            Debug.Write("verifying MD5 hash...");
+            Console.Write("verifying MD5 hash...");
             Debug.Assert(myRam.getMDF() == "3500a8bef72dfed358b25b61b7602cf1");
-            Debug.WriteLine("success!");
+            Console.WriteLine("success!");
         }
 
     }
@@ -322,39 +356,39 @@ namespace ARMSim
     {
         public static void RunTests()
         {
-            Debug.WriteLine("testing RAM...");
+            Console.WriteLine("testing RAM...");
            
             RAMsim ram = new RAMsim(7);
             
             //test populate method
-            Debug.Write("verifying Populate...");
+            Console.Write("verifying Populate...");
             ram.PopulateRam(new byte[] { 0xFF, 0xAA, 0xAA, 0xFF, 0xFF, 0xFF, 0xFF }, 0);
             Debug.Assert(ram.ReadHalfWord(1) == 0xAAAA);
-            Debug.WriteLine("success!");
+            Console.WriteLine("success!");
 
             //test set/test flag methods
-            Debug.Write("verifying SetFlag/TestFlag...");
+            Console.Write("verifying SetFlag/TestFlag...");
             ram.SetFlag(1, 6, true);
             Debug.Assert(ram.TestFlag(1, 6));
             ram.SetFlag(1, 6, false);
             Debug.Assert(!(ram.TestFlag(1, 6)));
-            Debug.WriteLine("success!");
+            Console.WriteLine("success!");
 
             //test read/write methods
-            Debug.Write("verifying Read/Write Word...");
+            Console.Write("verifying Read/Write Word...");
             ram.WriteWord(0, 0xFFFFFFFF);
             Debug.Assert(ram.ReadWord(0) == 0xFFFFFFFF);
-            Debug.WriteLine("success!");
+            Console.WriteLine("success!");
 
-            Debug.Write("verifying Read/Write HalfWord...");
+            Console.Write("verifying Read/Write HalfWord...");
             ram.WriteWord(0, 0xCCCC);
             Debug.Assert(ram.ReadWord(0) == 0xCCCC);
-            Debug.WriteLine("success!");
+            Console.WriteLine("success!");
 
-            Debug.Write("verifying Read/Write Byte...");
+            Console.Write("verifying Read/Write Byte...");
             ram.WriteWord(0, 0xAA);
             Debug.Assert(ram.ReadWord(0) == 0xAA);
-            Debug.WriteLine("success!");
+            Console.WriteLine("success!");
          }
 
     }
