@@ -33,7 +33,7 @@ namespace ARMSim
     }
 
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
-    public struct ELFTWO 
+    public struct ELFTWO
     {
         public uint p_type;
         public uint p_offset;
@@ -43,17 +43,17 @@ namespace ARMSim
         public uint p_memsz;
         public uint p_flags;
         public uint p_align;
-    } 
+    }
 
 
     class Program
     {
         static void Main(string[] args)
         {
-            Options myOptions= new Options();
+            Options myOptions = new Options();
             myOptions.Parse(args);
 
-            
+
             if (myOptions.GetTest())
             {
                 TestRAM.RunTests();
@@ -77,7 +77,7 @@ namespace ARMSim
         {
             //iterate through command line arguments and fill out variables
             Debug.WriteLine("Options.Parse: parsing command line options");
-            
+
             if (args.Length < 1)
             {
                 Console.WriteLine("You have entered an invalid option \n Valid options are: \n --test: run unit tests and quit \n --mem: specify simluated RAM size \n --load: specify ELF file to open \n");
@@ -103,12 +103,12 @@ namespace ARMSim
                         break;
 
                     case "--mem":
-                        try 
+                        try
                         {
                             memSize = Convert.ToInt32(args[i + 1]);
-                            if (memSize > 10000000) { throw new Exception(); } 
-                        } 
-                        catch 
+                            if (memSize > 10000000) { throw new Exception(); }
+                        }
+                        catch
                         {
                             Console.WriteLine("incorrect ram formatting (10MB max) quitting");
                             Environment.Exit(0);
@@ -131,17 +131,17 @@ namespace ARMSim
             }
         }
 
-        public int GetMemSize() 
+        public int GetMemSize()
         {
             return memSize;
         }
 
-        public string GetFileName() 
+        public string GetFileName()
         {
             return fileName;
         }
 
-        public bool GetTest() 
+        public bool GetTest()
         {
             return test;
         }
@@ -156,7 +156,7 @@ namespace ARMSim
     {
         private byte[] ram;
 
-        public RAMsim(int memsize) 
+        public RAMsim(int memsize)
         {
             ram = new byte[memsize];
         }
@@ -173,7 +173,7 @@ namespace ARMSim
 
         public uint ReadWord(uint addr)
         {
-            return BitConverter.ToUInt32(ram, (int)addr);   
+            return BitConverter.ToUInt32(ram, (int)addr);
         }
 
         public void WriteWord(uint addr, uint toRam)
@@ -184,7 +184,7 @@ namespace ARMSim
             {
                 ram[addr + counter] = x;
                 counter++;
-            }            
+            }
         }
 
         public uint ReadHalfWord(uint addr)
@@ -217,7 +217,7 @@ namespace ARMSim
         {
             byte[] mdf = new MD5CryptoServiceProvider().ComputeHash(ram);
             StringBuilder toString = new StringBuilder();
-            for(int i = 0; i < mdf.Length; i++)
+            for (int i = 0; i < mdf.Length; i++)
             {
                 toString.Append(mdf[i].ToString("x2"));
             }
@@ -226,11 +226,11 @@ namespace ARMSim
         }
 
         //needs testing
-        public bool TestFlag(uint addr, int bit) 
+        public bool TestFlag(uint addr, int bit)
         {
             uint word = ReadWord(addr);
             word = word >> bit;
-            return (word & 1)==1 ? true : false;
+            return (word & 1) == 1 ? true : false;
         }
         //needs testing
         public void SetFlag(uint addr, int bit, bool flag)
@@ -310,7 +310,7 @@ namespace ARMSim
                         strm.Read(data, 0, (int)toRam.p_memsz);
                         myRam.PopulateRam(data, toRam.p_vaddr);
                     }
-                    
+
                     Console.WriteLine(myRam.getMDF());
 
                 }
@@ -338,7 +338,7 @@ namespace ARMSim
     //BEGIN UNIT TESTING
     class TestLoader
     {
-        public static void RunTests(Options myOptions) 
+        public static void RunTests(Options myOptions)
         {
             myOptions.SetFileName("test1.exe");
             RAMsim myRam = new RAMsim(myOptions.GetMemSize());
@@ -357,9 +357,9 @@ namespace ARMSim
         public static void RunTests()
         {
             Console.WriteLine("testing RAM...");
-           
+
             RAMsim ram = new RAMsim(7);
-            
+
             //test populate method
             Console.Write("verifying Populate...");
             ram.PopulateRam(new byte[] { 0xFF, 0xAA, 0xAA, 0xFF, 0xFF, 0xFF, 0xFF }, 0);
@@ -389,7 +389,7 @@ namespace ARMSim
             ram.WriteWord(0, 0xAA);
             Debug.Assert(ram.ReadWord(0) == 0xAA);
             Console.WriteLine("success!");
-         }
+        }
 
     }
 }
