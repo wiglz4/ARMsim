@@ -45,17 +45,14 @@ namespace ARMSim
         public uint p_align;
     }
 
-    //Class:        Program
-    //Purpose:      Accepts user input then initiates classes and runs program.
+
     class Program
     {
-        //Method:       Main
-        //Purpose:      Accepts user input then initiates classes and runs program.
-        //Variables:    args -   String array of command line arguments.
         static void Main(string[] args)
         {
             Options myOptions = new Options();
             myOptions.Parse(args);
+
 
             if (myOptions.GetTest())
             {
@@ -70,17 +67,12 @@ namespace ARMSim
         }
     }
 
-    //Class:        Options
-    //Purpose:      Parses user input and stores relevant information in an Option object.
     class Options
     {
         private int memSize = 32768;
         private string fileName;
         private bool test;
 
-        //Method:       Parse
-        //Purpose:      Parses user input and stores relevant information in an Option object.
-        //Variables:    args -   String array of command line arguments.
         public void Parse(string[] args)
         {
             //iterate through command line arguments and fill out variables
@@ -139,55 +131,36 @@ namespace ARMSim
             }
         }
 
-        //Method:       GetMemSize
-        //Purpose:      Returns memSize.
         public int GetMemSize()
         {
             return memSize;
         }
 
-        //Method:       GetFileName
-        //Purpose:      Returns fileName.
         public string GetFileName()
         {
             return fileName;
         }
 
-        //Method:       GetTest
-        //Purpose:      Returns test.
         public bool GetTest()
         {
             return test;
         }
 
-        //Method:       SetFileName
-        //Purpose:      Sets the file name to a new variable.
-        //Variables:    toFileName - string of new filename
         public void SetFileName(string toFileName)
         {
             fileName = toFileName;
         }
     }
 
-
-    //Class:        Program
-    //Purpose:      Accepts user input then initiates classes and runs program.
     class RAMsim
     {
         private byte[] ram;
 
-        //Method:       RAMsim
-        //Purpose:      Constructs new RAMsim object and byte array of ram
-        //Variables:    memsize - size of memory to instantiate bytearray to
         public RAMsim(int memsize)
         {
             ram = new byte[memsize];
         }
 
-        //Method:       PopulateRam
-        //Purpose:      Populates ram with values from toRam
-        //Variables:    toRam - bytearray to populate ram with
-        //              loc - uint of location in ram to insert toRam
         public void PopulateRam(byte[] toRam, uint loc)
         {
             Debug.WriteLine("RAMsim.PopulateRam: PoplulatingRam at location: " + loc + " in byte[] ram");
@@ -198,19 +171,11 @@ namespace ARMSim
             }
         }
 
-        //Method:       ReadWord
-        //Purpose:      returns a word of information from ram
-        //Variables:    addr - uint of addr to read a word from
         public uint ReadWord(uint addr)
         {
             return BitConverter.ToUInt32(ram, (int)addr);
         }
 
-
-        //Method:       WriteWord
-        //Purpose:      writes a word of information to ram
-        //Variables:    addr - uint of addr to write a word into
-        //              toRam - uint to populate ram with
         public void WriteWord(uint addr, uint toRam)
         {
             int counter = 0;
@@ -222,18 +187,11 @@ namespace ARMSim
             }
         }
 
-        //Method:       ReadHalfWord
-        //Purpose:      returns a half word of information from ram
-        //Variables:    addr - uint of addr to read a half word from
         public uint ReadHalfWord(uint addr)
         {
             return BitConverter.ToUInt16(ram, (int)addr);
         }
 
-        //Method:       WriteHalfWord
-        //Purpose:      writes a halfword of information to ram
-        //Variables:    addr - uint of addr to write a halfword into
-        //              toRam - uint to populate ram with
         public void WriteHalfWord(uint addr, short toRam)
         {
             int counter = 0;
@@ -245,25 +203,16 @@ namespace ARMSim
             }
         }
 
-        //Method:       ReadByte
-        //Purpose:      returns a byte of information from ram
-        //Variables:    addr - uint of addr to read a byte from
         public byte ReadByte(uint addr)
         {
             return ram[addr];
         }
 
-        //Method:       WriteByte
-        //Purpose:      writes a byte of information to ram
-        //Variables:    addr - uint of addr to write a byte into
-        //              toRam - uint to populate ram with
         public void WriteByte(uint addr, byte toRam)
         {
             ram[addr] = toRam;
         }
 
-        //Method:       getMDF
-        //Purpose:      returns MD5 hash dump as a string
         public string getMDF()
         {
             byte[] mdf = new MD5CryptoServiceProvider().ComputeHash(ram);
@@ -276,22 +225,14 @@ namespace ARMSim
             return toString.ToString();
         }
 
-        //Method:       TestFlag
-        //Purpose:      tests a specific bit and returns the corresponding bool
-        //Variables:    addr - uint of addr to read a word from
-        //              bit - int of location in addr where the bit to check is stored
+        //needs testing
         public bool TestFlag(uint addr, int bit)
         {
             uint word = ReadWord(addr);
             word = word >> bit;
             return (word & 1) == 1 ? true : false;
         }
-
-        //Method:       SetFlag
-        //Purpose:      sets a specific bit in ram
-        //Variables:    addr - uint of addr to read a word from
-        //              bit - int of location in addr where the bit to change is stored
-        //              bool - value of bit to be set
+        //needs testing
         public void SetFlag(uint addr, int bit, bool flag)
         {
             uint bitLoc = 1;
@@ -314,26 +255,18 @@ namespace ARMSim
         }
     }
 
-    //Class:        Loader
-    //Purpose:      Accepts and parses elf file
     class Loader
     {
         private Options myOptions;
         private RAMsim myRam;
         List<ELFTWO> programHeaders = new List<ELFTWO>();
 
-        //Method:       Loader
-        //Purpose:      constructs Loader class object and instantiates variables
-        //Variables:    toMyOptions - Options object for reference
-        //              toMyRam - RAMsim object for reference
         public Loader(Options toMyOptions, RAMsim toMyRam)
         {
             myOptions = toMyOptions;
             myRam = toMyRam;
         }
 
-        //Method:       Load
-        //Purpose:      extracts ram and program headers from the elf file and calls to instantiate ram
         public void Load()
         {
             //COMPLIMENT OF J
@@ -403,13 +336,8 @@ namespace ARMSim
     }
 
     //BEGIN UNIT TESTING
-    //Class:        TestLoader
-    //Purpose:      Unit tests for the loader class
     class TestLoader
     {
-        //Method:       RunTests
-        //Purpose:      tests every method in the Loader class
-        //Variables:    myOptions - Options handle to options to class
         public static void RunTests(Options myOptions)
         {
             myOptions.SetFileName("test1.exe");
@@ -424,13 +352,8 @@ namespace ARMSim
 
     }
 
-    //BEGIN UNIT TESTING
-    //Class:        TestRAM
-    //Purpose:      Unit tests for the ram class
     class TestRAM
     {
-        //Method:       RunTests
-        //Purpose:      tests every method in the RAMsim class
         public static void RunTests()
         {
             Console.WriteLine("testing RAM...");
