@@ -24,6 +24,8 @@ namespace ARMSim
             myRegisters = new Registers();
             myCPU = new CPU(myRam, myRegisters);
             trace = true;
+            //delete whatever trace file exists
+            //create new trace file 
         }
 
         public void run()
@@ -34,6 +36,7 @@ namespace ARMSim
                 myCPU.Decode();
                 myCPU.Execute();
                 keepRunning = myCPU.Fetch();
+                //write to trace file IF trace bool is true
             } 
         }
 
