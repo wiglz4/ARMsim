@@ -8,6 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+//YOU LEFT OFF HERE
+//need to link up all the buttons and forms with actual stuffs. only need it to update beginning and end of running. not during
+//when rest button is clicked need to delete then recreate computer
+//also need to create trace log file
 namespace ARMSim
 {
     public partial class ARMSimForm : Form
@@ -44,6 +49,16 @@ namespace ARMSim
         }
 
         private void LoadFileButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
