@@ -12,7 +12,7 @@ namespace ARMSim
 {
     //Class:        Options
     //Purpose:      Parses user input and stores relevant information in an Option object.
-    class Options
+    public class Options
     {
         private int memSize = 32768;
         private string fileName;

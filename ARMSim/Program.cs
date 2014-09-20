@@ -30,10 +30,9 @@ namespace ARMSim
                 Environment.Exit(0);
             }
 
-            Computer myComputer = new Computer(myOptions);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ARMSimForm());
+            Application.Run(new ARMSimForm(myOptions));
         }
     }
 }
