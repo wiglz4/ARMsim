@@ -14,6 +14,7 @@ namespace ARMSim
         private Registers myRegisters;
         private CPU myCPU;
         private bool trace;
+        private bool stop;
 
         public Computer(Options toOptions)
         {
@@ -24,14 +25,15 @@ namespace ARMSim
             myRegisters = new Registers();
             myCPU = new CPU(myRam, myRegisters);
             trace = true;
+            stop = false;
             //delete whatever trace file exists
             //create new trace file 
         }
 
-        public void run()
+        public void Run()
         {
             uint keepRunning = myCPU.Fetch();
-            while (keepRunning != 0)
+            while (keepRunning != 0 && stop != true)
             {
                 myCPU.Decode();
                 myCPU.Execute();
@@ -45,6 +47,20 @@ namespace ARMSim
             myCPU.Fetch();
             myCPU.Decode();
             myCPU.Execute();
+        }
+
+        public void setStop(bool val)
+        {
+            stop = val;
+        }
+
+        public bool getStop()
+        {
+            return stop;
+        }
+        public CPU getCPU()
+        {
+            return myCPU;
         }
     }
 }

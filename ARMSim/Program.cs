@@ -18,6 +18,7 @@ namespace ARMSim
         //Method:       Main
         //Purpose:      Accepts user input then initiates classes and runs program.
         //Variables:    args -   String array of command line arguments.
+        [STAThread]
         static void Main(string[] args)
         {
             Options myOptions = new Options();

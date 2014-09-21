@@ -28,7 +28,7 @@ namespace ARMSim
 
             if (args.Length < 1)
             {
-                Console.WriteLine("You have entered an invalid option \n Valid options are: \n --test: run unit tests and quit \n --mem: specify simluated RAM size \n --load: specify ELF file to open \n");
+                Console.WriteLine("You have entered an invalid option \n Valid options are: \n --test: Run unit tests and quit \n --mem: specify simluated RAM size \n --load: specify ELF file to open \n");
                 Environment.Exit(0);
             }
 
@@ -66,13 +66,13 @@ namespace ARMSim
                         break;
 
                     case "--test":
-                        //run unit tests and quit
+                        //Run unit tests and quit
                         test = true;
-                        Debug.WriteLine("Options.Parse: --test accepted. Unit tests will run.");
+                        Debug.WriteLine("Options.Parse: --test accepted. Unit tests will Run.");
                         break;
 
                     default:
-                        Console.WriteLine("You have entered an invalid option \n Valid options are: \n --test: run unit tests and quit \n --mem: specify simluated RAM size \n --load: specify ELF file to open \n");
+                        Console.WriteLine("You have entered an invalid option \n Valid options are: \n --test: Run unit tests and quit \n --mem: specify simluated RAM size \n --load: specify ELF file to open \n");
                         Environment.Exit(0);
                         break;
                 }

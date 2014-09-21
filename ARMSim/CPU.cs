@@ -36,8 +36,8 @@ namespace ARMSim
 
         public void Execute()
         {
-            Thread.Sleep(250);
-            //pause for 1/4th a second
+            Thread.Sleep(3000);
+            //pause for 1/4th a second (250)
         }
     }
 }
