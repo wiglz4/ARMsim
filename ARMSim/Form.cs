@@ -11,9 +11,8 @@ using System.Threading;
 
 
 //YOU LEFT OFF HERE
-//need to link up all the buttons and forms with actual stuffs. only need it to update beginning and end of running. not during
-//when rest button is clicked need to delete then recreate computer
 //also need to create trace log file
+//need to actually spit stuff on screen
 namespace ARMSim
 {
     public partial class ARMSimForm : Form
@@ -26,43 +25,36 @@ namespace ARMSim
         {
             theseOptions = myOptions;
             InitializeComponent();
+            Form.CheckForIllegalCrossThreadCalls = false;
             myComputer = new Computer(theseOptions);
+            myComputer.endRun += new Computer.EventHandler(UpdateAllTheThings);
             //starts running on file that opened program
-            this.RunButton_Click(this, new System.EventArgs());
+            this.RunButton_Click(this.RunButton, EventArgs.Empty);
         }
 
         private void RunButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                this.RunButton.Enabled = false;
-                this.StepButton.Enabled = false;
-                this.StopButton.Enabled = true;
-                this.ResetButton.Enabled = false;
-                myThread = new Thread(myComputer.Run);
-                myThread.Start();
-            }
-            catch
-            {
-                this.RunButton.Enabled = false;
-                this.StepButton.Enabled = false;
-                this.StopButton.Enabled = false;
-                this.ResetButton.Enabled = false;
-            }
+            this.richTextBox1.AppendText("test");
+            this.RunButton.Enabled = false;
+            this.StepButton.Enabled = false;
+            this.StopButton.Enabled = true;
+            this.ResetButton.Enabled = false;
+            myThread = new Thread(myComputer.Run);
+            myThread.Start();
         }
 
         private void StepButton_Click(object sender, EventArgs e)
         {
-            myComputer.step();
-            //update values
+            myThread = new Thread(myComputer.step);
+            myThread.Start();
         }
 
         private void StopButton_Click(object sender, EventArgs e)
         {
-            myComputer.setStop(true);
+            myThread.Abort();
             this.StepButton.Enabled = true;
             this.ResetButton.Enabled = true;
-            //update values
+            UpdateAllTheThings(myComputer, EventArgs.Empty);
         }
 
         private void splitContainer3_Panel1_Paint(object sender, PaintEventArgs e)
@@ -80,14 +72,15 @@ namespace ARMSim
             OpenFileDialog myBox = new OpenFileDialog();
             myBox.InitialDirectory = "c:\\";
             myBox.RestoreDirectory = true;
+            //NEED TO ADD filter .exe 
             myBox.ShowDialog();
             theseOptions.SetFileName(myBox.FileName);
             myComputer = new Computer(theseOptions);
+            myComputer.endRun += new Computer.EventHandler(UpdateAllTheThings);
             this.RunButton.Enabled = true;
             this.StepButton.Enabled = true;
             this.StopButton.Enabled = false;
             this.ResetButton.Enabled = true;
-            //update text box
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
@@ -113,12 +106,23 @@ namespace ARMSim
         private void ResetButton_Click(object sender, EventArgs e)
         {
             myComputer = new Computer(theseOptions);
+            myComputer.endRun += new Computer.EventHandler(UpdateAllTheThings);
             this.RunButton.Enabled = true;
             this.StepButton.Enabled = true;
             this.StopButton.Enabled = false;
             this.ResetButton.Enabled = true;
+            this.LoadFileButton.Enabled = true;
         }
 
-        //dont forget to creeate new thread every time i call Run and/or step
+        private void UpdateAllTheThings(Computer c, EventArgs e)
+        {
+            this.richTextBox1.AppendText("updated things ");
+            this.RunButton.Enabled = true;
+            this.StepButton.Enabled = true;
+            this.StopButton.Enabled = false;
+            this.ResetButton.Enabled = true;
+            this.LoadFileButton.Enabled = true;
+            //update everything.
+        }
     }
 }

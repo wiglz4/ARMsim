@@ -13,8 +13,10 @@ namespace ARMSim
         private Loader myLoader;
         private Registers myRegisters;
         private CPU myCPU;
+        public event EventHandler endRun;
+        public EventArgs e = null;
+        public delegate void EventHandler(Computer c, EventArgs e);
         private bool trace;
-        private bool stop;
 
         public Computer(Options toOptions)
         {
@@ -23,9 +25,8 @@ namespace ARMSim
             myLoader = new Loader(myOptions, myRam);
             myLoader.Load();
             myRegisters = new Registers();
-            myCPU = new CPU(myRam, myRegisters);
+            myCPU = new CPU(myRam, myRegisters, myLoader.getProgramCounter());
             trace = true;
-            stop = false;
             //delete whatever trace file exists
             //create new trace file 
         }
@@ -33,13 +34,14 @@ namespace ARMSim
         public void Run()
         {
             uint keepRunning = myCPU.Fetch();
-            while (keepRunning != 0 && stop != true)
+            while (keepRunning != 0)
             {
                 myCPU.Decode();
                 myCPU.Execute();
                 keepRunning = myCPU.Fetch();
                 //write to trace file IF trace bool is true
-            } 
+            }
+            endRun(this, e);
         }
 
         public void step()
@@ -47,17 +49,9 @@ namespace ARMSim
             myCPU.Fetch();
             myCPU.Decode();
             myCPU.Execute();
+            endRun(this, e);
         }
 
-        public void setStop(bool val)
-        {
-            stop = val;
-        }
-
-        public bool getStop()
-        {
-            return stop;
-        }
         public CPU getCPU()
         {
             return myCPU;

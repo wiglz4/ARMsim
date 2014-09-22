@@ -51,6 +51,7 @@ namespace ARMSim
     {
         private Options myOptions;
         private Memory myRam;
+        private uint programCounter;
         List<ELFTWO> programHeaders = new List<ELFTWO>();
 
         //Method:       Loader
@@ -86,6 +87,7 @@ namespace ARMSim
                     // Convert to struct
                     elfHeader = ByteArrayToStructure<ELF>(data);
 
+                    programCounter = elfHeader.e_entry;
                     Debug.WriteLine("Loader.Load: Entry point: " + elfHeader.e_entry.ToString("X4"));
                     Debug.WriteLine("Loader.Load: Number of program header entries: " + elfHeader.e_phnum);
                     Debug.WriteLine("Loader.Load: Reading program header entries...");
@@ -119,7 +121,7 @@ namespace ARMSim
             catch
             {
                 Console.WriteLine("error loading file. please check your file/filename and try again");
-                Environment.Exit(1);
+                Environment.Exit(0);
             }
 
         }
@@ -133,6 +135,11 @@ namespace ARMSim
                 typeof(T));
             handle.Free();
             return stuff;
+        }
+
+        public uint getProgramCounter()
+        {
+            return programCounter;
         }
     }
 }

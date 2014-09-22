@@ -16,10 +16,11 @@ namespace ARMSim
         Memory myMemory;
         Registers myRegisters;
 
-        public CPU(Memory toMemory, Registers toRegisters)
+        public CPU(Memory toMemory, Registers toRegisters, uint programCounter)
         {
             myMemory = toMemory;
             myRegisters = toRegisters;
+            myMemory.WriteWord(myRegisters.ReadWord(15), programCounter);
         }
 
         public uint Fetch()
@@ -36,7 +37,7 @@ namespace ARMSim
 
         public void Execute()
         {
-            Thread.Sleep(3000);
+            Thread.Sleep(250);
             //pause for 1/4th a second (250)
         }
     }
