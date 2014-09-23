@@ -47,6 +47,7 @@ namespace ARMSim
         {
             myThread = new Thread(myComputer.step);
             myThread.Start();
+            this.StepButton.Enabled = false;
         }
 
         private void StopButton_Click(object sender, EventArgs e)
@@ -123,6 +124,22 @@ namespace ARMSim
             this.ResetButton.Enabled = true;
             this.LoadFileButton.Enabled = true;
             //update everything.
+
+            for (int i = 0; i < 15; i++)
+            {
+                this.RegisterGridView.Rows.Add();
+                this.RegisterGridView.Rows[i].Cells[0].Value = i;
+                this.RegisterGridView.Rows[i].Cells[1].Value = String.Format("{0:X}", myComputer.getRegisters().GetRegister(myComputer.getMemory(), (uint)i));
+            }
+            
+
+            /*tbc
+            for (uint i = 0; i < 16; i++)
+            {
+                this.RegistersTable.SetRow(new Control(myComputer.getRegisters().GetRegister(myComputer.getMemory(), i).ToString()), (int)i); 
+            }
+            this.RegistersTable.Show();
+             */
         }
     }
 }

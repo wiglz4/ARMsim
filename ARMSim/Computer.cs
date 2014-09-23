@@ -56,5 +56,15 @@ namespace ARMSim
         {
             return myCPU;
         }
+
+        public Registers getRegisters()
+        {
+            return myRegisters;
+        }
+
+        public Memory getMemory()
+        {
+            return myRam;
+        }
     }
 }

@@ -47,6 +47,10 @@
             this.Stack = new System.Windows.Forms.TabPage();
             this.Flags = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.RegistersTable = new System.Windows.Forms.TableLayoutPanel();
+            this.RegisterGridView = new System.Windows.Forms.DataGridView();
+            this.Registers = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Values = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -61,7 +65,9 @@
             this.splitContainer3.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.Flags.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RegisterGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -271,6 +277,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.RegisterGridView);
+            this.tabPage2.Controls.Add(this.RegistersTable);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -319,6 +327,41 @@
             this.tableLayoutPanel1.TabIndex = 0;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint_1);
             // 
+            // RegistersTable
+            // 
+            this.RegistersTable.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.RegistersTable.ColumnCount = 2;
+            this.RegistersTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.RegistersTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.RegistersTable.Location = new System.Drawing.Point(467, 6);
+            this.RegistersTable.Name = "RegistersTable";
+            this.RegistersTable.RowCount = 2;
+            this.RegistersTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.RegistersTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.RegistersTable.Size = new System.Drawing.Size(200, 100);
+            this.RegistersTable.TabIndex = 0;
+            // 
+            // RegisterGridView
+            // 
+            this.RegisterGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.RegisterGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Registers,
+            this.Values});
+            this.RegisterGridView.Location = new System.Drawing.Point(3, 3);
+            this.RegisterGridView.Name = "RegisterGridView";
+            this.RegisterGridView.Size = new System.Drawing.Size(247, 242);
+            this.RegisterGridView.TabIndex = 1;
+            // 
+            // Registers
+            // 
+            this.Registers.HeaderText = "Register";
+            this.Registers.Name = "Registers";
+            // 
+            // Values
+            // 
+            this.Values.HeaderText = "Value";
+            this.Values.Name = "Values";
+            // 
             // ARMSimForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -343,7 +386,9 @@
             this.splitContainer3.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.Flags.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.RegisterGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -369,5 +414,9 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.TabPage Flags;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel RegistersTable;
+        private System.Windows.Forms.DataGridView RegisterGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Registers;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Values;
     }
 }
