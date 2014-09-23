@@ -17,12 +17,18 @@ namespace ARMSim
         private int memSize = 32768;
         private string fileName;
         private bool test;
+        private static StreamWriter myWriter;
 
         //Method:       Parse
         //Purpose:      Parses user input and stores relevant information in an Option object.
         //Variables:    args -   String array of command line arguments.
         public void Parse(string[] args)
         {
+            //begin redirecting all console output to console file
+            this.FileStreamCreate();
+            this.FileStreamOpen();
+
+
             //iterate through command line arguments and fill out variables
             Debug.WriteLine("Options.Parse: parsing command line options");
 
@@ -106,6 +112,25 @@ namespace ARMSim
         public void SetFileName(string toFileName)
         {
             fileName = toFileName;
+        }
+
+        public void FileStreamClose()
+        {
+            myWriter.Close();
+        }
+
+        public void FileStreamOpen()
+        {
+            //myFileStream = new FileStream("Console.txt", FileMode.Open);
+            myWriter = File.AppendText("Console.txt");
+            Console.SetOut(myWriter);
+            myWriter.AutoFlush = true;
+        }
+
+        public void FileStreamCreate()
+        {
+            FileStream myFileStream = new FileStream("Console.txt", FileMode.Create);
+            myFileStream.Close();
         }
     }
 }

@@ -40,17 +40,28 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.Console = new System.Windows.Forms.TabPage();
+            this.ConsoleBox = new System.Windows.Forms.TextBox();
             this.Trace = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Memory = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.MemGridView = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
+            this.MemAddr = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.Stack = new System.Windows.Forms.TabPage();
-            this.Flags = new System.Windows.Forms.TabPage();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.RegistersTable = new System.Windows.Forms.TableLayoutPanel();
             this.RegisterGridView = new System.Windows.Forms.DataGridView();
             this.Registers = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Values = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Stack = new System.Windows.Forms.TabPage();
+            this.Flags = new System.Windows.Forms.TabPage();
+            this.FlagGridView = new System.Windows.Forms.DataGridView();
+            this.Flag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Values2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Word1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Word2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Word3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Word4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -64,10 +75,14 @@
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
             this.tabControl2.SuspendLayout();
+            this.Console.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.Memory.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MemGridView)).BeginInit();
             this.tabPage2.SuspendLayout();
-            this.Flags.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RegisterGridView)).BeginInit();
+            this.Flags.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FlagGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -232,6 +247,7 @@
             // 
             // Console
             // 
+            this.Console.Controls.Add(this.ConsoleBox);
             this.Console.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Console.Location = new System.Drawing.Point(4, 22);
             this.Console.Name = "Console";
@@ -240,6 +256,15 @@
             this.Console.TabIndex = 0;
             this.Console.Text = "Console";
             this.Console.UseVisualStyleBackColor = true;
+            this.Console.Click += new System.EventHandler(this.Console_Click);
+            // 
+            // ConsoleBox
+            // 
+            this.ConsoleBox.Location = new System.Drawing.Point(0, 0);
+            this.ConsoleBox.Multiline = true;
+            this.ConsoleBox.Name = "ConsoleBox";
+            this.ConsoleBox.Size = new System.Drawing.Size(423, 242);
+            this.ConsoleBox.TabIndex = 0;
             // 
             // Trace
             // 
@@ -267,6 +292,10 @@
             // 
             // Memory
             // 
+            this.Memory.Controls.Add(this.label1);
+            this.Memory.Controls.Add(this.MemGridView);
+            this.Memory.Controls.Add(this.button1);
+            this.Memory.Controls.Add(this.MemAddr);
             this.Memory.Location = new System.Drawing.Point(4, 22);
             this.Memory.Name = "Memory";
             this.Memory.Padding = new System.Windows.Forms.Padding(3);
@@ -275,10 +304,53 @@
             this.Memory.Text = "Memory";
             this.Memory.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(10, 10);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(54, 15);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Address:";
+            // 
+            // MemGridView
+            // 
+            this.MemGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.MemGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Address,
+            this.Word1,
+            this.Word2,
+            this.Word3,
+            this.Word4});
+            this.MemGridView.Location = new System.Drawing.Point(7, 35);
+            this.MemGridView.Name = "MemGridView";
+            this.MemGridView.Size = new System.Drawing.Size(824, 220);
+            this.MemGridView.TabIndex = 2;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(756, 8);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Go";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.GoButtonClick);
+            // 
+            // MemAddr
+            // 
+            this.MemAddr.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.MemAddr.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.MemAddr.Location = new System.Drawing.Point(64, 9);
+            this.MemAddr.Name = "MemAddr";
+            this.MemAddr.Size = new System.Drawing.Size(686, 20);
+            this.MemAddr.TabIndex = 0;
+            this.MemAddr.Text = "0";
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.RegisterGridView);
-            this.tabPage2.Controls.Add(this.RegistersTable);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -286,6 +358,27 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Registers";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // RegisterGridView
+            // 
+            this.RegisterGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.RegisterGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Registers,
+            this.Values});
+            this.RegisterGridView.Location = new System.Drawing.Point(3, 3);
+            this.RegisterGridView.Name = "RegisterGridView";
+            this.RegisterGridView.Size = new System.Drawing.Size(265, 242);
+            this.RegisterGridView.TabIndex = 1;
+            // 
+            // Registers
+            // 
+            this.Registers.HeaderText = "Register";
+            this.Registers.Name = "Registers";
+            // 
+            // Values
+            // 
+            this.Values.HeaderText = "Value";
+            this.Values.Name = "Values";
             // 
             // Stack
             // 
@@ -299,7 +392,7 @@
             // 
             // Flags
             // 
-            this.Flags.Controls.Add(this.tableLayoutPanel1);
+            this.Flags.Controls.Add(this.FlagGridView);
             this.Flags.Location = new System.Drawing.Point(4, 22);
             this.Flags.Name = "Flags";
             this.Flags.Padding = new System.Windows.Forms.Padding(3);
@@ -308,59 +401,51 @@
             this.Flags.Text = "Flags";
             this.Flags.UseVisualStyleBackColor = true;
             // 
-            // tableLayoutPanel1
+            // FlagGridView
             // 
-            this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Inset;
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(6, 6);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.67606F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(160, 134);
-            this.tableLayoutPanel1.TabIndex = 0;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint_1);
+            this.FlagGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.FlagGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Flag,
+            this.Values2});
+            this.FlagGridView.Location = new System.Drawing.Point(4, 3);
+            this.FlagGridView.Name = "FlagGridView";
+            this.FlagGridView.Size = new System.Drawing.Size(246, 233);
+            this.FlagGridView.TabIndex = 0;
             // 
-            // RegistersTable
+            // Flag
             // 
-            this.RegistersTable.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.RegistersTable.ColumnCount = 2;
-            this.RegistersTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.RegistersTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.RegistersTable.Location = new System.Drawing.Point(467, 6);
-            this.RegistersTable.Name = "RegistersTable";
-            this.RegistersTable.RowCount = 2;
-            this.RegistersTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.RegistersTable.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.RegistersTable.Size = new System.Drawing.Size(200, 100);
-            this.RegistersTable.TabIndex = 0;
+            this.Flag.HeaderText = "Flags";
+            this.Flag.Name = "Flag";
             // 
-            // RegisterGridView
+            // Values2
             // 
-            this.RegisterGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.RegisterGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Registers,
-            this.Values});
-            this.RegisterGridView.Location = new System.Drawing.Point(3, 3);
-            this.RegisterGridView.Name = "RegisterGridView";
-            this.RegisterGridView.Size = new System.Drawing.Size(247, 242);
-            this.RegisterGridView.TabIndex = 1;
+            this.Values2.HeaderText = "Value";
+            this.Values2.Name = "Values2";
             // 
-            // Registers
+            // Address
             // 
-            this.Registers.HeaderText = "Register";
-            this.Registers.Name = "Registers";
+            this.Address.HeaderText = "Address";
+            this.Address.Name = "Address";
             // 
-            // Values
+            // Word1
             // 
-            this.Values.HeaderText = "Value";
-            this.Values.Name = "Values";
+            this.Word1.HeaderText = "";
+            this.Word1.Name = "Word1";
+            // 
+            // Word2
+            // 
+            this.Word2.HeaderText = "";
+            this.Word2.Name = "Word2";
+            // 
+            // Word3
+            // 
+            this.Word3.HeaderText = "";
+            this.Word3.Name = "Word3";
+            // 
+            // Word4
+            // 
+            this.Word4.HeaderText = "";
+            this.Word4.Name = "Word4";
             // 
             // ARMSimForm
             // 
@@ -385,10 +470,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
+            this.Console.ResumeLayout(false);
+            this.Console.PerformLayout();
             this.tabControl1.ResumeLayout(false);
+            this.Memory.ResumeLayout(false);
+            this.Memory.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MemGridView)).EndInit();
             this.tabPage2.ResumeLayout(false);
-            this.Flags.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.RegisterGridView)).EndInit();
+            this.Flags.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.FlagGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -413,10 +504,21 @@
         private System.Windows.Forms.TabPage Trace;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.TabPage Flags;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TableLayoutPanel RegistersTable;
         private System.Windows.Forms.DataGridView RegisterGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn Registers;
         private System.Windows.Forms.DataGridViewTextBoxColumn Values;
+        private System.Windows.Forms.DataGridView FlagGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Flag;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Values2;
+        private System.Windows.Forms.TextBox ConsoleBox;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox MemAddr;
+        private System.Windows.Forms.DataGridView MemGridView;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Address;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Word1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Word2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Word3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Word4;
     }
 }

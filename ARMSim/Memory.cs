@@ -15,6 +15,8 @@ namespace ARMSim
     class Memory
     {
         protected byte[] ram;
+        private uint myFlags;
+
 
         //Method:       Memory
         //Purpose:      Constructs new Memory object and byte array of ram
@@ -151,6 +153,16 @@ namespace ARMSim
             }
 
             WriteWord(addr, word);
+        }
+
+        public void SetFlagAddr(uint toFlags)
+        {
+            myFlags = toFlags;
+        }
+
+        public uint GetFlagAddr()
+        {
+            return myFlags;
         }
     }
 }

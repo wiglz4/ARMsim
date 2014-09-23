@@ -38,8 +38,7 @@ namespace ARMSim
         public void IncrCounter(Memory myMemory)
         {
             uint newCounter = GetRegister(myMemory, 15);
-            newCounter += 4;
-            myMemory.WriteWord(this.ReadWord(15), newCounter);
+            myMemory.WriteWord(this.ReadWord(15), newCounter+4);
         }
     }
 }

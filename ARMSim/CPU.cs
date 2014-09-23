@@ -15,6 +15,7 @@ namespace ARMSim
     {
         Memory myMemory;
         Registers myRegisters;
+        bool N, C, Z, F;
 
         public CPU(Memory toMemory, Registers toRegisters, uint programCounter)
         {
@@ -42,6 +43,23 @@ namespace ARMSim
         {
             Thread.Sleep(250);
             //pause for 1/4th a second (250)
+        }
+
+        public bool getFlagN()
+        {
+            return N;
+        }
+        public bool getFlagZ()
+        {
+            return Z;
+        }
+        public bool getFlagC()
+        {
+            return C;
+        }
+        public bool getFlagF()
+        {
+            return F;
         }
     }
 }

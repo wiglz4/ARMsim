@@ -87,7 +87,9 @@ namespace ARMSim
                     // Convert to struct
                     elfHeader = ByteArrayToStructure<ELF>(data);
 
+                    //this really should be changed to be in memory class
                     programCounter = elfHeader.e_entry;
+                    myRam.SetFlagAddr(elfHeader.e_flags);
                     Debug.WriteLine("Loader.Load: Entry point: " + elfHeader.e_entry.ToString("X4"));
                     Debug.WriteLine("Loader.Load: Number of program header entries: " + elfHeader.e_phnum);
                     Debug.WriteLine("Loader.Load: Reading program header entries...");
@@ -121,7 +123,6 @@ namespace ARMSim
             catch
             {
                 Console.WriteLine("error loading file. please check your file/filename and try again");
-                Environment.Exit(0);
             }
 
         }
