@@ -30,14 +30,14 @@ namespace ARMSim
             }
         }
         
-        public uint GetRegister(Memory myMemory, uint regNum)
+        public uint GetMemAtLocReg(Memory myMemory, uint regNum)
         {
             return myMemory.ReadWord(BitConverter.ToUInt32(ram, (int)regNum * 4));
         }
 
         public void IncrCounter(Memory myMemory)
         {
-            uint newCounter = GetRegister(myMemory, 15);
+            uint newCounter = GetMemAtLocReg(myMemory, 15);
             myMemory.WriteWord(this.ReadWord(15), newCounter+4);
         }
     }

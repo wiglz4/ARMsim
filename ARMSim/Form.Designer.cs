@@ -37,31 +37,36 @@
             this.RunButton = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.myConsole = new System.Windows.Forms.RichTextBox();
             this.tabControl2 = new System.Windows.Forms.TabControl();
-            this.Console = new System.Windows.Forms.TabPage();
-            this.ConsoleBox = new System.Windows.Forms.TextBox();
+            this.Disassembly = new System.Windows.Forms.TabPage();
+            this.DisBox = new System.Windows.Forms.TextBox();
             this.Trace = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Memory = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.MemGridView = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.MemAddr = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.RegisterGridView = new System.Windows.Forms.DataGridView();
             this.Registers = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Values = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Stack = new System.Windows.Forms.TabPage();
+            this.StackGridView = new System.Windows.Forms.DataGridView();
+            this.Position = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Value2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Flags = new System.Windows.Forms.TabPage();
             this.FlagGridView = new System.Windows.Forms.DataGridView();
             this.Flag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Values2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.MemGridView = new System.Windows.Forms.DataGridView();
             this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Word1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Word2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Word3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Word4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.GoButton = new System.Windows.Forms.Button();
+            this.MemAddr = new System.Windows.Forms.TextBox();
+            this.TraceBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -75,14 +80,21 @@
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
             this.tabControl2.SuspendLayout();
-            this.Console.SuspendLayout();
+            this.Disassembly.SuspendLayout();
+            this.Trace.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.Memory.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.MemGridView)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RegisterGridView)).BeginInit();
+            this.Stack.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.StackGridView)).BeginInit();
             this.Flags.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FlagGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
+            this.splitContainer4.Panel1.SuspendLayout();
+            this.splitContainer4.Panel2.SuspendLayout();
+            this.splitContainer4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MemGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -120,7 +132,6 @@
             this.checkBox1.Text = "Trace Log";
             this.checkBox1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // LoadFileButton
             // 
@@ -212,8 +223,8 @@
             // 
             // splitContainer3.Panel1
             // 
-            this.splitContainer3.Panel1.Controls.Add(this.richTextBox1);
-            this.splitContainer3.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer3_Panel1_Paint);
+            this.splitContainer3.Panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.splitContainer3.Panel1.Controls.Add(this.myConsole);
             // 
             // splitContainer3.Panel2
             // 
@@ -222,20 +233,22 @@
             this.splitContainer3.SplitterDistance = 413;
             this.splitContainer3.TabIndex = 0;
             // 
-            // richTextBox1
+            // myConsole
             // 
-            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(413, 268);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
-            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
+            this.myConsole.BackColor = System.Drawing.SystemColors.MenuText;
+            this.myConsole.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.myConsole.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.myConsole.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.myConsole.ForeColor = System.Drawing.Color.Lime;
+            this.myConsole.Location = new System.Drawing.Point(0, 0);
+            this.myConsole.Name = "myConsole";
+            this.myConsole.Size = new System.Drawing.Size(413, 268);
+            this.myConsole.TabIndex = 0;
+            this.myConsole.Text = "";
             // 
             // tabControl2
             // 
-            this.tabControl2.Controls.Add(this.Console);
+            this.tabControl2.Controls.Add(this.Disassembly);
             this.tabControl2.Controls.Add(this.Trace);
             this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -245,29 +258,31 @@
             this.tabControl2.Size = new System.Drawing.Size(430, 268);
             this.tabControl2.TabIndex = 0;
             // 
-            // Console
+            // Disassembly
             // 
-            this.Console.Controls.Add(this.ConsoleBox);
-            this.Console.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Console.Location = new System.Drawing.Point(4, 22);
-            this.Console.Name = "Console";
-            this.Console.Padding = new System.Windows.Forms.Padding(3);
-            this.Console.Size = new System.Drawing.Size(422, 242);
-            this.Console.TabIndex = 0;
-            this.Console.Text = "Console";
-            this.Console.UseVisualStyleBackColor = true;
-            this.Console.Click += new System.EventHandler(this.Console_Click);
+            this.Disassembly.Controls.Add(this.DisBox);
+            this.Disassembly.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Disassembly.Location = new System.Drawing.Point(4, 22);
+            this.Disassembly.Name = "Disassembly";
+            this.Disassembly.Padding = new System.Windows.Forms.Padding(3);
+            this.Disassembly.Size = new System.Drawing.Size(422, 242);
+            this.Disassembly.TabIndex = 0;
+            this.Disassembly.Text = "Disassembly";
+            this.Disassembly.UseVisualStyleBackColor = true;
             // 
-            // ConsoleBox
+            // DisBox
             // 
-            this.ConsoleBox.Location = new System.Drawing.Point(0, 0);
-            this.ConsoleBox.Multiline = true;
-            this.ConsoleBox.Name = "ConsoleBox";
-            this.ConsoleBox.Size = new System.Drawing.Size(423, 242);
-            this.ConsoleBox.TabIndex = 0;
+            this.DisBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DisBox.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DisBox.Location = new System.Drawing.Point(3, 3);
+            this.DisBox.Multiline = true;
+            this.DisBox.Name = "DisBox";
+            this.DisBox.Size = new System.Drawing.Size(416, 236);
+            this.DisBox.TabIndex = 0;
             // 
             // Trace
             // 
+            this.Trace.Controls.Add(this.TraceBox);
             this.Trace.Location = new System.Drawing.Point(4, 22);
             this.Trace.Name = "Trace";
             this.Trace.Padding = new System.Windows.Forms.Padding(3);
@@ -292,10 +307,7 @@
             // 
             // Memory
             // 
-            this.Memory.Controls.Add(this.label1);
-            this.Memory.Controls.Add(this.MemGridView);
-            this.Memory.Controls.Add(this.button1);
-            this.Memory.Controls.Add(this.MemAddr);
+            this.Memory.Controls.Add(this.splitContainer4);
             this.Memory.Location = new System.Drawing.Point(4, 22);
             this.Memory.Name = "Memory";
             this.Memory.Padding = new System.Windows.Forms.Padding(3);
@@ -303,50 +315,6 @@
             this.Memory.TabIndex = 0;
             this.Memory.Text = "Memory";
             this.Memory.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(10, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 15);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Address:";
-            // 
-            // MemGridView
-            // 
-            this.MemGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.MemGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Address,
-            this.Word1,
-            this.Word2,
-            this.Word3,
-            this.Word4});
-            this.MemGridView.Location = new System.Drawing.Point(7, 35);
-            this.MemGridView.Name = "MemGridView";
-            this.MemGridView.Size = new System.Drawing.Size(824, 220);
-            this.MemGridView.TabIndex = 2;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(756, 8);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Go";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.GoButtonClick);
-            // 
-            // MemAddr
-            // 
-            this.MemAddr.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.MemAddr.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.MemAddr.Location = new System.Drawing.Point(64, 9);
-            this.MemAddr.Name = "MemAddr";
-            this.MemAddr.Size = new System.Drawing.Size(686, 20);
-            this.MemAddr.TabIndex = 0;
-            this.MemAddr.Text = "0";
             // 
             // tabPage2
             // 
@@ -365,9 +333,9 @@
             this.RegisterGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Registers,
             this.Values});
-            this.RegisterGridView.Location = new System.Drawing.Point(3, 3);
+            this.RegisterGridView.Location = new System.Drawing.Point(4, 5);
             this.RegisterGridView.Name = "RegisterGridView";
-            this.RegisterGridView.Size = new System.Drawing.Size(265, 242);
+            this.RegisterGridView.Size = new System.Drawing.Size(268, 254);
             this.RegisterGridView.TabIndex = 1;
             // 
             // Registers
@@ -382,6 +350,7 @@
             // 
             // Stack
             // 
+            this.Stack.Controls.Add(this.StackGridView);
             this.Stack.Location = new System.Drawing.Point(4, 22);
             this.Stack.Name = "Stack";
             this.Stack.Padding = new System.Windows.Forms.Padding(3);
@@ -389,6 +358,27 @@
             this.Stack.TabIndex = 2;
             this.Stack.Text = "Stack";
             this.Stack.UseVisualStyleBackColor = true;
+            // 
+            // StackGridView
+            // 
+            this.StackGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.StackGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Position,
+            this.Value2});
+            this.StackGridView.Location = new System.Drawing.Point(4, 5);
+            this.StackGridView.Name = "StackGridView";
+            this.StackGridView.Size = new System.Drawing.Size(268, 254);
+            this.StackGridView.TabIndex = 0;
+            // 
+            // Position
+            // 
+            this.Position.HeaderText = "Slot";
+            this.Position.Name = "Position";
+            // 
+            // Value2
+            // 
+            this.Value2.HeaderText = "Value";
+            this.Value2.Name = "Value2";
             // 
             // Flags
             // 
@@ -407,9 +397,9 @@
             this.FlagGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Flag,
             this.Values2});
-            this.FlagGridView.Location = new System.Drawing.Point(4, 3);
+            this.FlagGridView.Location = new System.Drawing.Point(4, 5);
             this.FlagGridView.Name = "FlagGridView";
-            this.FlagGridView.Size = new System.Drawing.Size(246, 233);
+            this.FlagGridView.Size = new System.Drawing.Size(268, 254);
             this.FlagGridView.TabIndex = 0;
             // 
             // Flag
@@ -421,6 +411,41 @@
             // 
             this.Values2.HeaderText = "Value";
             this.Values2.Name = "Values2";
+            // 
+            // splitContainer4
+            // 
+            this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer4.Location = new System.Drawing.Point(3, 3);
+            this.splitContainer4.Name = "splitContainer4";
+            this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer4.Panel1
+            // 
+            this.splitContainer4.Panel1.Controls.Add(this.label1);
+            this.splitContainer4.Panel1.Controls.Add(this.GoButton);
+            this.splitContainer4.Panel1.Controls.Add(this.MemAddr);
+            // 
+            // splitContainer4.Panel2
+            // 
+            this.splitContainer4.Panel2.Controls.Add(this.MemGridView);
+            this.splitContainer4.Size = new System.Drawing.Size(833, 257);
+            this.splitContainer4.SplitterDistance = 28;
+            this.splitContainer4.TabIndex = 4;
+            // 
+            // MemGridView
+            // 
+            this.MemGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.MemGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Address,
+            this.Word1,
+            this.Word2,
+            this.Word3,
+            this.Word4});
+            this.MemGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MemGridView.Location = new System.Drawing.Point(0, 0);
+            this.MemGridView.Name = "MemGridView";
+            this.MemGridView.Size = new System.Drawing.Size(833, 225);
+            this.MemGridView.TabIndex = 3;
             // 
             // Address
             // 
@@ -447,6 +472,45 @@
             this.Word4.HeaderText = "";
             this.Word4.Name = "Word4";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(4, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(54, 15);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Address:";
+            // 
+            // GoButton
+            // 
+            this.GoButton.Location = new System.Drawing.Point(748, 3);
+            this.GoButton.Name = "GoButton";
+            this.GoButton.Size = new System.Drawing.Size(75, 22);
+            this.GoButton.TabIndex = 5;
+            this.GoButton.Text = "Go";
+            this.GoButton.UseVisualStyleBackColor = true;
+            this.GoButton.Click += new System.EventHandler(this.GoButton_Click);
+            // 
+            // MemAddr
+            // 
+            this.MemAddr.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.MemAddr.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.MemAddr.Location = new System.Drawing.Point(58, 4);
+            this.MemAddr.Name = "MemAddr";
+            this.MemAddr.Size = new System.Drawing.Size(686, 20);
+            this.MemAddr.TabIndex = 4;
+            this.MemAddr.Text = "0";
+            // 
+            // TraceBox
+            // 
+            this.TraceBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TraceBox.Location = new System.Drawing.Point(3, 3);
+            this.TraceBox.Multiline = true;
+            this.TraceBox.Name = "TraceBox";
+            this.TraceBox.Size = new System.Drawing.Size(416, 236);
+            this.TraceBox.TabIndex = 0;
+            // 
             // ARMSimForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -470,16 +534,24 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
-            this.Console.ResumeLayout(false);
-            this.Console.PerformLayout();
+            this.Disassembly.ResumeLayout(false);
+            this.Disassembly.PerformLayout();
+            this.Trace.ResumeLayout(false);
+            this.Trace.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.Memory.ResumeLayout(false);
-            this.Memory.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.MemGridView)).EndInit();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.RegisterGridView)).EndInit();
+            this.Stack.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.StackGridView)).EndInit();
             this.Flags.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.FlagGridView)).EndInit();
+            this.splitContainer4.Panel1.ResumeLayout(false);
+            this.splitContainer4.Panel1.PerformLayout();
+            this.splitContainer4.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
+            this.splitContainer4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.MemGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -498,9 +570,9 @@
         private System.Windows.Forms.TabPage Memory;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage Stack;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox myConsole;
         private System.Windows.Forms.TabControl tabControl2;
-        private System.Windows.Forms.TabPage Console;
+        private System.Windows.Forms.TabPage Disassembly;
         private System.Windows.Forms.TabPage Trace;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.TabPage Flags;
@@ -510,15 +582,20 @@
         private System.Windows.Forms.DataGridView FlagGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn Flag;
         private System.Windows.Forms.DataGridViewTextBoxColumn Values2;
-        private System.Windows.Forms.TextBox ConsoleBox;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox DisBox;
+        private System.Windows.Forms.DataGridView StackGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Position;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Value2;
+        private System.Windows.Forms.SplitContainer splitContainer4;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button GoButton;
         private System.Windows.Forms.TextBox MemAddr;
         private System.Windows.Forms.DataGridView MemGridView;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Address;
         private System.Windows.Forms.DataGridViewTextBoxColumn Word1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Word2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Word3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Word4;
+        private System.Windows.Forms.TextBox TraceBox;
     }
 }

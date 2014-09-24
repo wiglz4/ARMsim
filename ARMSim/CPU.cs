@@ -26,7 +26,7 @@ namespace ARMSim
 
         public uint Fetch()
         {
-            uint counter = myRegisters.GetRegister(myMemory, 15);
+            uint counter = myRegisters.GetMemAtLocReg(myMemory, 15);
             myRegisters.IncrCounter(myMemory);
             return myMemory.ReadWord(counter);
             //read word from RAM address specified by program counter register 
