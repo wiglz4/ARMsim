@@ -18,6 +18,7 @@ namespace ARMSim
         public EventArgs e = null;
         public delegate void EventHandler(Computer c, EventArgs e);
         private bool trace;
+        public bool abort = false;
         private static StreamWriter myTracer;
         private int stepNum;
 
@@ -41,7 +42,7 @@ namespace ARMSim
         public void Run()
         {
             uint keepRunning = myCPU.Fetch();
-            while (keepRunning != 0)
+            while (keepRunning != 0 && !abort)
             {
                 stepNum++;
                 myCPU.Decode();
@@ -49,9 +50,9 @@ namespace ARMSim
 
                 if (trace)
                 {
-                    myTracer.WriteLine(String.Format("{0:D4}", stepNum) + " " + keepRunning + " " + myRam.getMDF() + " " + myCPU.getFlagN() + myCPU.getFlagZ() + myCPU.getFlagC() + myCPU.getFlagF() + " 0=" + String.Format("{0:X8}",myRegisters.ReadWord(0)) + " 1=" +  String.Format("{0:X8}",myRegisters.ReadWord(1)) + " 2=" +  String.Format("{0:X8}",myRegisters.ReadWord(2)) + " 3=" +  String.Format("{0:X8}",myRegisters.ReadWord(3)));
-                    myTracer.WriteLine("4=" +  String.Format("{0:X8}",myRegisters.ReadWord(4)) + " 5=" +  String.Format("{0:X8}",myRegisters.ReadWord(5)) + " 6=" +  String.Format("{0:X8}",myRegisters.ReadWord(6)) + " 7=" +  String.Format("{0:X8}",myRegisters.ReadWord(7)) + " 8=" +  String.Format("{0:X8}",myRegisters.ReadWord(8)) + " 9=" +  String.Format("{0:X8}",myRegisters.ReadWord(9)));
-                    myTracer.WriteLine("10=" +  String.Format("{0:X8}",myRegisters.ReadWord(10)) + " 11=" +  String.Format("{0:X8}",myRegisters.ReadWord(11)) + " 12=" +  String.Format("{0:X8}",myRegisters.ReadWord(12)) + " 13=" +  String.Format("{0:X8}",myRegisters.ReadWord(13)) + " 14=" +  String.Format("{0:X8}",myRegisters.ReadWord(14)));
+                    myTracer.WriteLine(String.Format("{0:D4}", stepNum) + " " + keepRunning + " " + myRam.getMDF() + " " + myCPU.getFlagN() + myCPU.getFlagZ() + myCPU.getFlagC() + myCPU.getFlagF() + " 0=" + String.Format("{0:X8}", myRegisters.ReadWord(0)) + " 1=" + String.Format("{0:X8}", myRegisters.ReadWord(1)) + " 2=" + String.Format("{0:X8}", myRegisters.ReadWord(2)) + " 3=" + String.Format("{0:X8}", myRegisters.ReadWord(3)));
+                    myTracer.WriteLine("4=" + String.Format("{0:X8}", myRegisters.ReadWord(4)) + " 5=" + String.Format("{0:X8}", myRegisters.ReadWord(5)) + " 6=" + String.Format("{0:X8}", myRegisters.ReadWord(6)) + " 7=" + String.Format("{0:X8}", myRegisters.ReadWord(7)) + " 8=" + String.Format("{0:X8}", myRegisters.ReadWord(8)) + " 9=" + String.Format("{0:X8}", myRegisters.ReadWord(9)));
+                    myTracer.WriteLine("10=" + String.Format("{0:X8}", myRegisters.ReadWord(10)) + " 11=" + String.Format("{0:X8}", myRegisters.ReadWord(11)) + " 12=" + String.Format("{0:X8}", myRegisters.ReadWord(12)) + " 13=" + String.Format("{0:X8}", myRegisters.ReadWord(13)) + " 14=" + String.Format("{0:X8}", myRegisters.ReadWord(14)));
                 }
 
                 keepRunning = myCPU.Fetch();
@@ -69,9 +70,12 @@ namespace ARMSim
                 myTracer.WriteLine("4=" + String.Format("{0:X8}", myRegisters.ReadWord(4)) + " 5=" + String.Format("{0:X8}", myRegisters.ReadWord(5)) + " 6=" + String.Format("{0:X8}", myRegisters.ReadWord(6)) + " 7=" + String.Format("{0:X8}", myRegisters.ReadWord(7)) + " 8=" + String.Format("{0:X8}", myRegisters.ReadWord(8)) + " 9=" + String.Format("{0:X8}", myRegisters.ReadWord(9)));
                 myTracer.WriteLine("10=" + String.Format("{0:X8}", myRegisters.ReadWord(10)) + " 11=" + String.Format("{0:X8}", myRegisters.ReadWord(11)) + " 12=" + String.Format("{0:X8}", myRegisters.ReadWord(12)) + " 13=" + String.Format("{0:X8}", myRegisters.ReadWord(13)) + " 14=" + String.Format("{0:X8}", myRegisters.ReadWord(14)));
             }
-            myCPU.Decode();
-            myCPU.Execute();
-            endRun(this, e);
+            if (keepRunning != 0)
+            {
+                myCPU.Decode();
+                myCPU.Execute();
+                endRun(this, e);
+            }
         }
 
         public CPU getCPU()
@@ -89,7 +93,7 @@ namespace ARMSim
             return myRam;
         }
 
-        public void setTrace(bool value) 
+        public void setTrace(bool value)
         {
             trace = value;
         }

@@ -67,6 +67,7 @@
             this.GoButton = new System.Windows.Forms.Button();
             this.MemAddr = new System.Windows.Forms.TextBox();
             this.TraceBox = new System.Windows.Forms.TextBox();
+            this.OpenedFile = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -132,6 +133,7 @@
             this.checkBox1.Text = "Trace Log";
             this.checkBox1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // LoadFileButton
             // 
@@ -427,6 +429,7 @@
             // 
             // splitContainer4.Panel2
             // 
+            this.splitContainer4.Panel2.Controls.Add(this.OpenedFile);
             this.splitContainer4.Panel2.Controls.Add(this.MemGridView);
             this.splitContainer4.Size = new System.Drawing.Size(833, 257);
             this.splitContainer4.SplitterDistance = 28;
@@ -508,8 +511,23 @@
             this.TraceBox.Location = new System.Drawing.Point(3, 3);
             this.TraceBox.Multiline = true;
             this.TraceBox.Name = "TraceBox";
+            this.TraceBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.TraceBox.Size = new System.Drawing.Size(416, 236);
             this.TraceBox.TabIndex = 0;
+            // 
+            // OpenedFile
+            // 
+            this.OpenedFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.OpenedFile.AutoEllipsis = true;
+            this.OpenedFile.BackColor = System.Drawing.Color.DarkGray;
+            this.OpenedFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OpenedFile.Location = new System.Drawing.Point(428, 209);
+            this.OpenedFile.Name = "OpenedFile";
+            this.OpenedFile.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.OpenedFile.Size = new System.Drawing.Size(406, 17);
+            this.OpenedFile.TabIndex = 6;
+            this.OpenedFile.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.OpenedFile.Visible = false;
             // 
             // ARMSimForm
             // 
@@ -597,5 +615,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Word3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Word4;
         private System.Windows.Forms.TextBox TraceBox;
+        private System.Windows.Forms.Label OpenedFile;
     }
 }

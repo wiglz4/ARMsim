@@ -15,13 +15,17 @@ namespace ARMSim
     {
         Memory myMemory;
         Registers myRegisters;
-        bool N, C, Z, F;
+        int N, C, Z, F;
 
         public CPU(Memory toMemory, Registers toRegisters, uint programCounter)
         {
             myMemory = toMemory;
             myRegisters = toRegisters;
             myMemory.WriteWord(myRegisters.ReadWord(15), programCounter);
+            N = 0;
+            C = 0;
+            Z = 0;
+            F = 0;
         }
 
         public uint Fetch()
@@ -45,19 +49,19 @@ namespace ARMSim
             //pause for 1/4th a second (250)
         }
 
-        public bool getFlagN()
+        public int getFlagN()
         {
             return N;
         }
-        public bool getFlagZ()
+        public int getFlagZ()
         {
             return Z;
         }
-        public bool getFlagC()
+        public int getFlagC()
         {
             return C;
         }
-        public bool getFlagF()
+        public int getFlagF()
         {
             return F;
         }

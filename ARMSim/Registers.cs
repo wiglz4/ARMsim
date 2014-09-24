@@ -16,7 +16,7 @@ namespace ARMSim
 
         new public uint ReadWord(uint addr)
         {
-            return BitConverter.ToUInt32(ram, (int)addr*4);
+            return BitConverter.ToUInt32(ram, (int)addr * 4);
         }
 
         new public void WriteWord(uint addr, uint toRam)
@@ -25,11 +25,11 @@ namespace ARMSim
             byte[] toRamBA = BitConverter.GetBytes(toRam);
             foreach (byte x in toRamBA)
             {
-                ram[addr*4 + counter] = x;
+                ram[addr * 4 + counter] = x;
                 counter++;
             }
         }
-        
+
         public uint GetMemAtLocReg(Memory myMemory, uint regNum)
         {
             return myMemory.ReadWord(BitConverter.ToUInt32(ram, (int)regNum * 4));
@@ -38,7 +38,7 @@ namespace ARMSim
         public void IncrCounter(Memory myMemory)
         {
             uint newCounter = GetMemAtLocReg(myMemory, 15);
-            myMemory.WriteWord(this.ReadWord(15), newCounter+4);
+            myMemory.WriteWord(this.ReadWord(15), newCounter + 4);
         }
     }
 }

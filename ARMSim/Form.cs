@@ -12,7 +12,7 @@ using System.IO;
 
 
 //YOU LEFT OFF HERE
-//TRACE, UNIT TESTS, PROGRAM REPORT
+//UNIT TESTS, PROGRAM REPORT
 namespace ARMSim
 {
 
@@ -21,7 +21,7 @@ namespace ARMSim
         Options theseOptions;
         Computer myComputer;
         Thread myThread;
-        
+
         public ARMSimForm(Options myOptions)
         {
             this.KeyPreview = true;
@@ -67,7 +67,7 @@ namespace ARMSim
             if (e.KeyCode == Keys.F10)
             {
                 if (this.StepButton.Enabled) { this.StepButton_Click(this.StepButton, EventArgs.Empty); }
-            } 
+            }
             if (e.KeyCode == Keys.B && e.Control)
             {
                 if (this.StopButton.Enabled) { this.StopButton_Click(this.StopButton, EventArgs.Empty); }
@@ -95,6 +95,8 @@ namespace ARMSim
         {
             //there's a reason i used to create and run computer here instead of in ARMSIMform
             //but i can't remember why...
+            this.OpenedFile.Hide();
+            myComputer.abort = false;
             this.RunButton.Enabled = false;
             this.StepButton.Enabled = false;
             this.StopButton.Enabled = true;
@@ -114,7 +116,7 @@ namespace ARMSim
 
         private void StopButton_Click(object sender, EventArgs e)
         {
-            myThread.Abort();
+            myComputer.abort = true;
             this.StepButton.Enabled = true;
             this.ResetButton.Enabled = true;
             UpdateAllTheThings(myComputer, EventArgs.Empty);
@@ -128,6 +130,8 @@ namespace ARMSim
             myBox.Filter = "Applications (*.exe)|*.exe|All files (*.*)|*.*";
             myBox.ShowDialog();
             theseOptions.SetFileName(myBox.FileName);
+            this.OpenedFile.Text = theseOptions.GetFileName();
+            this.OpenedFile.Show();
             this.ResetButton_Click(this.ResetButton, EventArgs.Empty);
         }
 
@@ -144,7 +148,7 @@ namespace ARMSim
             this.ResetMemory();
             this.ResetStack();
             this.ResetDisassembly();
-            this.myComputer.FileStreamClose();
+            this.ResetTracer();
             myComputer = new Computer(theseOptions);
             myComputer.endRun += new Computer.EventHandler(UpdateAllTheThings);
         }
@@ -162,7 +166,7 @@ namespace ARMSim
             this.StopButton.Enabled = false;
             this.ResetButton.Enabled = true;
             this.LoadFileButton.Enabled = true;
-            
+
             //update panels
             this.UpdateRegisters();
             this.UpdateFlags();
@@ -220,10 +224,10 @@ namespace ARMSim
             for (int i = 0; i < 16; i++)
             {
                 this.MemGridView.Rows[i].Cells[0].Value = Convert.ToUInt32(this.MemAddr.Text) + (uint)counter;
-                this.MemGridView.Rows[i].Cells[1].Value = String.Format("{0:X}", myComputer.getMemory().ReadWord(Convert.ToUInt32(this.MemAddr.Text) + (uint)(counter+0)));
-                this.MemGridView.Rows[i].Cells[2].Value = String.Format("{0:X}", myComputer.getMemory().ReadWord(Convert.ToUInt32(this.MemAddr.Text) + (uint)(counter+4)));
-                this.MemGridView.Rows[i].Cells[3].Value = String.Format("{0:X}", myComputer.getMemory().ReadWord(Convert.ToUInt32(this.MemAddr.Text) + (uint)(counter+8)));
-                this.MemGridView.Rows[i].Cells[4].Value = String.Format("{0:X}", myComputer.getMemory().ReadWord(Convert.ToUInt32(this.MemAddr.Text) + (uint)(counter+12)));
+                this.MemGridView.Rows[i].Cells[1].Value = String.Format("{0:X}", myComputer.getMemory().ReadWord(Convert.ToUInt32(this.MemAddr.Text) + (uint)(counter + 0)));
+                this.MemGridView.Rows[i].Cells[2].Value = String.Format("{0:X}", myComputer.getMemory().ReadWord(Convert.ToUInt32(this.MemAddr.Text) + (uint)(counter + 4)));
+                this.MemGridView.Rows[i].Cells[3].Value = String.Format("{0:X}", myComputer.getMemory().ReadWord(Convert.ToUInt32(this.MemAddr.Text) + (uint)(counter + 8)));
+                this.MemGridView.Rows[i].Cells[4].Value = String.Format("{0:X}", myComputer.getMemory().ReadWord(Convert.ToUInt32(this.MemAddr.Text) + (uint)(counter + 12)));
                 counter += 16;
             }
         }
@@ -248,7 +252,7 @@ namespace ARMSim
             for (int i = 0; i < 15; i++)
             {
                 this.RegisterGridView.Rows[i].Cells[0].Value = i;
-                this.RegisterGridView.Rows[i].Cells[1].Value = String.Format("{0:X}", myComputer.getRegisters().ReadWord((uint)i));
+                this.RegisterGridView.Rows[i].Cells[1].Value = String.Format("{0:X8}", myComputer.getRegisters().ReadWord((uint)i));
             }
         }
 
@@ -302,6 +306,24 @@ namespace ARMSim
             this.myComputer.FileStreamClose();
             this.TraceBox.Text = File.ReadAllText("trace.log");
             this.myComputer.FileStreamOpen();
+        }
+
+        private void ResetTracer()
+        {
+            this.myComputer.FileStreamClose();
+            this.TraceBox.Text = "";
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!this.checkBox1.Checked)
+            {
+                myComputer.setTrace(false);
+            }
+            else
+            {
+                myComputer.setTrace(true);
+            }
         }
     }
 }

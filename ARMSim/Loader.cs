@@ -114,7 +114,7 @@ namespace ARMSim
                     }
 
                     Console.WriteLine(myRam.getMDF());
-                    
+
                     //testing purposes
                     // Debug.WriteLine(myRam.getMDF());
 
