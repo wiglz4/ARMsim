@@ -28,6 +28,9 @@ namespace ARMSim
             {
                 TestMemory.RunTests();
                 TestLoader.RunTests(myOptions);
+                TestComputer.RunTests(myOptions);
+                TestCPU.RunTests(myOptions);
+                TestRegisters.RunTests(myOptions);
                 Environment.Exit(0);
             }
 

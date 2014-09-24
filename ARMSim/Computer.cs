@@ -7,6 +7,8 @@ using System.IO;
 
 namespace ARMSim
 {
+    //Class:        Computer
+    //Purpose:      Represents simulated computer.
     class Computer
     {
         private Options myOptions;
@@ -22,7 +24,9 @@ namespace ARMSim
         private static StreamWriter myTracer;
         private int stepNum;
 
-
+        //Method:       Constructor
+        //Purpose:      Sets Computer up for use.
+        //Variables:    toOptions -   Options parsed from command line input.
         public Computer(Options toOptions)
         {
             myOptions = toOptions;
@@ -39,6 +43,8 @@ namespace ARMSim
             stepNum = 0;
         }
 
+        //Method:       Run
+        //Purpose:      Runs through entire simulated program using CPU fetch-decode-execute.
         public void Run()
         {
             uint keepRunning = myCPU.Fetch();
@@ -60,6 +66,8 @@ namespace ARMSim
             endRun(this, e);
         }
 
+        //Method:       Step
+        //Purpose:      Steps through one fetch-decode-execute cycle.
         public void step()
         {
             stepNum++;
@@ -78,35 +86,53 @@ namespace ARMSim
             }
         }
 
-        public CPU getCPU()
-        {
-            return myCPU;
-        }
-
-        public Registers getRegisters()
-        {
-            return myRegisters;
-        }
-
-        public Memory getMemory()
-        {
-            return myRam;
-        }
-
-        public void setTrace(bool value)
-        {
-            trace = value;
-        }
-
+        //Method:       FileStreamClose
+        //Purpose:      Closes the trace file.
         public void FileStreamClose()
         {
             myTracer.Close();
         }
 
+        //Method:       FileStreamOpen
+        //Purpose:      Opens and flushes the trace file.
         public void FileStreamOpen()
         {
             myTracer = File.AppendText("trace.log");
             myTracer.AutoFlush = true;
+        }
+
+        //Method:       getCPU
+        //Purpose:      Returns myCPU
+        public CPU getCPU()
+        {
+            return myCPU;
+        }
+
+        //Method:       getRegisters
+        //Purpose:      Returns myRegisters
+        public Registers getRegisters()
+        {
+            return myRegisters;
+        }
+
+        //Method:       getMemory
+        //Purpose:      Returns myRam
+        public Memory getMemory()
+        {
+            return myRam;
+        }
+
+        //Method:       setTrace
+        //Purpose:      toogles trace value
+        //Variables:    value - Bool to set trace to
+        public void setTrace(bool value)
+        {
+            trace = value;
+        }
+
+        public int getStepNum()
+        {
+            return stepNum;
         }
     }
 }

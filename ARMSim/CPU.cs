@@ -11,12 +11,19 @@ using System.Threading;
 
 namespace ARMSim
 {
+    //Class:        CPU
+    //Purpose:      Represents simulated CPU.
     class CPU
     {
         Memory myMemory;
         Registers myRegisters;
         int N, C, Z, F;
 
+        //Method:       Constructor
+        //Purpose:      Sets CPU up for use.
+        //Variables:    toMemory - Memory object that Computer setup.
+        //              toRegisters - Registers object that Computer setup.
+        //              programCounter - uint signifying where to start fetch at.
         public CPU(Memory toMemory, Registers toRegisters, uint programCounter)
         {
             myMemory = toMemory;
@@ -28,6 +35,8 @@ namespace ARMSim
             F = 0;
         }
 
+        //Method:       Fetch
+        //Purpose:      Reads next word to execute, increments program counter.
         public uint Fetch()
         {
             uint counter = myRegisters.GetMemAtLocReg(myMemory, 15);
@@ -38,15 +47,18 @@ namespace ARMSim
             //increments counter by 4
         }
 
+        //Method:       Fetch
+        //Purpose:      later.
         public void Decode()
         {
             //later
         }
 
+        //Method:       Fetch
+        //Purpose:      later/pauses for 1/4 a second
         public void Execute()
         {
             Thread.Sleep(250);
-            //pause for 1/4th a second (250)
         }
 
         public int getFlagN()

@@ -15,7 +15,7 @@ namespace ARMSim
     public class Options
     {
         private int memSize = 32768;
-        private string fileName;
+        private string fileName = "";
         private bool test;
         private static StreamWriter myWriter;
 
@@ -32,11 +32,11 @@ namespace ARMSim
             //iterate through command line arguments and fill out variables
             Debug.WriteLine("Options.Parse: parsing command line options");
 
-            if (args.Length < 1)
+           /* if (args.Length < 1)
             {
                 Console.WriteLine("You have entered an invalid option \n Valid options are: \n --test: Run unit tests and quit \n --mem: specify simluated RAM size \n --load: specify ELF file to open \n");
                 Environment.Exit(0);
-            }
+            }*/
 
             for (int i = 0; i < args.Length; i++)
             {

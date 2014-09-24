@@ -11,8 +11,6 @@ using System.Threading;
 using System.IO;
 
 
-//YOU LEFT OFF HERE
-//UNIT TESTS, PROGRAM REPORT
 namespace ARMSim
 {
 
@@ -29,9 +27,6 @@ namespace ARMSim
             theseOptions = myOptions;
             InitializeComponent();
             Form.CheckForIllegalCrossThreadCalls = false;
-            //these two lines used to be in run
-            myComputer = new Computer(theseOptions);
-            myComputer.endRun += new Computer.EventHandler(UpdateAllTheThings);
             //setup views
             for (int i = 0; i < 15; i++)
             {
@@ -49,8 +44,24 @@ namespace ARMSim
             {
                 this.StackGridView.Rows.Add();
             }
-            //starts running on file that opened program
-            this.RunButton_Click(this.RunButton, EventArgs.Empty);
+
+            //allow to open without any cmd line options
+            if (theseOptions.GetFileName() == "")
+            {
+                this.RunButton.Enabled = false;
+                this.StepButton.Enabled = false;
+                this.StopButton.Enabled = false;
+                this.ResetButton.Enabled = false;
+                this.LoadFileButton.Enabled = true;
+            }
+            else
+            {
+                //these two lines used to be in run
+                myComputer = new Computer(theseOptions);
+                myComputer.endRun += new Computer.EventHandler(UpdateAllTheThings);
+                //starts running on file that opened program
+                this.RunButton_Click(this.RunButton, EventArgs.Empty);
+            }
         }
 
         public void ARMSimForm_KeyDown(object sender, KeyEventArgs e)
@@ -132,6 +143,8 @@ namespace ARMSim
             theseOptions.SetFileName(myBox.FileName);
             this.OpenedFile.Text = theseOptions.GetFileName();
             this.OpenedFile.Show();
+            myComputer = new Computer(theseOptions);
+            myComputer.endRun += new Computer.EventHandler(UpdateAllTheThings);
             this.ResetButton_Click(this.ResetButton, EventArgs.Empty);
         }
 
