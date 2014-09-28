@@ -51,13 +51,14 @@ namespace ARMSim
         //Purpose:      later.
         public void Decode()
         {
-            //later
+            //WILL CREATE GENERIC INSTRUCTION AND CALL DECODE ON IT AND RETURN TO SENDER SPECIFIC INSTRUCTION
         }
 
         //Method:       Fetch
         //Purpose:      later/pauses for 1/4 a second
         public void Execute()
         {
+            //WILL ACCEPT SPECIFIC INSTRUCTION AS PARAMETER AND CALL EXECUTE ON SPECIFIC INSTRUCTION
             Thread.Sleep(250);
         }
 
