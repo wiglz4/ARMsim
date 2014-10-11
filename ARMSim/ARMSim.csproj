@@ -75,6 +75,7 @@
     <Compile Include="Loader.cs" />
     <Compile Include="In_LoadStore.cs" />
     <Compile Include="Memory.cs" />
+    <Compile Include="OperandTwo.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

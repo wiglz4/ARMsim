@@ -51,7 +51,7 @@ namespace ARMSim
             while (keepRunning != 0 && !abort)
             {
                 stepNum++;
-                myCPU.Decode();
+                myCPU.Decode(keepRunning);
                 myCPU.Execute();
 
                 if (trace)
@@ -80,7 +80,7 @@ namespace ARMSim
             }
             if (keepRunning != 0)
             {
-                myCPU.Decode();
+                myCPU.Decode(keepRunning);
                 myCPU.Execute();
                 endRun(this, e);
             }

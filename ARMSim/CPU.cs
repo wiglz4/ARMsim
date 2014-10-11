@@ -17,6 +17,7 @@ namespace ARMSim
     {
         Memory myMemory;
         Registers myRegisters;
+        Instructions curInstruction;
         int N, C, Z, F;
 
         //Method:       Constructor
@@ -47,18 +48,22 @@ namespace ARMSim
             //increments counter by 4
         }
 
-        //Method:       Fetch
+        //Method:       Decode
         //Purpose:      later.
-        public void Decode()
+        public void Decode(uint thisCommand)
         {
+            curInstruction = Instructions.decode(thisCommand, myRegisters, myMemory);
+            curInstruction.decode();
             //WILL CREATE GENERIC INSTRUCTION AND CALL DECODE ON IT AND RETURN TO SENDER SPECIFIC INSTRUCTION
+            //SUCH AS IN_DATAPROCESSING or IN_LOADSTORE or IN_BRANCH
         }
 
-        //Method:       Fetch
+        //Method:       Execute
         //Purpose:      later/pauses for 1/4 a second
         public void Execute()
         {
             //WILL ACCEPT SPECIFIC INSTRUCTION AS PARAMETER AND CALL EXECUTE ON SPECIFIC INSTRUCTION
+            curInstruction.execute();
             Thread.Sleep(250);
         }
 

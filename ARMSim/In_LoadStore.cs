@@ -9,6 +9,15 @@ namespace ARMSim
     class In_LoadStore : Instructions
     {
         //stores informatino about all Load and Store instructions
+        Registers myRegister;
+        Memory myMemory;
+
+
+        public In_LoadStore(Registers toRegister, Memory toMemory)
+        {
+            myRegister = toRegister;
+            myMemory = toMemory;
+        }
 
         public void execute()
         {
