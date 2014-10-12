@@ -8,7 +8,6 @@ namespace ARMSim
 {
     class OperandTwo
     {
-        //test
         int type;
         uint instruction, rm, shiftAmt, shift;
         Registers myRegisters;
