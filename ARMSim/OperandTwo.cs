@@ -10,18 +10,24 @@ namespace ARMSim
     {
         int type;
         uint instruction, rm, shiftAmt, shift;
+        public string disassembly;
         Registers myRegisters;
 
-        public OperandTwo(Registers toRegisters, uint toInstruction)
+        public OperandTwo(Registers toRegisters, uint toInstruction, string toDisassembly)
         {
             instruction = toInstruction;
             myRegisters = toRegisters;
+            disassembly = toDisassembly;
         }
 
         public uint getValue()
         {
             if (Instructions.getSectionValue(25, 25, instruction) == 1)
             {
+                if (Instructions.getSectionValue(11, 8, instruction) == 0)
+                {
+                    disassembly = '#' + Convert.ToString(Instructions.getSectionValue(7, 0, instruction));
+                }
                 type = 3;
                 return (Instructions.getSectionValue(7, 0, instruction) >> (int)(2 * Instructions.getSectionValue(11, 8, instruction))) | (Instructions.getSectionValue(7, 0, instruction) << (32 - (int)(2 * Instructions.getSectionValue(11, 8, instruction))));
             }

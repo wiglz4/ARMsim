@@ -9,6 +9,7 @@ namespace ARMSim
    
     abstract class Instructions
     {
+        public static string disassembly;
         //stores generic information about all decoded arm instructions
 
         //decodes bits 27-26 and returns specified instruction type

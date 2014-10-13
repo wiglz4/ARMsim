@@ -6,15 +6,26 @@
   <MessageClass Name="Error" Label="Error" Option="Show errors" />
   <MessageClass Name="Property" Label="Property" Option="Show metadata" />
   <MessageClass Name="Diagnostic" Label="Message" Option="Show diagnostic messages" />
-  <Message Timestamp="2014-09-28T14:44:40" Importance="High" Text="Reverse Engineering Started." />
-  <Message Timestamp="2014-09-28T14:44:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'myDiagram::ARMSim' -  (Package)" />
-  <Message Timestamp="2014-09-28T14:44:40" Importance="Medium" Text="Element reverse engineered into the UML model: 'myDiagram::ARMSim::In_Branch' -  (Class)" />
-  <Message Timestamp="2014-09-28T14:44:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'myDiagram::ARMSim::In_Branch::In_Branch' -  (Operation)" />
-  <Message Timestamp="2014-09-28T14:44:40" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'myDiagram::ARMSim::Instructions' -  (Class)   (partially reverse engineered - definition not updated) " />
-  <Message Timestamp="2014-09-28T14:44:40" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: myDiagram::ARMSim::In_Branch to myDiagram::ARMSim::Instructions (Generalization)" />
-  <Message Timestamp="2014-09-28T14:44:40" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: myDiagram::ARMSim::In_LoadStore to myDiagram::ARMSim::Instructions (Generalization)" />
-  <Message Timestamp="2014-09-28T14:44:40" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: myDiagram::ARMSim::In_DataProcessing to myDiagram::ARMSim::Instructions (Generalization)" />
-  <Message Timestamp="2014-09-28T14:44:40" Importance="High" Text="(1) type(s) fully reverse engineered." />
-  <Message Timestamp="2014-09-28T14:44:40" Importance="High" Text="(1) type(s) partially reverse engineered.  These types were not included in the original selection so their full definitions are not reverse engineered.  Instead, this shallow operation has simply ensured these types exist in the UML model because they are needed in order to fully describe other elements." />
-  <Message Timestamp="2014-09-28T14:44:40" Importance="High" Text="The reverse engineering operation completed with (0) error(s), and (0) warning(s)." />
+  <Message Timestamp="2014-10-12T22:48:39" Importance="High" Text="Reverse Engineering Started." />
+  <Message Timestamp="2014-10-12T22:48:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'myDiagram::ARMSim' -  (Package)" />
+  <Message Timestamp="2014-10-12T22:48:39" Importance="Medium" Text="Element reverse engineered into the UML model: 'myDiagram::ARMSim::In_LoadStore' -  (Class)" />
+  <Message Timestamp="2014-10-12T22:48:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'myDiagram::ARMSim::In_LoadStore::decode' -  (Operation)" />
+  <Message Timestamp="2014-10-12T22:48:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'myDiagram::ARMSim::In_LoadStore::execute' -  (Operation)" />
+  <Message Timestamp="2014-10-12T22:48:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'myDiagram::ARMSim::In_LoadStore::executeLDR' -  (Operation)" />
+  <Message Timestamp="2014-10-12T22:48:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'myDiagram::ARMSim::In_LoadStore::executeSTR' -  (Operation)" />
+  <Message Timestamp="2014-10-12T22:48:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'myDiagram::ARMSim::In_LoadStore::In_LoadStore' -  (Operation)" />
+  <Message Timestamp="2014-10-12T22:48:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'myDiagram::ARMSim::In_LoadStore::In_LoadStore::toMemory' -  (Parameter)" />
+  <Message Timestamp="2014-10-12T22:48:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'myDiagram::ARMSim::In_LoadStore::In_LoadStore::toRegister' -  (Parameter)" />
+  <Message Timestamp="2014-10-12T22:48:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'myDiagram::ARMSim::In_LoadStore::myMemory' -  (Property)" />
+  <Message Timestamp="2014-10-12T22:48:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'myDiagram::ARMSim::In_LoadStore::myRegister' -  (Property)" />
+  <Message Timestamp="2014-10-12T22:48:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'myDiagram::ARMSim::Instructions' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2014-10-12T22:48:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'myDiagram::ARMSim::Memory' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2014-10-12T22:48:39" Importance="Diagnostic" Text="Element reverse engineered into the UML model: 'myDiagram::ARMSim::Registers' -  (Class)   (partially reverse engineered - definition not updated) " />
+  <Message Timestamp="2014-10-12T22:48:39" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: myDiagram::ARMSim::In_LoadStore to myDiagram::ARMSim::Instructions (Generalization)" />
+  <Message Timestamp="2014-10-12T22:48:39" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: myDiagram::ARMSim::Registers to myDiagram::ARMSim::Memory (Generalization)" />
+  <Message Timestamp="2014-10-12T22:48:39" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: myDiagram::ARMSim::In_Branch to myDiagram::ARMSim::Instructions (Generalization)" />
+  <Message Timestamp="2014-10-12T22:48:39" Importance="Diagnostic" Text="Relationship reverse engineered into the UML model: myDiagram::ARMSim::In_DataProcessing to myDiagram::ARMSim::Instructions (Generalization)" />
+  <Message Timestamp="2014-10-12T22:48:39" Importance="High" Text="(1) type(s) fully reverse engineered." />
+  <Message Timestamp="2014-10-12T22:48:39" Importance="High" Text="(3) type(s) partially reverse engineered.  These types were not included in the original selection so their full definitions are not reverse engineered.  Instead, this shallow operation has simply ensured these types exist in the UML model because they are needed in order to fully describe other elements." />
+  <Message Timestamp="2014-10-12T22:48:39" Importance="High" Text="The reverse engineering operation completed with (0) error(s), and (0) warning(s)." />
 </Log>

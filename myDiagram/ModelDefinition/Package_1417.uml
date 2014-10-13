@@ -5570,7 +5570,7 @@
         Id="5c43c1f8-b837-48c0-a08f-cb1e0ff9d244"
         name="Instructions"
         visibility="Package"
-        isAbstract="false"
+        isAbstract="true"
         isLeaf="false"
         isActiveClass="false">
         <referencesInternal>
@@ -5628,7 +5628,7 @@
             name="decode"
             isLeaf="false"
             isStatic="false"
-            isAbstract="false"
+            isAbstract="true"
             concurrency="Sequential"
             isQuery="false">
             <referencesInternal>
@@ -5689,7 +5689,344 @@
             </appliedStereotypesInternal>
           </operation>
           <operation
-            Id="a240e530-561c-4b80-a911-96dd726ac82d"
+            Id="1ebf8c37-0cee-4a15-885b-19e808273089"
+            name="decode"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="f8572a7b-6b80-4e63-b940-139558a708b1"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DInstructions Member%3D(Name%3Ddecode OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DUInt32)%2C(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DRegisters)%2C(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DMemory)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="046379dc-34d5-4022-a115-fce99fff762f"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bf7402c3-1d8d-4165-8b65-09e91563e3cb">
+                    <propertyInstance
+                      Id="bd7ec44c-3f42-4ffb-b3f9-56a1bafc65a6"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d72ce645-aae1-497a-afa9-eef1fed564f2">
+                    <propertyInstance
+                      Id="7072ce9e-74e8-414b-88ad-9d2ba4779f32"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="16bc6f2f-37ab-419a-aecd-8eec62c3425f">
+                    <propertyInstance
+                      Id="01f207a3-54be-4e57-8942-d64350bbb957"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1a402fd6-810a-418b-bc4c-1336f1669d5a">
+                    <propertyInstance
+                      Id="818c9f56-6809-49c1-8ee6-a4feef67df57"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0db03777-7cad-414f-891a-916ce611372a">
+                    <propertyInstance
+                      Id="6bf458f6-3a94-4b86-9734-587b79801835"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0b43aa65-9ed6-4aa6-99f1-c90709ca4aeb">
+                    <propertyInstance
+                      Id="c9b4edbb-137e-44dc-9ba8-8b21685399fb"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="dfbee94e-d478-4a11-8e88-d03bbf2670b2"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="5c43c1f8-b837-48c0-a08f-cb1e0ff9d244"
+                      LastKnownName="Instructions"
+                      LastKnownLocation="Package_1417.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="f5ee1f4f-5945-4a25-94fe-2fe7d54aa6a9"
+                  name="instruction"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="f14ae5b7-35a8-4e7f-9404-37cacb26a40d"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DInstructions Member%3D(Name%3Ddecode OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DUInt32)%2C(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DRegisters)%2C(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DMemory)]) ParameterIdentifier%3Dinstruction"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="343980c8-c99b-4d0d-9661-516eed641e3a"
+                      LastKnownName="UInt32"
+                      LastKnownLocation="Package1_1417.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="4132cb61-1a35-4830-bb8e-b2f7affab44b"
+                  name="myRegisters"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="56ad2c0c-6bc8-4bf7-bb41-23cc43e58411"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DInstructions Member%3D(Name%3Ddecode OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DUInt32)%2C(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DRegisters)%2C(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DMemory)]) ParameterIdentifier%3DmyRegisters"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="b5057a9e-f311-41bc-b328-f5ee347a7edc"
+                      LastKnownName="Registers"
+                      LastKnownLocation="Package_1417.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="3ba81e17-b426-43fd-829d-9e8892a0a176"
+                  name="myMemory"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="baba493c-bb51-4ef6-bb52-4b7072c1a95d"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DInstructions Member%3D(Name%3Ddecode OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DUInt32)%2C(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DRegisters)%2C(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DMemory)]) ParameterIdentifier%3DmyMemory"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="80bfd4d6-f1fb-4f42-b9f5-e177b76d514d"
+                      LastKnownName="Memory"
+                      LastKnownLocation="Package_1417.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="dbcffaf3-a8fa-4438-b97d-c4240bd6b59f"
+            name="execute"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="true"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="0736067a-c546-452c-912e-37db90ac3126"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DInstructions Member%3Dexecute"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="e5f2a1ae-e7ce-44ea-8319-c662effbcecb"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1027c792-bddb-4d02-9e86-97d8ca69c673">
+                    <propertyInstance
+                      Id="734a9964-57fc-4166-85b3-8485365f8d78"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a3ad625c-cf3a-4935-b07c-db29cf9bd3c5">
+                    <propertyInstance
+                      Id="181762c7-ea44-48c0-9fee-6a3686b533e3"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="345d763c-04c3-4b0d-9a33-353361deadfd">
+                    <propertyInstance
+                      Id="3e12d6e7-1475-47aa-a142-edfebb7e9714"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4a40de29-0331-4b1f-8f53-a233717ad97c">
+                    <propertyInstance
+                      Id="3d0deb0c-32f7-404e-9293-7e903a997ace"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="eb76e6c5-25a9-4571-a44e-b7c957a88ddd">
+                    <propertyInstance
+                      Id="132995be-1932-4198-9359-ecbf3b83b7c5"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="24b5bf8e-abb0-41a1-9744-85c0a105e1b0">
+                    <propertyInstance
+                      Id="09562107-0710-4e52-948f-ac2bc629dae1"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="19d2e8b1-0d6c-48bd-b631-e757c7b2ab39"
+            name="getSectionValue"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="cdde206a-12cc-417c-aaf9-9a12015e5f0a"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DInstructions Member%3D(Name%3DgetSectionValue OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DUInt32)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="cc6c09be-f798-4547-8382-9943ca93b5d5"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7bd56f1d-bd67-4360-9502-d53778f25db1">
+                    <propertyInstance
+                      Id="e8100d18-e120-4cdc-aeee-ea38d6bd20fa"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8dbe772d-8b14-4cf0-886a-b52fd66c308c">
+                    <propertyInstance
+                      Id="4342122c-8c57-4639-8aba-c006b55e0d98"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="234e7c7e-d480-4e27-9dbe-248c978c9af2">
+                    <propertyInstance
+                      Id="469f5a2a-a8b9-4088-a5cc-1ec4cfd0dce6"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="269436ec-9481-4bcf-8482-0b6a504c10b0">
+                    <propertyInstance
+                      Id="d00b1191-7f30-4c78-bb9b-dfc365cb8b4f"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="81be84ff-f5f7-4f02-87a3-beb536980926">
+                    <propertyInstance
+                      Id="77bf23f7-821b-46d9-b070-bccafcb50124"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9ebd06e5-350e-4295-a39a-b0a21ccfaf0f">
+                    <propertyInstance
+                      Id="22ba122c-ec16-4259-af2b-76ead31d96a1"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="75d55e42-ac90-44d0-be2f-2626c9b672f3"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="343980c8-c99b-4d0d-9661-516eed641e3a"
+                      LastKnownName="UInt32"
+                      LastKnownLocation="Package1_1417.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="6b62c482-9e1c-4a11-ac2a-1829285223ad"
+                  name="upper"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="29104188-cc06-4b91-8b29-edd9103d2e7b"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DInstructions Member%3D(Name%3DgetSectionValue OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DUInt32)]) ParameterIdentifier%3Dupper"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="myDiagram.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="96351a52-06b0-4735-8f3d-bda14d8100e1"
+                  name="lower"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="d30912c8-fbd2-48ab-8c12-fa9aae8e51c7"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DInstructions Member%3D(Name%3DgetSectionValue OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DUInt32)]) ParameterIdentifier%3Dlower"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="myDiagram.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="a0c3a7b8-4c84-4a2b-adcf-b905cc74c17b"
+                  name="instruction"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="de2119ee-0d93-4f5e-9a37-f87a3758a729"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DInstructions Member%3D(Name%3DgetSectionValue OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DUInt32)]) ParameterIdentifier%3Dinstruction"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="343980c8-c99b-4d0d-9661-516eed641e3a"
+                      LastKnownName="UInt32"
+                      LastKnownLocation="Package1_1417.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="6a1cc8bd-4929-4824-8849-238ecec9fd01"
             name="Instructions"
             isLeaf="false"
             isStatic="false"
@@ -5698,54 +6035,54 @@
             isQuery="false">
             <referencesInternal>
               <reference
-                Id="5285321d-bc26-4b9e-9710-b66e98988008"
+                Id="49e0e2c0-f919-48c8-bbd2-a5ae9f22d43c"
                 handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DInstructions Member%3D.ctor"
                 tag="ViewCode" />
             </referencesInternal>
             <appliedStereotypesInternal>
               <stereotypeInstance
-                Id="4a0a749c-c615-43eb-8760-6bd500ef48e0"
+                Id="328ba37d-d045-4fc0-a062-451c480a5030"
                 name="method"
                 profile="CSharpProfile">
                 <propertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="f846b22e-5887-48f6-a1bf-f56e8d4a49cc">
+                    Id="3614dabf-616f-48f7-9116-7c558168a4dd">
                     <propertyInstance
-                      Id="2d99baff-bd2f-42fc-bea8-5e3810acd37e"
+                      Id="2b842e86-4937-479b-ac56-1911453a5750"
                       name="ClrAttributes" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="7e1bc8b5-5067-4c05-a506-ac1b8f14937d">
+                    Id="580bf44a-982a-4bdf-9d77-5a411541f78f">
                     <propertyInstance
-                      Id="26618479-0fc1-4d63-9727-dff854a5595a"
+                      Id="89940fad-8f3c-4346-970d-a0ae8faf67cb"
                       name="IsPartial"
                       value="false" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="588c1866-46e2-4962-a32a-a48f02ebbe93">
+                    Id="5b2e58ce-5a80-489d-ad73-4c801027abe4">
                     <propertyInstance
-                      Id="e56fc6ad-5820-44d5-80e5-3bacea05e08b"
+                      Id="44acc227-ed2e-4af7-8192-2cae5087f37e"
                       name="IsUnsafe"
                       value="false" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="917c7ad8-2c84-4579-8276-79649fb64f5f">
+                    Id="dafde8dd-256e-4a70-bcfe-59d292b6c714">
                     <propertyInstance
-                      Id="927646b5-767b-4c7c-a13e-87514f8ba057"
+                      Id="a6886519-6573-4544-b997-325320398dca"
                       name="Inheritance"
                       value="none" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="08d0449c-bcb4-46ec-bf88-a6fff959fc81">
+                    Id="776912f8-740b-4a30-b6db-38eaf2b03dc0">
                     <propertyInstance
-                      Id="0a723554-2401-4edf-948a-f93a9bf5a90e"
+                      Id="f5b93b12-7d1b-4a77-9fbd-5f8bb8978829"
                       name="PackageVisibility"
                       value="internal" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="d11f3eb0-527d-4d3f-9896-b996aff642fc">
+                    Id="9b40d785-bd15-42a2-8d75-8197f1afa976">
                     <propertyInstance
-                      Id="e80764e9-c468-4f31-a214-fd166955a9b3"
+                      Id="d1c43da9-8311-442f-b5b2-efde911e880e"
                       name="params"
                       value="false" />
                   </stereotypeInstanceHasPropertyInstances>
@@ -5823,6 +6160,544 @@
               LastKnownLocation="Package_1417.uml" />
           </generalization>
         </generalsInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="5a059db4-26d6-4a53-b4b7-556b45efbe5e"
+            name="operand2"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="1484ed01-bd7f-41b9-b575-24a00ebb0424"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_DataProcessing Member%3Doperand2"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="efbb6823-fdfb-4fc0-a0bc-4fbf5b0a7f2f"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="26d6f058-37d3-4044-b6f7-49be2b49d9c0">
+                    <propertyInstance
+                      Id="feccf967-bd93-4889-83f0-cfa651e72052"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fd1a2e5c-e74c-4bf4-8dd1-c677dff23b57">
+                    <propertyInstance
+                      Id="8703ca12-1e64-4f67-8817-1405cc65de97"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f09c6f21-b921-4a30-a492-ebad12521b61">
+                    <propertyInstance
+                      Id="023080b1-4b2d-40ab-92e4-4fc4bd70bfce"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="568c48cd-1cd9-41f6-9560-c059a2bac7e6">
+                    <propertyInstance
+                      Id="e0db8936-0a11-42c6-b6db-bcc08ea7d3b5"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="78d86138-9453-4a59-be4c-1b93ad590020">
+                    <propertyInstance
+                      Id="fd3b03e3-bd02-4f62-a159-2de73abc4c9f"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="343980c8-c99b-4d0d-9661-516eed641e3a"
+                LastKnownName="UInt32"
+                LastKnownLocation="Package1_1417.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="fe198b0a-3fff-4151-b0d7-27673e63da6a"
+            name="opcode"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="4606890f-b721-4148-a1fe-e14694192327"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_DataProcessing Member%3Dopcode"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="3463683c-a091-461a-b113-2dcf3a86ee87"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="109c3b75-64a5-4b70-b8b8-c9ecec5573a5">
+                    <propertyInstance
+                      Id="566c56df-403b-45f3-8ceb-87dfd98cb6d9"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3032b617-bdcb-4a11-8a06-3a34174ce7e0">
+                    <propertyInstance
+                      Id="c5954657-404f-4439-bad0-12d598fbe124"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8d93a1a6-633f-49c6-b866-c6fa90c8523e">
+                    <propertyInstance
+                      Id="60c6be6d-9460-4c56-84dc-017935ffc6e8"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="29c24286-9e6b-49ee-b542-162d3ae1b317">
+                    <propertyInstance
+                      Id="6fa73ebd-c357-4ab8-b5b5-2515e2a65fce"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b8be6bd0-fc5b-46bd-946b-6a1d78014d24">
+                    <propertyInstance
+                      Id="f066a620-76bb-4b66-8a9d-9ad78bcbb3e7"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="343980c8-c99b-4d0d-9661-516eed641e3a"
+                LastKnownName="UInt32"
+                LastKnownLocation="Package1_1417.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="4ba084bf-145c-4729-8bc0-fcbc4578cc30"
+            name="rn"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="e3536f04-ae24-4651-b3fa-dfa4c0b742ad"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_DataProcessing Member%3Drn"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="c75a3809-1051-4b53-ba12-4a63d4427902"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b739c1b0-d348-4340-935b-88e4734343a0">
+                    <propertyInstance
+                      Id="2a4b10fe-32c7-4f0b-8e8d-0020b02cdf9a"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7356c4e4-063b-45cf-a6db-6a26fb4e3759">
+                    <propertyInstance
+                      Id="4d44ac22-e51b-48e2-ad75-ceb2bd65b296"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b5e957ec-c3a2-4b69-b693-bc077757b607">
+                    <propertyInstance
+                      Id="30ead185-a1f0-475c-b98d-4ad935c632c6"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f49539ef-dbef-4078-b6ff-7208cc37c147">
+                    <propertyInstance
+                      Id="fc3afbcf-a77e-4033-9cb5-c515fd8e2500"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4e852fec-02b2-49db-91ac-b9c33ec24a96">
+                    <propertyInstance
+                      Id="ef0dd94e-ec00-466a-8498-067ca5aba645"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="343980c8-c99b-4d0d-9661-516eed641e3a"
+                LastKnownName="UInt32"
+                LastKnownLocation="Package1_1417.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="95d0666f-d264-421c-b0c2-9f3a0c563760"
+            name="rd"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="be0c08fe-e5f4-4731-8283-85bb7ef30736"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_DataProcessing Member%3Drd"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="c17be3a7-5f13-442e-9605-e3ca314f863a"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="acf248c6-f83d-4023-8257-276219bd9ecb">
+                    <propertyInstance
+                      Id="0df6ff8c-851b-49a8-b53e-4f7a4e748e29"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f7829d51-c482-470a-b505-2386bd6fdd55">
+                    <propertyInstance
+                      Id="fc08110d-8615-4d40-ada5-95289ccf895a"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fd1450a0-ebbd-43a2-a3f9-e393a384e14b">
+                    <propertyInstance
+                      Id="8b0be236-c072-473f-ac07-80d79ed9f80c"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="46e53762-005e-4b87-a89c-8290aabc1a3c">
+                    <propertyInstance
+                      Id="d261383d-dccf-4baa-96a7-a341596c2e1b"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ef325688-2c15-4ce9-90ea-633885e4e8b5">
+                    <propertyInstance
+                      Id="a527e7a4-e651-4af2-b27f-ac9d32a52619"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="343980c8-c99b-4d0d-9661-516eed641e3a"
+                LastKnownName="UInt32"
+                LastKnownLocation="Package1_1417.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="58a9b358-dd17-4363-a245-4c3f116c9596"
+            name="condition"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="f95751c6-4767-4221-9205-702249330375"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_DataProcessing Member%3Dcondition"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="9a4ba524-1c11-4bde-a744-cf278819c0b0"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5bd076e5-dfe1-4b54-957e-681c86c9a33c">
+                    <propertyInstance
+                      Id="c6865b1a-84f5-4de1-8509-d8c56c4c2c18"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="26aab1ec-3a06-4683-afca-28f252d98de8">
+                    <propertyInstance
+                      Id="6fb7e089-ca53-42ea-bddb-14635979018d"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="57c63d8d-c150-4fa4-965f-7bf0ebcbe8f9">
+                    <propertyInstance
+                      Id="8982dbf3-02b5-4f96-9c68-4172715ba630"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fe948ee8-8304-4186-abfb-398bed47414d">
+                    <propertyInstance
+                      Id="0b38985e-7335-425d-a4c5-969796fc4ce2"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c7ce23ab-c365-4790-bdb4-f997d0a2cf67">
+                    <propertyInstance
+                      Id="0b992ae1-a67a-4c92-a1b2-0f620c915e97"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="343980c8-c99b-4d0d-9661-516eed641e3a"
+                LastKnownName="UInt32"
+                LastKnownLocation="Package1_1417.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="a1a58e3a-6001-4ede-aeaa-1341f1b7729c"
+            name="instruction"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="0af7a97f-2ac4-4c51-8d28-4316cd3ccb63"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_DataProcessing Member%3Dinstruction"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="80217e5b-b297-47c5-8145-5026df1a16f5"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6b26e09c-2b84-413c-9284-ddce8fa3238b">
+                    <propertyInstance
+                      Id="0a1551cc-ce2b-4cda-9cb0-113707d596ec"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8d51b011-da8f-4203-b52a-bbc5d7420919">
+                    <propertyInstance
+                      Id="4ed6dcd7-739a-4cec-bea9-65f3a319720a"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="da6216cf-6957-47f8-a5db-28cff3dc6ea2">
+                    <propertyInstance
+                      Id="543938a9-92b5-4016-9c2c-04e1056f2f7d"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2c3c727d-0e86-4bb8-9cc6-21810bf05994">
+                    <propertyInstance
+                      Id="e1b41ea4-7ad9-40cf-826f-95c568a10b9e"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="44cd38fb-1ab3-4ecd-85e6-07095dfe5149">
+                    <propertyInstance
+                      Id="e73fb328-b25d-4a1a-9e99-bd2530b12146"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="343980c8-c99b-4d0d-9661-516eed641e3a"
+                LastKnownName="UInt32"
+                LastKnownLocation="Package1_1417.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="4ba34e54-f167-4475-91b5-031a0f7101de"
+            name="myRegister"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="c2aeb3a2-1393-4359-92cb-17aa56631ea0"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_DataProcessing Member%3DmyRegister"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="734a9ee7-7c36-43ec-8038-9d1b759eac90"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="621fbe99-6d23-4e03-b5a6-a991e0f6c832">
+                    <propertyInstance
+                      Id="0af79df8-871e-43f2-9630-16120276ea3e"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fe4cb40d-b122-4636-8b2f-e490d73d0686">
+                    <propertyInstance
+                      Id="9ce6c6cf-bfe3-499e-a545-b69bb5ac5be8"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d0b95a08-53f7-4bd4-8d1f-5cea728580e0">
+                    <propertyInstance
+                      Id="d02076a3-dfdd-472c-a22b-9730167347f5"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5ad566f5-4b9a-4ac2-ba55-ba4efb0476ce">
+                    <propertyInstance
+                      Id="5a1170c8-9016-44e9-8e0e-d3e18b57dc3d"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a8e40324-adf2-40b1-99a4-e1f26e0adb4e">
+                    <propertyInstance
+                      Id="4223a731-cfd5-4087-a1f1-aed7da0569f1"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="b5057a9e-f311-41bc-b328-f5ee347a7edc"
+                LastKnownName="Registers"
+                LastKnownLocation="Package_1417.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="53ed8ee1-7a8b-4d67-b0bb-cc88224eab5d"
+            name="myMemory"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="d77d2ccb-3885-425a-b8cb-e61564449fc8"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_DataProcessing Member%3DmyMemory"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="2add9352-e656-4a2b-bf4d-66c90f27eab9"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b6b5ba59-eb14-4ac8-8dfe-5717196b9bdc">
+                    <propertyInstance
+                      Id="1b78071e-6eff-462a-acee-daf10567c2ba"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cbbfa7f9-1643-47d8-931f-a00fa1473644">
+                    <propertyInstance
+                      Id="fbbbe8b5-16c6-46e8-a647-135949fa6ed6"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a84b99a9-4faf-43a4-a521-762cc5a5b4c1">
+                    <propertyInstance
+                      Id="f34d3c29-8b8a-4061-9ad8-cdf45987f824"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f29b58b8-89c3-4fcb-b82c-9c16934f5b53">
+                    <propertyInstance
+                      Id="197c665c-d601-4cc3-bb0a-fad9c80d8232"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="df4de69e-3e49-4b3a-890e-cd2e9211833d">
+                    <propertyInstance
+                      Id="066fcede-7bd7-4bd0-b0c7-8b13bb8e524d"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="80bfd4d6-f1fb-4f42-b9f5-e177b76d514d"
+                LastKnownName="Memory"
+                LastKnownLocation="Package_1417.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
             Id="9bd47687-62ab-4797-899f-b60bf3133cd1"
@@ -6540,7 +7415,7 @@
             </appliedStereotypesInternal>
           </operation>
           <operation
-            Id="26f0465c-71c2-46b6-83f3-24366881f71c"
+            Id="a662245a-98fc-4b26-994f-c846a3faf6aa"
             name="In_DataProcessing"
             isLeaf="false"
             isStatic="false"
@@ -6549,54 +7424,178 @@
             isQuery="false">
             <referencesInternal>
               <reference
-                Id="cf6bb648-e992-4d2a-99a8-8fa2b88cb47c"
-                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_DataProcessing Member%3D.ctor"
+                Id="b21fa0a6-5219-4ab1-af6c-1c64e75f4abf"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_DataProcessing Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DRegisters)%2C(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DMemory)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DUInt32)])"
                 tag="ViewCode" />
             </referencesInternal>
             <appliedStereotypesInternal>
               <stereotypeInstance
-                Id="ea1c47af-8ac3-4237-bff6-e99df93e2423"
+                Id="ba253615-5357-4f0c-adfd-c17f32bfd7ab"
                 name="method"
                 profile="CSharpProfile">
                 <propertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="d5d0e139-9a55-41c9-9aed-c097cbdf18e3">
+                    Id="31381d53-bd52-4c95-8da9-b3f4e6e4030d">
                     <propertyInstance
-                      Id="48f4d0e3-8390-4119-a5e0-617331a95f1b"
+                      Id="50cfe3a6-2073-44f7-b13c-c7013e75325e"
                       name="ClrAttributes" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="b51801f8-1f3f-4267-b1bd-566ee263f6b0">
+                    Id="63c2cada-417a-4a60-998c-e8119aeb6985">
                     <propertyInstance
-                      Id="88a31959-0bd7-4e8e-9b51-9076efc83da3"
+                      Id="637afa4b-2c3c-4f53-a9aa-8f409cb3ece1"
                       name="IsPartial"
                       value="false" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="f68b1e12-cdcd-4674-a810-909f59367dad">
+                    Id="7e110950-474c-4fd0-bb27-e8f7d12935bd">
                     <propertyInstance
-                      Id="d2ce051f-2f9d-4811-8ebd-754f94ed153e"
+                      Id="ba277124-217f-4471-ade0-ff1705dd9ca2"
                       name="IsUnsafe"
                       value="false" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="bfa8133e-cb1d-4b42-bc61-61f2fc0e46a1">
+                    Id="0a21df73-f8ae-48de-bd03-055f7eccc820">
                     <propertyInstance
-                      Id="e748337b-6cf8-404f-a4d5-509ff2fa735b"
+                      Id="8763c325-700a-43ba-b29c-3239bab9c120"
                       name="Inheritance"
                       value="none" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="5c1066ab-41af-46b6-8475-0226e5031ad6">
+                    Id="460c2bfe-3ccd-4772-a6cd-f761dfcc94bf">
                     <propertyInstance
-                      Id="35d77a6e-3f64-4422-884e-8fa44fc7a24a"
+                      Id="230b9f98-3a5b-4588-b381-2d8cfea9028e"
                       name="PackageVisibility"
                       value="internal" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="e7669e2d-9e57-4345-9468-7a5e2fd58e4b">
+                    Id="c85825ad-440d-44b0-9d29-55e69945c5db">
                     <propertyInstance
-                      Id="2e1f34e3-9fed-454d-9507-a70aa11fd0d2"
+                      Id="9aa3b9b6-c3df-4541-81c1-7cadef59a524"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="14b2fc6a-1f56-440c-ade7-3e7e71bf8875"
+                  name="toRegister"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="26f14e5f-4f0f-454c-97c2-64ee56a74fa3"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_DataProcessing Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DRegisters)%2C(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DMemory)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DUInt32)]) ParameterIdentifier%3DtoRegister"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="b5057a9e-f311-41bc-b328-f5ee347a7edc"
+                      LastKnownName="Registers"
+                      LastKnownLocation="Package_1417.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="80795880-8967-4f5f-8e40-422f450c1acd"
+                  name="toMemory"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="4f170671-9c00-464e-86e0-2a74b557047f"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_DataProcessing Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DRegisters)%2C(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DMemory)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DUInt32)]) ParameterIdentifier%3DtoMemory"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="80bfd4d6-f1fb-4f42-b9f5-e177b76d514d"
+                      LastKnownName="Memory"
+                      LastKnownLocation="Package_1417.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="75f8bfb7-cd6a-4d7f-9032-d1b61141950e"
+                  name="toInstruction"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="333e0c9e-aac4-4934-863a-0f6789167970"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_DataProcessing Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DRegisters)%2C(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DMemory)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.5%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DUInt32)]) ParameterIdentifier%3DtoInstruction"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="343980c8-c99b-4d0d-9661-516eed641e3a"
+                      LastKnownName="UInt32"
+                      LastKnownLocation="Package1_1417.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="a468bee0-7985-4fa7-8be7-129f8c9529d5"
+            name="decode"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="18ee46cb-35cd-4593-a762-ba0e9795eb8d"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_DataProcessing Member%3Ddecode"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="eaba615b-f342-468a-931d-f1899bdda022"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bfed3190-12df-4aef-940a-8c1010c295a6">
+                    <propertyInstance
+                      Id="4efb9312-75d4-4b23-b543-f8cc979ff9d2"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="40493ecc-ea1f-4677-ac0b-b9604cefef19">
+                    <propertyInstance
+                      Id="d78b0a98-b06e-4a7f-b5a8-685b387ebd85"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b0b1da06-1432-4257-ad48-cd3f0a2bfb15">
+                    <propertyInstance
+                      Id="afd4fa62-f0e8-4ab2-8d56-9c47395b581b"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e939e884-432e-459a-9983-11790410a462">
+                    <propertyInstance
+                      Id="1a795103-3f9f-4209-a194-5235e0c052a2"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="80e78996-6082-4738-8a25-a9e6458f11d8">
+                    <propertyInstance
+                      Id="75b475d4-6736-4bbf-a82a-916341583bd7"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f31805eb-92d2-40ba-8d6c-1b35820fd607">
+                    <propertyInstance
+                      Id="417fe58d-1ea4-46ab-9bc9-81f01109e9b8"
                       name="params"
                       value="false" />
                   </stereotypeInstanceHasPropertyInstances>
@@ -6674,6 +7673,142 @@
               LastKnownLocation="Package_1417.uml" />
           </generalization>
         </generalsInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="2c63fc5f-cf61-4186-b3e9-0697345bc34a"
+            name="myRegister"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="2f7121b6-c657-4570-b661-2225849a9065"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_LoadStore Member%3DmyRegister"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="149ca282-0873-4ed4-bd25-b22f726c8836"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5e0c48d5-4f71-4cf4-9219-6bd7f08a1d20">
+                    <propertyInstance
+                      Id="e420cab4-7adb-45b2-bf2f-218983983c96"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2a18fdc1-31dc-4b2c-ab6f-0b6b84ff9250">
+                    <propertyInstance
+                      Id="f365fc19-e08b-4451-98f7-b9707af67766"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cc035e9a-e8e4-4a5e-8bd7-b6cc2688e729">
+                    <propertyInstance
+                      Id="f9cc1e4e-cb58-4368-b5bb-ae80f5cb7967"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="98f9e7a9-279c-4716-ba09-bda5339243b0">
+                    <propertyInstance
+                      Id="7ab56773-5c5b-4e19-b920-6263d14ca356"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a9d42a73-6d79-4621-8da0-9b59f1aa5754">
+                    <propertyInstance
+                      Id="642a9dc6-19d2-4fff-b670-0fa042bd0a4d"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="b5057a9e-f311-41bc-b328-f5ee347a7edc"
+                LastKnownName="Registers"
+                LastKnownLocation="Package_1417.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="e3097d34-5a40-428d-825a-33269f1b2de5"
+            name="myMemory"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="7cb90514-4a06-4ecb-a16b-d3dbb2fa355c"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_LoadStore Member%3DmyMemory"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="0165416d-f8e9-4049-b4d3-2cfca1880e22"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1340a9ce-00e4-4668-b8c2-9f826067bf8a">
+                    <propertyInstance
+                      Id="724ed217-e6f0-4640-8e23-c628586e7079"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9a880616-be1b-4699-a8b9-c630bde57d33">
+                    <propertyInstance
+                      Id="ad5be61b-337e-411c-99f7-0246ec919912"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a0ec56d2-f721-4d2b-830d-b738ba5a28aa">
+                    <propertyInstance
+                      Id="b01ed9b9-9e9d-4445-821e-442a5763f772"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="331d0c61-425f-4f10-9a84-29a526bc9c9b">
+                    <propertyInstance
+                      Id="48517d61-fbd6-48e1-880c-d0a88fe9a5b8"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c0b00cd3-ca72-4ee7-9fea-3b331ba566fc">
+                    <propertyInstance
+                      Id="54c96b55-96c3-4e0e-b796-832825175191"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="80bfd4d6-f1fb-4f42-b9f5-e177b76d514d"
+                LastKnownName="Memory"
+                LastKnownLocation="Package_1417.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
             Id="b636a205-4005-4463-93e6-2c5fb67d8657"
@@ -6871,7 +8006,7 @@
             </appliedStereotypesInternal>
           </operation>
           <operation
-            Id="0dea2136-496a-4128-b36c-22a1897a8535"
+            Id="b1e8f923-3666-4919-93ab-c9342de4e9ce"
             name="In_LoadStore"
             isLeaf="false"
             isStatic="false"
@@ -6880,54 +8015,159 @@
             isQuery="false">
             <referencesInternal>
               <reference
-                Id="d4d28bf1-73a4-437d-bf4c-6eab733f229d"
-                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_LoadStore Member%3D.ctor"
+                Id="70af1173-af09-4f49-84cc-f1052df91a9c"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_LoadStore Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DRegisters)%2C(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DMemory)])"
                 tag="ViewCode" />
             </referencesInternal>
             <appliedStereotypesInternal>
               <stereotypeInstance
-                Id="15507c59-f444-4cc0-ad2d-522f0982c8b8"
+                Id="949e0b5d-6120-4cdf-8f84-b2a98ead0a40"
                 name="method"
                 profile="CSharpProfile">
                 <propertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="800b03fe-857f-44cb-ad0a-62adad52ed82">
+                    Id="84cf9a82-f6a1-40d2-a5f3-092a07f1f3a0">
                     <propertyInstance
-                      Id="48e8600a-446a-4293-8efc-7102b920930d"
+                      Id="85077de9-6192-41bc-bb6d-ca8b166151aa"
                       name="ClrAttributes" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="1b496abe-0a82-4e27-baf8-6a68d358d44a">
+                    Id="e53d47c0-5af7-4a2b-9936-6afb48de4ab4">
                     <propertyInstance
-                      Id="c83b6bf8-def6-49da-a16f-40fa0ac04346"
+                      Id="24a0f175-514d-4ee3-a578-6790cc966a17"
                       name="IsPartial"
                       value="false" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="ec865442-8f73-4a42-9e3b-3792ede638a1">
+                    Id="60e53fcf-2a89-48de-aaee-0ef2e57e3a73">
                     <propertyInstance
-                      Id="492f2883-3d99-4545-bd46-18a1fa2daebe"
+                      Id="287947a8-2ecf-4083-b2b2-90d2dbf8b165"
                       name="IsUnsafe"
                       value="false" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="f760cd9d-fed6-4e2f-a604-049ba6ea9659">
+                    Id="607e20ba-5348-42d5-b12f-5637fa66382e">
                     <propertyInstance
-                      Id="c7d891af-6e84-474f-a6f8-d4f509d414f0"
+                      Id="579a26e4-f66f-4693-afbc-36aff86215d4"
                       name="Inheritance"
                       value="none" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="8c2e85f8-cb66-4de8-8258-d48b46eac7fd">
+                    Id="c36d4047-2d19-4997-8069-09cea19cfa08">
                     <propertyInstance
-                      Id="58868487-94ee-4bd5-b92f-9255993a519c"
+                      Id="55fa5cec-4fef-43cf-8ee9-33bc083de729"
                       name="PackageVisibility"
                       value="internal" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="56aaf146-f9ef-484b-9553-9607c08458da">
+                    Id="b655144a-17db-45c6-8b2f-6d97ac81a44c">
                     <propertyInstance
-                      Id="0644a3aa-6900-4572-ae8b-8c837ac56f2c"
+                      Id="ff13019e-7b01-4cb6-9260-25277ae39514"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="462b2637-bd04-42fe-bd89-e9ac25f3cdf4"
+                  name="toRegister"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="e6e45501-ab5a-496a-9166-187559a5452c"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_LoadStore Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DRegisters)%2C(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DMemory)]) ParameterIdentifier%3DtoRegister"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="b5057a9e-f311-41bc-b328-f5ee347a7edc"
+                      LastKnownName="Registers"
+                      LastKnownLocation="Package_1417.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="b70147c1-607d-4027-ac56-45603d103e32"
+                  name="toMemory"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="3f1f869e-181c-4579-a316-1e2e939fae87"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_LoadStore Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DRegisters)%2C(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DMemory)]) ParameterIdentifier%3DtoMemory"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="80bfd4d6-f1fb-4f42-b9f5-e177b76d514d"
+                      LastKnownName="Memory"
+                      LastKnownLocation="Package_1417.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="587283fb-0a6e-42cf-95a3-b75d75caf1c5"
+            name="decode"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="4cf750f4-82c7-42bc-9670-7da7c2b93765"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_LoadStore Member%3Ddecode"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="13312492-31fa-4aaf-a57d-6ee5f43cf8d4"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1048e112-a2ad-42fa-af5e-dc3213aee421">
+                    <propertyInstance
+                      Id="d1ffc998-9e50-41cb-bc84-f531d9a6f36c"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c5a6d4a4-907e-41c2-a681-2c12fd77d655">
+                    <propertyInstance
+                      Id="12cec541-2986-4bcb-a654-7f9494928aac"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e92458ae-ab0b-459b-88c2-680bfde65aa9">
+                    <propertyInstance
+                      Id="88bfa9a8-1505-493b-ab8d-5eda2d169c74"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5dec3c61-0e00-49a0-9dc7-9c83454b9862">
+                    <propertyInstance
+                      Id="13f7b1c4-a447-4db1-976b-fa582116cced"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f9e9bba8-ad6e-465f-9d41-b49f3a5cea5b">
+                    <propertyInstance
+                      Id="7269f6bd-465e-4235-87ed-c25553ddb0d6"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fcd1e889-e29a-4112-9801-237ca0d694c1">
+                    <propertyInstance
+                      Id="ad284261-2ee6-4a10-aef9-74c0a9cec7da"
                       name="params"
                       value="false" />
                   </stereotypeInstanceHasPropertyInstances>
@@ -7005,9 +8245,145 @@
               LastKnownLocation="Package_1417.uml" />
           </generalization>
         </generalsInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="5d16d72d-3ffd-48c8-acfd-99f030dda86a"
+            name="myRegister"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="5adfeae9-cca9-464d-b1da-def78277bbc0"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_Branch Member%3DmyRegister"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="da64e84a-ab03-4f22-9d42-deac47b65c85"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="00e94d36-bd58-4b95-8ed1-74adece3fe6a">
+                    <propertyInstance
+                      Id="4ea98e92-1d1b-4a78-8a4f-8b4f74b07eb6"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c156907a-4818-4668-b501-fddc0a684274">
+                    <propertyInstance
+                      Id="0122afb4-84b6-46e2-9480-ddb1c39140e1"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="af87574f-5cb5-4a21-9b86-59dc28d0f797">
+                    <propertyInstance
+                      Id="220f2d39-43e9-47dd-a895-e4ef9bd86549"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d7db66a8-edbb-414c-a48a-3951693705a4">
+                    <propertyInstance
+                      Id="b0d089f3-6a48-40c3-b81a-14b665729155"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="aed279d5-9268-4a62-a22a-5318836f12d9">
+                    <propertyInstance
+                      Id="a8cf1dcd-8e38-4d82-a7e8-65efe6fa7b2e"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="b5057a9e-f311-41bc-b328-f5ee347a7edc"
+                LastKnownName="Registers"
+                LastKnownLocation="Package_1417.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="62f7e116-520c-4aed-b61b-35b75fb51216"
+            name="myMemory"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="c0460d34-c364-4017-81ec-17e9984df6b0"
+                handle="viewcode://./CodeSchema_Field?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_Branch Member%3DmyMemory"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="aef0bee2-64c8-408f-93c3-7c235dd447fb"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fc18d5aa-7bef-4a2c-852b-94cf47cf2841">
+                    <propertyInstance
+                      Id="6beef15b-d435-451f-bea9-b47c3dfab4dd"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4544507d-3934-4e92-ae91-f43bf8c13c7e">
+                    <propertyInstance
+                      Id="886dbc67-081f-4971-a3fe-54822427b8a7"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="982344a3-9d9b-4a99-b53c-09dc29118c02">
+                    <propertyInstance
+                      Id="59ca6196-6a97-4acc-bf61-75bceed6a2f9"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="00850178-3668-450d-b507-1f532e827d5e">
+                    <propertyInstance
+                      Id="cced5189-a6cc-41af-a8be-e672b490b08b"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a6d28e4f-d39d-4f76-960b-1739d1fc3276">
+                    <propertyInstance
+                      Id="f9f7f95b-feef-406c-a777-7c8ab05259c0"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <type_NamedElement>
+              <classMoniker
+                Id="80bfd4d6-f1fb-4f42-b9f5-e177b76d514d"
+                LastKnownName="Memory"
+                LastKnownLocation="Package_1417.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
-            Id="f504c61f-dc09-4575-8bfc-5c96d16709e3"
+            Id="7ae84241-d261-4261-beca-760ab5c385ed"
             name="In_Branch"
             isLeaf="false"
             isStatic="false"
@@ -7016,54 +8392,224 @@
             isQuery="false">
             <referencesInternal>
               <reference
-                Id="17933802-e8cd-4fab-8bb9-15c6b8655fd9"
-                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_Branch Member%3D.ctor"
+                Id="ddacede9-473f-4997-91c6-36919cdf1e27"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_Branch Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DRegisters)%2C(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DMemory)])"
                 tag="ViewCode" />
             </referencesInternal>
             <appliedStereotypesInternal>
               <stereotypeInstance
-                Id="3f209a71-e7c4-428f-b020-f51106762196"
+                Id="b4ce0534-89ad-4b8b-bc49-1db78cb5a9a2"
                 name="method"
                 profile="CSharpProfile">
                 <propertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="605da2a3-b9b9-43ff-b3e3-efbe55a6dc79">
+                    Id="c7f150e3-149a-408a-b51d-759572271460">
                     <propertyInstance
-                      Id="938b8c1d-c069-4fb1-a691-24c74b7676bc"
+                      Id="09220821-eb3f-4647-aac3-784b29adc2e0"
                       name="ClrAttributes" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="70fbd454-4c88-41e4-adf3-826814d4e930">
+                    Id="b8138940-70f2-491f-967a-118a652003f6">
                     <propertyInstance
-                      Id="07df5d50-8601-4408-934e-9cbf2474c171"
+                      Id="e244cd27-4f49-461a-8b21-597f1d46dce9"
                       name="IsPartial"
                       value="false" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="1de6ddfb-14df-4ca6-bae8-f4ca533e3839">
+                    Id="b2a943ca-d9cf-4f9a-88c2-d75630253fa7">
                     <propertyInstance
-                      Id="3cec3303-dbf5-4d09-9d4d-6b61a10accd3"
+                      Id="05a266da-362e-4518-b1df-f6edb283daa5"
                       name="IsUnsafe"
                       value="false" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="9bbb5cb2-bb0c-4528-8bac-bdb601b0cded">
+                    Id="cd370fa4-4b49-4a51-a1bd-fd2a8b9e0959">
                     <propertyInstance
-                      Id="f53eaf22-f25d-4262-baed-fa12a23aa6e3"
+                      Id="37be4b26-9191-455b-9fc1-0ff8620c2552"
                       name="Inheritance"
                       value="none" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="23271d5f-c2ef-4d0c-8ab0-b9e9c19bc094">
+                    Id="c59f3239-06f2-4e39-89c1-6758ba17b0f1">
                     <propertyInstance
-                      Id="599dd7d8-7c2a-433e-9cce-7d93504af2bb"
+                      Id="93f7de10-7a9e-44cb-9454-caabfc9cad92"
                       name="PackageVisibility"
                       value="internal" />
                   </stereotypeInstanceHasPropertyInstances>
                   <stereotypeInstanceHasPropertyInstances
-                    Id="5dd321e5-5f84-4511-a452-84dd5f3b9e74">
+                    Id="2ed4c7ba-6c27-4c96-a259-96606c9183ff">
                     <propertyInstance
-                      Id="50994457-ddad-4be4-baf9-519a767ae2b2"
+                      Id="e5ca10fd-c6f4-4084-9092-098bcff497ef"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ccc64b8a-ebc1-4946-bffb-42ae46e2888f"
+                  name="toRegister"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="b5623e95-791d-4b86-8914-4a647ba674aa"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_Branch Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DRegisters)%2C(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DMemory)]) ParameterIdentifier%3DtoRegister"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="b5057a9e-f311-41bc-b328-f5ee347a7edc"
+                      LastKnownName="Registers"
+                      LastKnownLocation="Package_1417.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="1897daf7-40dc-4276-86d6-8a76bdb2ef83"
+                  name="toMemory"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="c38e286f-f707-4a8c-a598-d91434a8a19a"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_Branch Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DRegisters)%2C(Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DMemory)]) ParameterIdentifier%3DtoMemory"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="80bfd4d6-f1fb-4f42-b9f5-e177b76d514d"
+                      LastKnownName="Memory"
+                      LastKnownLocation="Package_1417.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="7b121cf9-ae2e-4cbb-9c78-85d28fa880dc"
+            name="decode"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="762cdcd9-37d4-4e53-9b28-4a0a60018733"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_Branch Member%3Ddecode"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="ca2fbca1-b478-4c9a-83b3-01465d12a9f5"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ede09c36-9c84-4c71-8b4c-1fdccb706d85">
+                    <propertyInstance
+                      Id="127018a9-8db7-41c8-84f8-f207d926bfdb"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0e79e971-5836-402d-8aa8-665779da6af8">
+                    <propertyInstance
+                      Id="c23483fe-c0d3-4400-812e-80425abc0818"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f37496b0-1336-407f-8769-a9f769d75439">
+                    <propertyInstance
+                      Id="e8de649d-bc9b-406a-8d1e-ddd94b88e575"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cb6c3778-bd7b-4344-8bc5-4345785ae842">
+                    <propertyInstance
+                      Id="71ef56a2-f9b8-47a3-a26f-e653f0fee2a1"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c5781126-15d9-49a1-b243-3332b15958f4">
+                    <propertyInstance
+                      Id="30b1877d-8201-40e9-86af-e40e015fffbc"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b28a623f-1fb7-40f9-b180-e65145826491">
+                    <propertyInstance
+                      Id="df9ffc0f-b435-4cb1-a67e-93cf732ca3fa"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="c8719fa0-29d4-48a2-b721-05f556dd9341"
+            name="execute"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="a3bc084d-9f31-460e-903b-038f88f9bc81"
+                handle="viewcode://./CodeSchema_Method?Assembly%3D&quot;file:%2F%2F%2Fm:%2Fdocuments%2Fvisual studio 2012%2FProjects%2FARMSim%2FARMSim%2Fbin%2FDebug%2FARMSim.exe&quot; Namespace%3DARMSim Type%3DIn_Branch Member%3Dexecute"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="80b6f8af-aa8f-40df-ad95-f4d04f3e6862"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c1e06db9-28f2-4394-8af0-03f3e1609ed3">
+                    <propertyInstance
+                      Id="f7e521f4-e99f-4a2b-97ba-5a44112cf8b3"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bfe59ec4-bf11-454e-8e9d-445058ebf776">
+                    <propertyInstance
+                      Id="893cadf9-ccec-4e19-a133-01a3a1f07428"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bc5195eb-644f-4bb2-b465-b64d66cdaaad">
+                    <propertyInstance
+                      Id="bce6056c-6075-486d-861c-3916c3ded026"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="249e3b8b-5884-4cb6-bbf6-12a12a63b938">
+                    <propertyInstance
+                      Id="09c1bd7b-1aa9-4e5c-8772-bf6f047659ed"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bf507fee-7300-47f5-89ac-b4856190d5ec">
+                    <propertyInstance
+                      Id="b601fa08-5b2a-4da7-a434-474b4c283af9"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0f20f6f9-8f5d-4b55-be87-eea526e4a453">
+                    <propertyInstance
+                      Id="5fe224d1-955c-42cd-9a18-e858dda712dd"
                       name="params"
                       value="false" />
                   </stereotypeInstanceHasPropertyInstances>

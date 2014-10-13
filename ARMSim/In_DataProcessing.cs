@@ -12,6 +12,7 @@ namespace ARMSim
         uint operand2, opcode, rn, rd, condition, instruction;
         Registers myRegister;
         Memory myMemory;
+        public string opTwoDissasembly;
 
         
         public In_DataProcessing(Registers toRegister, Memory toMemory, uint toInstruction)
@@ -28,8 +29,9 @@ namespace ARMSim
             rn = getSectionValue(19, 16, instruction);
             rd = getSectionValue(15, 12, instruction);
             rd = getSectionValue(15, 12, instruction);
-            OperandTwo myOp2 = new OperandTwo(myRegister, instruction);
+            OperandTwo myOp2 = new OperandTwo(myRegister, instruction, opTwoDissasembly);
             operand2 = myOp2.getValue();
+            opTwoDissasembly = myOp2.disassembly;
         }
 
         public override void execute()
@@ -39,6 +41,7 @@ namespace ARMSim
             {
                 //cases 1-12 here
                 case 13:
+                    disassembly = "mov " + 'r' + rd + ", " + opTwoDissasembly;
                     executeMOV();
                     break;
                 default:

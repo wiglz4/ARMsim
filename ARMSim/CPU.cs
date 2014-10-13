@@ -18,6 +18,7 @@ namespace ARMSim
         Memory myMemory;
         Registers myRegisters;
         Instructions curInstruction;
+        public string disassembly;
         int N, C, Z, F;
 
         //Method:       Constructor
@@ -63,6 +64,7 @@ namespace ARMSim
         public void Execute()
         {
             curInstruction.execute();
+            disassembly = Instructions.disassembly;
             //Thread.Sleep(250);
         }
 

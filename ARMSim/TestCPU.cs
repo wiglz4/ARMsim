@@ -33,6 +33,7 @@ namespace ARMSim
             myTestComp.getCPU().Decode((uint)0xe3a02030); //mov r2, 48
             myTestComp.getCPU().Execute(); //mov r2, 48
             Debug.Assert(myTestComp.getRegisters().ReadWord(2) == 48);
+            Debug.Assert(myTestComp.getCPU().disassembly == "mov r2, #48");
             Console.WriteLine("success!");
             myTestComp.FileStreamClose();
         }
