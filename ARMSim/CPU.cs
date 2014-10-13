@@ -40,31 +40,30 @@ namespace ARMSim
         //Purpose:      Reads next word to execute, increments program counter.
         public uint Fetch()
         {
-            uint counter = myRegisters.GetMemAtLocReg(myMemory, 15);
+            //retrive command pointed to by addr stored in register 15
+            uint command = myRegisters.GetMemAtLocReg(myMemory, 15);
             myRegisters.IncrCounter(myMemory);
-            return myMemory.ReadWord(counter);
+            return myMemory.ReadWord(command);
             //read word from RAM address specified by program counter register 
             //(program counter register is 15)
             //increments counter by 4
         }
 
         //Method:       Decode
-        //Purpose:      later.
+        //Purpose:      Decodes thisCommand into a specific instruction. Handles it as generic.
+        //Variables:    thisCommand - uint containing undecoded command
         public void Decode(uint thisCommand)
         {
             curInstruction = Instructions.decode(thisCommand, myRegisters, myMemory);
             curInstruction.decode();
-            //WILL CREATE GENERIC INSTRUCTION AND CALL DECODE ON IT AND RETURN TO SENDER SPECIFIC INSTRUCTION
-            //SUCH AS IN_DATAPROCESSING or IN_LOADSTORE or IN_BRANCH
         }
 
         //Method:       Execute
-        //Purpose:      later/pauses for 1/4 a second
+        //Purpose:      executes specific instruction
         public void Execute()
         {
-            //WILL ACCEPT SPECIFIC INSTRUCTION AS PARAMETER AND CALL EXECUTE ON SPECIFIC INSTRUCTION
             curInstruction.execute();
-            Thread.Sleep(250);
+            //Thread.Sleep(250);
         }
 
         public int getFlagN()

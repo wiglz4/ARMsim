@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ARMSim
 {
    
-    class Instructions
+    abstract class Instructions
     {
         //stores generic information about all decoded arm instructions
 
@@ -31,14 +31,14 @@ namespace ARMSim
             }
         }
 
-        public void decode() { ; }
-        public void execute() { ; }
+        public abstract void decode();
+        public abstract void execute();
 
 
         //returns uint value of a specific selection of bits
         public static uint getSectionValue(int upper, int lower, uint instruction)
         {
-            return ((instruction << (31 - upper)) >> (31 + lower - upper));
+            return (instruction << (31 - upper)) >> (31 + lower - upper);
         }
     }
 }

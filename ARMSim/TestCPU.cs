@@ -25,8 +25,11 @@ namespace ARMSim
             Computer myTestComp = new Computer(myOptions);
             myTestComp.endRun += new Computer.EventHandler(delegate { });
             Console.WriteLine("testing Fetch, Decode, and Execute methods...");
-            myTestComp.step();
-            Debug.Assert(myTestComp.getStepNum() == 1);
+            myTestComp.getRegisters().WriteWord(5, 0);
+            myTestComp.getRegisters().WriteWord(3, 4);
+            myTestComp.getCPU().Decode((uint)0xE1A05003); //mov r5, r3
+            myTestComp.getCPU().Execute(); //mov r5, r3
+            Debug.Assert(myTestComp.getRegisters().ReadWord(5) == 4);
             Console.WriteLine("success!");
             myTestComp.FileStreamClose();
         }

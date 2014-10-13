@@ -21,7 +21,7 @@ namespace ARMSim
             instruction = toInstruction;
         }
 
-        new public void decode()
+        public override void decode()
         {
             condition = getSectionValue(31, 28, instruction);
             opcode = getSectionValue(24, 21, instruction);
@@ -32,8 +32,9 @@ namespace ARMSim
             operand2 = myOp2.getValue();
         }
 
-        new public void execute()
+        public override void execute()
         {
+            //switch statement to determine WHICH execute command to do.
             switch (opcode)
             {
                 //cases 1-12 here
@@ -43,7 +44,6 @@ namespace ARMSim
                 default:
                     break;
             }
-            //switch statement to determine WHICH execute command to do.
         }
 
         public void executeMOV()

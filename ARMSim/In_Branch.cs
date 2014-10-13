@@ -17,5 +17,15 @@ namespace ARMSim
             myRegister = toRegister;
             myMemory = toMemory;
         }
+
+        public override void decode()
+        {
+            ;
+        }
+
+        public override void execute()
+        {
+            //executes decoded instruction
+        }
     }
 }

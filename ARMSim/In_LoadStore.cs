@@ -19,7 +19,12 @@ namespace ARMSim
             myMemory = toMemory;
         }
 
-        public void execute()
+        public override void decode()
+        {
+            ;
+        }
+
+        public override void execute()
         {
             //executes decoded instruction
         }

@@ -41,12 +41,11 @@ namespace ARMSim
                 shiftAmt = Instructions.getSectionValue(11, 7, instruction);
                 return getShiftDone(); //calculate shift
             }
-
-
         }
 
         public uint getShiftDone()
         {
+            rm = myRegisters.ReadWord(rm);
             switch (shift)
             {
                 case 0:
