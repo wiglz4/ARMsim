@@ -30,6 +30,9 @@ namespace ARMSim
             myTestComp.getCPU().Decode((uint)0xE1A05003); //mov r5, r3
             myTestComp.getCPU().Execute(); //mov r5, r3
             Debug.Assert(myTestComp.getRegisters().ReadWord(5) == 4);
+            myTestComp.getCPU().Decode((uint)0xe3a02030); //mov r2, 48
+            myTestComp.getCPU().Execute(); //mov r2, 48
+            Debug.Assert(myTestComp.getRegisters().ReadWord(2) == 48);
             Console.WriteLine("success!");
             myTestComp.FileStreamClose();
         }
