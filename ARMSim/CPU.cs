@@ -30,7 +30,7 @@ namespace ARMSim
         {
             myMemory = toMemory;
             myRegisters = toRegisters;
-            myMemory.WriteWord(myRegisters.ReadWord(15), programCounter);
+            myRegisters.WriteWord(15, programCounter);
             N = 0;
             C = 0;
             Z = 0;
@@ -42,8 +42,8 @@ namespace ARMSim
         public uint Fetch()
         {
             //retrive command pointed to by addr stored in register 15
-            uint command = myRegisters.GetMemAtLocReg(myMemory, 15);
-            myRegisters.IncrCounter(myMemory);
+            uint command = myRegisters.ReadWord(15);
+            myRegisters.IncrCounter();
             return myMemory.ReadWord(command);
             //read word from RAM address specified by program counter register 
             //(program counter register is 15)
@@ -55,17 +55,17 @@ namespace ARMSim
         //Variables:    thisCommand - uint containing undecoded command
         public void Decode(uint thisCommand)
         {
-            curInstruction = Instructions.decode(thisCommand, myRegisters, myMemory);
-            curInstruction.decode();
+           curInstruction = Instructions.decode(thisCommand, myRegisters, myMemory);
+           curInstruction.decode();
         }
 
         //Method:       Execute
         //Purpose:      executes specific instruction
         public void Execute()
         {
-            curInstruction.execute();
-            disassembly = Instructions.disassembly;
-            //Thread.Sleep(250);
+           curInstruction.execute();
+           disassembly = Instructions.disassembly;
+           // Thread.Sleep(250);
         }
 
         public int getFlagN()

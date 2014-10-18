@@ -51,10 +51,9 @@ namespace ARMSim
         //Method:       IncrCounter
         //Purpose:      Increments Program Counter
         //Variables:    myMemory -  Memory handle to ram.
-        public void IncrCounter(Memory myMemory)
+        public void IncrCounter()
         {
-            uint newCounter = GetMemAtLocReg(myMemory, 15);
-            myMemory.WriteWord(this.ReadWord(15), newCounter + 4);
+            this.WriteWord(15, this.ReadWord(15) + 4);
         }
     }
 }

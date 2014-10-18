@@ -42,8 +42,20 @@
             this.Disassembly = new System.Windows.Forms.TabPage();
             this.DisBox = new System.Windows.Forms.TextBox();
             this.Trace = new System.Windows.Forms.TabPage();
+            this.TraceBox = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Memory = new System.Windows.Forms.TabPage();
+            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.label1 = new System.Windows.Forms.Label();
+            this.GoButton = new System.Windows.Forms.Button();
+            this.MemAddr = new System.Windows.Forms.TextBox();
+            this.OpenedFile = new System.Windows.Forms.Label();
+            this.MemGridView = new System.Windows.Forms.DataGridView();
+            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Word1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Word2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Word3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Word4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.RegisterGridView = new System.Windows.Forms.DataGridView();
             this.Registers = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,18 +68,6 @@
             this.FlagGridView = new System.Windows.Forms.DataGridView();
             this.Flag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Values2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
-            this.MemGridView = new System.Windows.Forms.DataGridView();
-            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Word1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Word2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Word3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Word4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.GoButton = new System.Windows.Forms.Button();
-            this.MemAddr = new System.Windows.Forms.TextBox();
-            this.TraceBox = new System.Windows.Forms.TextBox();
-            this.OpenedFile = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -85,17 +85,17 @@
             this.Trace.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.Memory.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
+            this.splitContainer4.Panel1.SuspendLayout();
+            this.splitContainer4.Panel2.SuspendLayout();
+            this.splitContainer4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MemGridView)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.RegisterGridView)).BeginInit();
             this.Stack.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StackGridView)).BeginInit();
             this.Flags.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.FlagGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
-            this.splitContainer4.Panel1.SuspendLayout();
-            this.splitContainer4.Panel2.SuspendLayout();
-            this.splitContainer4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.MemGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -293,6 +293,16 @@
             this.Trace.Text = "Trace";
             this.Trace.UseVisualStyleBackColor = true;
             // 
+            // TraceBox
+            // 
+            this.TraceBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TraceBox.Location = new System.Drawing.Point(3, 3);
+            this.TraceBox.Multiline = true;
+            this.TraceBox.Name = "TraceBox";
+            this.TraceBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TraceBox.Size = new System.Drawing.Size(416, 236);
+            this.TraceBox.TabIndex = 0;
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.Memory);
@@ -318,102 +328,6 @@
             this.Memory.Text = "Memory";
             this.Memory.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.RegisterGridView);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(839, 263);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Registers";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // RegisterGridView
-            // 
-            this.RegisterGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.RegisterGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Registers,
-            this.Values});
-            this.RegisterGridView.Location = new System.Drawing.Point(4, 5);
-            this.RegisterGridView.Name = "RegisterGridView";
-            this.RegisterGridView.Size = new System.Drawing.Size(268, 254);
-            this.RegisterGridView.TabIndex = 1;
-            // 
-            // Registers
-            // 
-            this.Registers.HeaderText = "Register";
-            this.Registers.Name = "Registers";
-            // 
-            // Values
-            // 
-            this.Values.HeaderText = "Value";
-            this.Values.Name = "Values";
-            // 
-            // Stack
-            // 
-            this.Stack.Controls.Add(this.StackGridView);
-            this.Stack.Location = new System.Drawing.Point(4, 22);
-            this.Stack.Name = "Stack";
-            this.Stack.Padding = new System.Windows.Forms.Padding(3);
-            this.Stack.Size = new System.Drawing.Size(839, 263);
-            this.Stack.TabIndex = 2;
-            this.Stack.Text = "Stack";
-            this.Stack.UseVisualStyleBackColor = true;
-            // 
-            // StackGridView
-            // 
-            this.StackGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.StackGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Position,
-            this.Value2});
-            this.StackGridView.Location = new System.Drawing.Point(4, 5);
-            this.StackGridView.Name = "StackGridView";
-            this.StackGridView.Size = new System.Drawing.Size(268, 254);
-            this.StackGridView.TabIndex = 0;
-            // 
-            // Position
-            // 
-            this.Position.HeaderText = "Slot";
-            this.Position.Name = "Position";
-            // 
-            // Value2
-            // 
-            this.Value2.HeaderText = "Value";
-            this.Value2.Name = "Value2";
-            // 
-            // Flags
-            // 
-            this.Flags.Controls.Add(this.FlagGridView);
-            this.Flags.Location = new System.Drawing.Point(4, 22);
-            this.Flags.Name = "Flags";
-            this.Flags.Padding = new System.Windows.Forms.Padding(3);
-            this.Flags.Size = new System.Drawing.Size(839, 263);
-            this.Flags.TabIndex = 3;
-            this.Flags.Text = "Flags";
-            this.Flags.UseVisualStyleBackColor = true;
-            // 
-            // FlagGridView
-            // 
-            this.FlagGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.FlagGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Flag,
-            this.Values2});
-            this.FlagGridView.Location = new System.Drawing.Point(4, 5);
-            this.FlagGridView.Name = "FlagGridView";
-            this.FlagGridView.Size = new System.Drawing.Size(268, 254);
-            this.FlagGridView.TabIndex = 0;
-            // 
-            // Flag
-            // 
-            this.Flag.HeaderText = "Flags";
-            this.Flag.Name = "Flag";
-            // 
-            // Values2
-            // 
-            this.Values2.HeaderText = "Value";
-            this.Values2.Name = "Values2";
-            // 
             // splitContainer4
             // 
             this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -434,6 +348,50 @@
             this.splitContainer4.Size = new System.Drawing.Size(833, 257);
             this.splitContainer4.SplitterDistance = 28;
             this.splitContainer4.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(4, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(54, 15);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Address:";
+            // 
+            // GoButton
+            // 
+            this.GoButton.Location = new System.Drawing.Point(748, 3);
+            this.GoButton.Name = "GoButton";
+            this.GoButton.Size = new System.Drawing.Size(75, 22);
+            this.GoButton.TabIndex = 5;
+            this.GoButton.Text = "Go";
+            this.GoButton.UseVisualStyleBackColor = true;
+            this.GoButton.Click += new System.EventHandler(this.GoButton_Click);
+            // 
+            // MemAddr
+            // 
+            this.MemAddr.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.MemAddr.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.MemAddr.Location = new System.Drawing.Point(58, 4);
+            this.MemAddr.Name = "MemAddr";
+            this.MemAddr.Size = new System.Drawing.Size(686, 20);
+            this.MemAddr.TabIndex = 4;
+            this.MemAddr.Text = "0";
+            // 
+            // OpenedFile
+            // 
+            this.OpenedFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.OpenedFile.AutoEllipsis = true;
+            this.OpenedFile.BackColor = System.Drawing.Color.DarkGray;
+            this.OpenedFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OpenedFile.Location = new System.Drawing.Point(428, 209);
+            this.OpenedFile.Name = "OpenedFile";
+            this.OpenedFile.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.OpenedFile.Size = new System.Drawing.Size(406, 17);
+            this.OpenedFile.TabIndex = 6;
+            this.OpenedFile.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.OpenedFile.Visible = false;
             // 
             // MemGridView
             // 
@@ -475,59 +433,104 @@
             this.Word4.HeaderText = "";
             this.Word4.Name = "Word4";
             // 
-            // label1
+            // tabPage2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(4, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 15);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Address:";
+            this.tabPage2.Controls.Add(this.RegisterGridView);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(839, 263);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Registers";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // GoButton
+            // RegisterGridView
             // 
-            this.GoButton.Location = new System.Drawing.Point(748, 3);
-            this.GoButton.Name = "GoButton";
-            this.GoButton.Size = new System.Drawing.Size(75, 22);
-            this.GoButton.TabIndex = 5;
-            this.GoButton.Text = "Go";
-            this.GoButton.UseVisualStyleBackColor = true;
-            this.GoButton.Click += new System.EventHandler(this.GoButton_Click);
+            this.RegisterGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.RegisterGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Registers,
+            this.Values});
+            this.RegisterGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RegisterGridView.Location = new System.Drawing.Point(3, 3);
+            this.RegisterGridView.Name = "RegisterGridView";
+            this.RegisterGridView.Size = new System.Drawing.Size(833, 257);
+            this.RegisterGridView.TabIndex = 1;
             // 
-            // MemAddr
+            // Registers
             // 
-            this.MemAddr.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.MemAddr.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.MemAddr.Location = new System.Drawing.Point(58, 4);
-            this.MemAddr.Name = "MemAddr";
-            this.MemAddr.Size = new System.Drawing.Size(686, 20);
-            this.MemAddr.TabIndex = 4;
-            this.MemAddr.Text = "0";
+            this.Registers.HeaderText = "Register";
+            this.Registers.Name = "Registers";
             // 
-            // TraceBox
+            // Values
             // 
-            this.TraceBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TraceBox.Location = new System.Drawing.Point(3, 3);
-            this.TraceBox.Multiline = true;
-            this.TraceBox.Name = "TraceBox";
-            this.TraceBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TraceBox.Size = new System.Drawing.Size(416, 236);
-            this.TraceBox.TabIndex = 0;
+            this.Values.HeaderText = "Value";
+            this.Values.Name = "Values";
             // 
-            // OpenedFile
+            // Stack
             // 
-            this.OpenedFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.OpenedFile.AutoEllipsis = true;
-            this.OpenedFile.BackColor = System.Drawing.Color.DarkGray;
-            this.OpenedFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.OpenedFile.Location = new System.Drawing.Point(428, 209);
-            this.OpenedFile.Name = "OpenedFile";
-            this.OpenedFile.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.OpenedFile.Size = new System.Drawing.Size(406, 17);
-            this.OpenedFile.TabIndex = 6;
-            this.OpenedFile.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.OpenedFile.Visible = false;
+            this.Stack.Controls.Add(this.StackGridView);
+            this.Stack.Location = new System.Drawing.Point(4, 22);
+            this.Stack.Name = "Stack";
+            this.Stack.Padding = new System.Windows.Forms.Padding(3);
+            this.Stack.Size = new System.Drawing.Size(839, 263);
+            this.Stack.TabIndex = 2;
+            this.Stack.Text = "Stack";
+            this.Stack.UseVisualStyleBackColor = true;
+            // 
+            // StackGridView
+            // 
+            this.StackGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.StackGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Position,
+            this.Value2});
+            this.StackGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.StackGridView.Location = new System.Drawing.Point(3, 3);
+            this.StackGridView.Name = "StackGridView";
+            this.StackGridView.Size = new System.Drawing.Size(833, 257);
+            this.StackGridView.TabIndex = 0;
+            // 
+            // Position
+            // 
+            this.Position.HeaderText = "Slot";
+            this.Position.Name = "Position";
+            // 
+            // Value2
+            // 
+            this.Value2.HeaderText = "Value";
+            this.Value2.Name = "Value2";
+            // 
+            // Flags
+            // 
+            this.Flags.Controls.Add(this.FlagGridView);
+            this.Flags.Location = new System.Drawing.Point(4, 22);
+            this.Flags.Name = "Flags";
+            this.Flags.Padding = new System.Windows.Forms.Padding(3);
+            this.Flags.Size = new System.Drawing.Size(839, 263);
+            this.Flags.TabIndex = 3;
+            this.Flags.Text = "Flags";
+            this.Flags.UseVisualStyleBackColor = true;
+            // 
+            // FlagGridView
+            // 
+            this.FlagGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.FlagGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Flag,
+            this.Values2});
+            this.FlagGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FlagGridView.Location = new System.Drawing.Point(3, 3);
+            this.FlagGridView.Name = "FlagGridView";
+            this.FlagGridView.Size = new System.Drawing.Size(833, 257);
+            this.FlagGridView.TabIndex = 0;
+            // 
+            // Flag
+            // 
+            this.Flag.HeaderText = "Flags";
+            this.Flag.Name = "Flag";
+            // 
+            // Values2
+            // 
+            this.Values2.HeaderText = "Value";
+            this.Values2.Name = "Values2";
             // 
             // ARMSimForm
             // 
@@ -558,18 +561,18 @@
             this.Trace.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.Memory.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.RegisterGridView)).EndInit();
-            this.Stack.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.StackGridView)).EndInit();
-            this.Flags.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.FlagGridView)).EndInit();
             this.splitContainer4.Panel1.ResumeLayout(false);
             this.splitContainer4.Panel1.PerformLayout();
             this.splitContainer4.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
             this.splitContainer4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MemGridView)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.RegisterGridView)).EndInit();
+            this.Stack.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.StackGridView)).EndInit();
+            this.Flags.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.FlagGridView)).EndInit();
             this.ResumeLayout(false);
 
         }

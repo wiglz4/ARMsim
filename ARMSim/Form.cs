@@ -28,7 +28,7 @@ namespace ARMSim
             InitializeComponent();
             Form.CheckForIllegalCrossThreadCalls = false;
             //setup views
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 16; i++)
             {
                 this.RegisterGridView.Rows.Add();
             }
@@ -262,7 +262,7 @@ namespace ARMSim
         private void UpdateRegisters()
         {
             //updates registers
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 16; i++)
             {
                 this.RegisterGridView.Rows[i].Cells[0].Value = i;
                 this.RegisterGridView.Rows[i].Cells[1].Value = String.Format("{0:X8}", myComputer.getRegisters().ReadWord((uint)i));
@@ -272,7 +272,7 @@ namespace ARMSim
         private void ResetRegisters()
         {
             //updates registers
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 16; i++)
             {
                 this.RegisterGridView.Rows[i].Cells[0].Value = i;
                 this.RegisterGridView.Rows[i].Cells[1].Value = 0;
