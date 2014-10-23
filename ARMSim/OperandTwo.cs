@@ -56,12 +56,12 @@ namespace ARMSim
                     //LSL
                     return (rm << (int)shiftAmt);
                 case 1:
+                    //LSR
+                    return (rm >> (int)shiftAmt);
+                case 2:
                     //ASR
                     //CAST TO INT (logic shift becomes arithmaic)
                     return (uint)((int)rm >> (int)shiftAmt);
-                case 2:
-                    //LSR
-                    return (rm >> (int)shiftAmt);
                 default:
                     //ROR
                     return (rm >> (int)shiftAmt) | (rm << (int)(32 - shiftAmt));

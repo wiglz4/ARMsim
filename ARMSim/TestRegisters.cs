@@ -25,9 +25,7 @@ namespace ARMSim
             Computer myTestComp = new Computer(myOptions);
             myTestComp.endRun += new Computer.EventHandler(delegate { });
             Console.WriteLine("testing Read Word...");
-            Debug.Assert(myTestComp.getRegisters().ReadWord(15) == 0);
-            Console.WriteLine("testing accesing of memory through registers...");
-            Debug.Assert(myTestComp.getRegisters().GetMemAtLocReg(myTestComp.getMemory(), 15) == 312);
+            Debug.Assert(myTestComp.getRegisters().ReadWord(15) == 320);
             Console.WriteLine("success!");
             myTestComp.FileStreamClose();
         }

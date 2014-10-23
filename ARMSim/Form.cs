@@ -262,11 +262,13 @@ namespace ARMSim
         private void UpdateRegisters()
         {
             //updates registers
-            for (int i = 0; i < 16; i++)
+            for (int i = 0; i < 15; i++)
             {
                 this.RegisterGridView.Rows[i].Cells[0].Value = i;
                 this.RegisterGridView.Rows[i].Cells[1].Value = String.Format("{0:X8}", myComputer.getRegisters().ReadWord((uint)i));
             }
+            this.RegisterGridView.Rows[15].Cells[0].Value = 15;
+            this.RegisterGridView.Rows[15].Cells[1].Value = String.Format("{0:X8}", myComputer.getRegisters().ReadWord((uint)15) - 8);
         }
 
         private void ResetRegisters()

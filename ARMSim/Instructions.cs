@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 namespace ARMSim
 {
     //YOU LEFT OFF HERE:
-    //1. IMPLEMENT SWI ON LINE 26
-    //2. IMPLEMENT MUL COMMAND
-    //3. IMPLEMENT LDR, STR, STM/LDM (FD)
+    //1. IMPLEMENT SWI ON LINE 33
+    //2. IMPLEMENT LDR, STR, STM/LDM (FD)
     //UNIT TESTS
 
     //TO FIX FROM BEFORE--
@@ -20,31 +19,34 @@ namespace ARMSim
     abstract class Instructions
     {
         public static string disassembly;
+        public string instructionName;
         //stores generic information about all decoded arm instructions
 
         //decodes bits 27-26 and returns specified instruction type
         public static Instructions decode(uint instruction, Registers myRegisters, Memory myMemory)
         {
             //handle specials here
-            uint swi = getSectionValue(27, 24, instruction);
-            if (swi == 15)
+            In_Special sInstruction = new In_Special(myRegisters, myMemory, instruction);
+
+            if (sInstruction.isSpecial())
             {
-                //find a way to die here.
-            }
-            
-            //these are normals
-            uint type = getSectionValue(27, 26, instruction);
-            if (type == 0)
-            {
-                return new In_DataProcessing(myRegisters, myMemory, instruction);
-            }
-            if (type == 1)
-            {
-                return new In_LoadStore(myRegisters, myMemory);
+                return sInstruction;
             }
             else
             {
-                return new In_Branch(myRegisters, myMemory);
+                uint type = getSectionValue(27, 26, instruction);
+                if (type == 0)
+                {
+                    return new In_DataProcessing(myRegisters, myMemory, instruction);
+                }
+                if (type == 1)
+                {
+                    return new In_LoadStore(myRegisters, myMemory);
+                }
+                else
+                {
+                    return new In_Branch(myRegisters, myMemory);
+                }
             }
         }
 

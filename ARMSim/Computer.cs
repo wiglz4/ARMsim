@@ -51,17 +51,27 @@ namespace ARMSim
             while (curCommand != 0 && !abort)
             {
                 stepNum++;
-                myCPU.Decode(curCommand);
-                myCPU.Execute();
-
-                if (trace)
+                if (myCPU.Decode(curCommand))
                 {
-                    myTracer.WriteLine(String.Format("{0:D4}", stepNum) + " " + curCommand + " " + myRam.getMDF() + " " + myCPU.getFlagN() + myCPU.getFlagZ() + myCPU.getFlagC() + myCPU.getFlagF() + " 0=" + String.Format("{0:X8}", myRegisters.ReadWord(0)) + " 1=" + String.Format("{0:X8}", myRegisters.ReadWord(1)) + " 2=" + String.Format("{0:X8}", myRegisters.ReadWord(2)) + " 3=" + String.Format("{0:X8}", myRegisters.ReadWord(3)));
-                    myTracer.WriteLine("4=" + String.Format("{0:X8}", myRegisters.ReadWord(4)) + " 5=" + String.Format("{0:X8}", myRegisters.ReadWord(5)) + " 6=" + String.Format("{0:X8}", myRegisters.ReadWord(6)) + " 7=" + String.Format("{0:X8}", myRegisters.ReadWord(7)) + " 8=" + String.Format("{0:X8}", myRegisters.ReadWord(8)) + " 9=" + String.Format("{0:X8}", myRegisters.ReadWord(9)));
-                    myTracer.WriteLine("10=" + String.Format("{0:X8}", myRegisters.ReadWord(10)) + " 11=" + String.Format("{0:X8}", myRegisters.ReadWord(11)) + " 12=" + String.Format("{0:X8}", myRegisters.ReadWord(12)) + " 13=" + String.Format("{0:X8}", myRegisters.ReadWord(13)) + " 14=" + String.Format("{0:X8}", myRegisters.ReadWord(14)));
+                    myCPU.Execute();
+                    curCommand = myCPU.Fetch();
+                    if (trace)
+                    {
+                        myTracer.WriteLine(String.Format("{0:D6}", stepNum) + " " + String.Format("{0:X8}", myRegisters.ReadWord(15) - 12) + " " + myRam.getMDF() + " " + myCPU.getFlagN() + myCPU.getFlagZ() + myCPU.getFlagC() + myCPU.getFlagF() + " 0=" + String.Format("{0:X8}", myRegisters.ReadWord(0)) + " 1=" + String.Format("{0:X8}", myRegisters.ReadWord(1)) + " 2=" + String.Format("{0:X8}", myRegisters.ReadWord(2)) + " 3=" + String.Format("{0:X8}", myRegisters.ReadWord(3)));
+                        myTracer.WriteLine("        4=" + String.Format("{0:X8}", myRegisters.ReadWord(4)) + " 5=" + String.Format("{0:X8}", myRegisters.ReadWord(5)) + " 6=" + String.Format("{0:X8}", myRegisters.ReadWord(6)) + " 7=" + String.Format("{0:X8}", myRegisters.ReadWord(7)) + " 8=" + String.Format("{0:X8}", myRegisters.ReadWord(8)) + " 9=" + String.Format("{0:X8}", myRegisters.ReadWord(9)));
+                        myTracer.WriteLine("       10=" + String.Format("{0:X8}", myRegisters.ReadWord(10)) + " 11=" + String.Format("{0:X8}", myRegisters.ReadWord(11)) + " 12=" + String.Format("{0:X8}", myRegisters.ReadWord(12)) + " 13=" + String.Format("{0:X8}", myRegisters.ReadWord(13)) + " 14=" + String.Format("{0:X8}", myRegisters.ReadWord(14)));
+                    }
                 }
-
-                curCommand = myCPU.Fetch();
+                else
+                {
+                    if (trace)
+                    {
+                        myTracer.WriteLine(String.Format("{0:D6}", stepNum) + " " + String.Format("{0:X8}", myRegisters.ReadWord(15) - 8) + " " + myRam.getMDF() + " " + myCPU.getFlagN() + myCPU.getFlagZ() + myCPU.getFlagC() + myCPU.getFlagF() + " 0=" + String.Format("{0:X8}", myRegisters.ReadWord(0)) + " 1=" + String.Format("{0:X8}", myRegisters.ReadWord(1)) + " 2=" + String.Format("{0:X8}", myRegisters.ReadWord(2)) + " 3=" + String.Format("{0:X8}", myRegisters.ReadWord(3)));
+                        myTracer.WriteLine("        4=" + String.Format("{0:X8}", myRegisters.ReadWord(4)) + " 5=" + String.Format("{0:X8}", myRegisters.ReadWord(5)) + " 6=" + String.Format("{0:X8}", myRegisters.ReadWord(6)) + " 7=" + String.Format("{0:X8}", myRegisters.ReadWord(7)) + " 8=" + String.Format("{0:X8}", myRegisters.ReadWord(8)) + " 9=" + String.Format("{0:X8}", myRegisters.ReadWord(9)));
+                        myTracer.WriteLine("       10=" + String.Format("{0:X8}", myRegisters.ReadWord(10)) + " 11=" + String.Format("{0:X8}", myRegisters.ReadWord(11)) + " 12=" + String.Format("{0:X8}", myRegisters.ReadWord(12)) + " 13=" + String.Format("{0:X8}", myRegisters.ReadWord(13)) + " 14=" + String.Format("{0:X8}", myRegisters.ReadWord(14)));
+                    }
+                    curCommand = 0;
+                }
             }
             endRun(this, e);
         }
@@ -71,17 +81,28 @@ namespace ARMSim
         public void step()
         {
             stepNum++;
-            uint keepRunning = myCPU.Fetch();
-            if (trace)
+            uint curCommand = myCPU.Fetch();
+            if (curCommand != 0)
             {
-                myTracer.WriteLine(String.Format("{0:D4}", stepNum) + " " + keepRunning + " " + myRam.getMDF() + " " + myCPU.getFlagN() + myCPU.getFlagZ() + myCPU.getFlagC() + myCPU.getFlagF() + " 0=" + String.Format("{0:X8}", myRegisters.ReadWord(0)) + " 1=" + String.Format("{0:X8}", myRegisters.ReadWord(1)) + " 2=" + String.Format("{0:X8}", myRegisters.ReadWord(2)) + " 3=" + String.Format("{0:X8}", myRegisters.ReadWord(3)));
-                myTracer.WriteLine("4=" + String.Format("{0:X8}", myRegisters.ReadWord(4)) + " 5=" + String.Format("{0:X8}", myRegisters.ReadWord(5)) + " 6=" + String.Format("{0:X8}", myRegisters.ReadWord(6)) + " 7=" + String.Format("{0:X8}", myRegisters.ReadWord(7)) + " 8=" + String.Format("{0:X8}", myRegisters.ReadWord(8)) + " 9=" + String.Format("{0:X8}", myRegisters.ReadWord(9)));
-                myTracer.WriteLine("10=" + String.Format("{0:X8}", myRegisters.ReadWord(10)) + " 11=" + String.Format("{0:X8}", myRegisters.ReadWord(11)) + " 12=" + String.Format("{0:X8}", myRegisters.ReadWord(12)) + " 13=" + String.Format("{0:X8}", myRegisters.ReadWord(13)) + " 14=" + String.Format("{0:X8}", myRegisters.ReadWord(14)));
-            }
-            if (keepRunning != 0)
-            {
-                myCPU.Decode(keepRunning);
-                myCPU.Execute();
+                if (myCPU.Decode(curCommand))
+                {
+                    myCPU.Execute();
+                    if (trace)
+                    {
+                        myTracer.WriteLine(String.Format("{0:D6}", stepNum) + " " + String.Format("{0:X8}", myRegisters.ReadWord(15) - 12) + " " + myRam.getMDF() + " " + myCPU.getFlagN() + myCPU.getFlagZ() + myCPU.getFlagC() + myCPU.getFlagF() + " 0=" + String.Format("{0:X8}", myRegisters.ReadWord(0)) + " 1=" + String.Format("{0:X8}", myRegisters.ReadWord(1)) + " 2=" + String.Format("{0:X8}", myRegisters.ReadWord(2)) + " 3=" + String.Format("{0:X8}", myRegisters.ReadWord(3)));
+                        myTracer.WriteLine("        4=" + String.Format("{0:X8}", myRegisters.ReadWord(4)) + " 5=" + String.Format("{0:X8}", myRegisters.ReadWord(5)) + " 6=" + String.Format("{0:X8}", myRegisters.ReadWord(6)) + " 7=" + String.Format("{0:X8}", myRegisters.ReadWord(7)) + " 8=" + String.Format("{0:X8}", myRegisters.ReadWord(8)) + " 9=" + String.Format("{0:X8}", myRegisters.ReadWord(9)));
+                        myTracer.WriteLine("       10=" + String.Format("{0:X8}", myRegisters.ReadWord(10)) + " 11=" + String.Format("{0:X8}", myRegisters.ReadWord(11)) + " 12=" + String.Format("{0:X8}", myRegisters.ReadWord(12)) + " 13=" + String.Format("{0:X8}", myRegisters.ReadWord(13)) + " 14=" + String.Format("{0:X8}", myRegisters.ReadWord(14)));
+                    }
+                }
+                else
+                {
+                    if (trace)
+                    {
+                        myTracer.WriteLine(String.Format("{0:D6}", stepNum) + " " + String.Format("{0:X8}", myRegisters.ReadWord(15) - 8) + " " + myRam.getMDF() + " " + myCPU.getFlagN() + myCPU.getFlagZ() + myCPU.getFlagC() + myCPU.getFlagF() + " 0=" + String.Format("{0:X8}", myRegisters.ReadWord(0)) + " 1=" + String.Format("{0:X8}", myRegisters.ReadWord(1)) + " 2=" + String.Format("{0:X8}", myRegisters.ReadWord(2)) + " 3=" + String.Format("{0:X8}", myRegisters.ReadWord(3)));
+                        myTracer.WriteLine("        4=" + String.Format("{0:X8}", myRegisters.ReadWord(4)) + " 5=" + String.Format("{0:X8}", myRegisters.ReadWord(5)) + " 6=" + String.Format("{0:X8}", myRegisters.ReadWord(6)) + " 7=" + String.Format("{0:X8}", myRegisters.ReadWord(7)) + " 8=" + String.Format("{0:X8}", myRegisters.ReadWord(8)) + " 9=" + String.Format("{0:X8}", myRegisters.ReadWord(9)));
+                        myTracer.WriteLine("       10=" + String.Format("{0:X8}", myRegisters.ReadWord(10)) + " 11=" + String.Format("{0:X8}", myRegisters.ReadWord(11)) + " 12=" + String.Format("{0:X8}", myRegisters.ReadWord(12)) + " 13=" + String.Format("{0:X8}", myRegisters.ReadWord(13)) + " 14=" + String.Format("{0:X8}", myRegisters.ReadWord(14)));
+                    }
+                }
                 endRun(this, e);
             }
         }

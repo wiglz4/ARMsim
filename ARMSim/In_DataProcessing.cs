@@ -37,7 +37,7 @@ namespace ARMSim
             //switch statement to determine WHICH execute command to do.
             switch (opcode)
             {
-                //cases 1-12 here
+                
                 case 0:
                     //to string
                     executeAND();
@@ -112,11 +112,6 @@ namespace ARMSim
         public void executeRSB()
         {
             myRegister.WriteWord(rd, (operand2 - rn));
-        }
-
-        public void executeMUL()
-        {
-
         }
 
         public void executeAND()

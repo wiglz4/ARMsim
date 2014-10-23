@@ -43,8 +43,7 @@ namespace ARMSim
         {
             //retrive command pointed to by addr stored in register 15
             uint command = myRegisters.ReadWord(15);
-            myRegisters.IncrCounter();
-            return myMemory.ReadWord(command);
+            return myMemory.ReadWord(command-8);
             //read word from RAM address specified by program counter register 
             //(program counter register is 15)
             //increments counter by 4
@@ -53,19 +52,26 @@ namespace ARMSim
         //Method:       Decode
         //Purpose:      Decodes thisCommand into a specific instruction. Handles it as generic.
         //Variables:    thisCommand - uint containing undecoded command
-        public void Decode(uint thisCommand)
+        public bool Decode(uint thisCommand)
         {
-           curInstruction = Instructions.decode(thisCommand, myRegisters, myMemory);
-           curInstruction.decode();
+            curInstruction = Instructions.decode(thisCommand, myRegisters, myMemory);
+            curInstruction.decode();
+            //if its a software interruper return false
+            if (curInstruction.instructionName == "swi")
+            {
+                return false;
+            }
+            return true;
         }
 
         //Method:       Execute
         //Purpose:      executes specific instruction
         public void Execute()
         {
-           curInstruction.execute();
-           disassembly = Instructions.disassembly;
-           // Thread.Sleep(250);
+            curInstruction.execute();
+            disassembly = Instructions.disassembly;
+            myRegisters.IncrCounter();
+            // Thread.Sleep(250);
         }
 
         public int getFlagN()

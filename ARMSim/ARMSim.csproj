@@ -73,6 +73,7 @@
       <DependentUpon>Form.cs</DependentUpon>
     </Compile>
     <Compile Include="Instructions.cs" />
+    <Compile Include="In_Special.cs" />
     <Compile Include="Loader.cs" />
     <Compile Include="In_LoadStore.cs" />
     <Compile Include="Memory.cs" />

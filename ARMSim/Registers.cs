@@ -14,7 +14,10 @@ namespace ARMSim
     //Purpose:      Creates and holds byte array to store registers in.
     class Registers : Memory
     {
-        public Registers() : base(64) { ; }
+        public Registers() : base(64) { 
+            //default stack pointer to 0x700
+            WriteWord(13, (uint) 0x700); 
+        }
 
         //Method:       ReadWord
         //Purpose:      Returns value stored in specified register.
@@ -54,6 +57,11 @@ namespace ARMSim
         public void IncrCounter()
         {
             this.WriteWord(15, this.ReadWord(15) + 4);
+        }
+
+        public void DecrCounter()
+        {
+            this.WriteWord(15, this.ReadWord(15) - 4);
         }
     }
 }
