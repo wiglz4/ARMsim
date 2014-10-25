@@ -26,7 +26,6 @@ namespace ARMSim
             {
 
                 case "swi":
-                    
                     break;
 
                 case "mul":

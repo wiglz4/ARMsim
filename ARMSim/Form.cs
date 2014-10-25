@@ -166,11 +166,6 @@ namespace ARMSim
             myComputer.endRun += new Computer.EventHandler(UpdateAllTheThings);
         }
 
-        private void GoButton_Click(object sender, EventArgs e)
-        {
-            this.UpdateMemory();
-        }
-
         private void UpdateAllTheThings(Computer c, EventArgs e)
         {
             //update buttons
@@ -194,16 +189,7 @@ namespace ARMSim
 
         private void UpdateDisassembly()
         {
-            this.DisBox.Text = @".top
-	            ; add num1 to num2
-	            mov	di,num1+digits-1
-	            mov	si,num2+digits-1
-	            mov	cx,digits	; 
-	            call	AddNumbers	; num2 += num1
-	            mov	bp,num2		;
-	            call	PrintLine	;
-	            dec	dword [term]	; decrement loop counter
-	            jz	.done		;";
+            //need stuff here
         }
 
         private void ResetDisassembly()
@@ -318,14 +304,13 @@ namespace ARMSim
 
         private void UpdateTracer()
         {
-            this.myComputer.FileStreamClose();
+            //this.myComputer.FileStreamClose();
             this.TraceBox.Text = File.ReadAllText("trace.log");
-            this.myComputer.FileStreamOpen();
         }
 
         private void ResetTracer()
         {
-            this.myComputer.FileStreamClose();
+            //this.myComputer.FileStreamClose();
             this.TraceBox.Text = "";
         }
 
@@ -339,6 +324,11 @@ namespace ARMSim
             {
                 myComputer.setTrace(true);
             }
+        }
+
+        private void GoButton_Click_1(object sender, EventArgs e)
+        {
+            this.UpdateMemory();
         }
     }
 }

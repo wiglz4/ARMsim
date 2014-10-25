@@ -7,14 +7,15 @@ using System.Threading.Tasks;
 namespace ARMSim
 {
     //YOU LEFT OFF HERE:
-    //1. IMPLEMENT SWI ON LINE 33
-    //2. IMPLEMENT LDR, STR, STM/LDM (FD)
-    //UNIT TESTS
+    //1. IMPLEMENT LDR, STR, STM/LDM (FD)
+    //2. IMPLEMENT EXEC
+    //3. TEST CASES
 
     //TO FIX FROM BEFORE--
     //-setflag
     //-disassemblyPanel
     //-multiThreading
+    //-run and step need to be disabled after program finishes running (even if you click them they're useless. can cause confusion)
    
     abstract class Instructions
     {

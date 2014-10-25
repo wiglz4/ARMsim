@@ -24,6 +24,11 @@ namespace ARMSim
             Options myOptions = new Options();
             myOptions.Parse(args);
 
+            //if myoptions.getexec && myoptions.getloadfile
+            //new computer
+            //run computer
+            //exit program
+
             if (myOptions.GetTest())
             {
                 TestMemory.RunTests();
