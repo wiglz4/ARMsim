@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace ARMSim
 {
-    class OperandTwo
+    class In_dp_OperandTwo
     {
         int type;
         uint instruction, rm, shiftAmt, shift;
         Registers myRegisters;
 
-        public OperandTwo(Registers toRegisters, uint toInstruction)
+        public In_dp_OperandTwo(Registers toRegisters, uint toInstruction)
         {
             instruction = toInstruction;
             myRegisters = toRegisters;

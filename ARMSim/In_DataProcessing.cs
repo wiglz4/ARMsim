@@ -28,7 +28,7 @@ namespace ARMSim
             opcode = getSectionValue(24, 21, instruction);
             rn = getSectionValue(19, 16, instruction);
             rd = getSectionValue(15, 12, instruction);
-            OperandTwo myOp2 = new OperandTwo(myRegister, instruction);
+            In_dp_OperandTwo myOp2 = new In_dp_OperandTwo(myRegister, instruction);
             operand2 = myOp2.getValue();
         }
 
@@ -37,7 +37,6 @@ namespace ARMSim
             //switch statement to determine WHICH execute command to do.
             switch (opcode)
             {
-                
                 case 0:
                     //to string
                     executeAND();

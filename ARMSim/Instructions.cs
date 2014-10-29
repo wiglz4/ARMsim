@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 namespace ARMSim
 {
     //YOU LEFT OFF HERE:
-    //1. IMPLEMENT LDR, STR, STM/LDM (FD)
+    //1. IMPLEMENT STR, STM/LDM (FD) <<< was working here. copy code from ldr into a separate class and do same stuff for store.
     //2. IMPLEMENT EXEC
     //3. TEST CASES
+    //4. disassembly and ToString methods
 
     //TO FIX FROM BEFORE--
     //-setflag
-    //-disassemblyPanel
     //-multiThreading
     //-run and step need to be disabled after program finishes running (even if you click them they're useless. can cause confusion)
    
@@ -40,9 +40,9 @@ namespace ARMSim
                 {
                     return new In_DataProcessing(myRegisters, myMemory, instruction);
                 }
-                if (type == 1)
+                if (type == 1 || type == 2)
                 {
-                    return new In_LoadStore(myRegisters, myMemory);
+                    return new In_LoadStore(myRegisters, myMemory, instruction);
                 }
                 else
                 {

@@ -73,11 +73,12 @@
       <DependentUpon>Form.cs</DependentUpon>
     </Compile>
     <Compile Include="Instructions.cs" />
+    <Compile Include="In_ls_OperandTwo.cs" />
     <Compile Include="In_Special.cs" />
     <Compile Include="Loader.cs" />
     <Compile Include="In_LoadStore.cs" />
     <Compile Include="Memory.cs" />
-    <Compile Include="OperandTwo.cs" />
+    <Compile Include="In_dp_OperandTwo.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
