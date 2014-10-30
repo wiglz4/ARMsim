@@ -47,6 +47,37 @@ namespace ARMSim
             Debug.Assert(myTestComp.getRegisters().ReadWord(2) == 16);
 
 
+            //test LDR
+            //E5925000 (LDR r5, r2)
+            myTestComp.getRegisters().WriteWord(5, 11);
+            myTestComp.getMemory().WriteWord(1, 2462);
+            myTestComp.getRegisters().WriteWord(2, 1);
+            myTestComp.getCPU().Decode((uint)0xE5925000); //LDR r5, r2
+            myTestComp.getCPU().Execute();  //LDR r5, r2
+            Debug.Assert(myTestComp.getRegisters().ReadWord(5) == 2462);
+
+            //test LDR
+            //E5821000 (STR r1, r2)
+            myTestComp.getRegisters().WriteWord(1, 2463);
+            myTestComp.getRegisters().WriteWord(2, 1);
+            myTestComp.getCPU().Decode((uint)0xE5821000); //STR r1, r2
+            myTestComp.getCPU().Execute();  //STR r1, r2
+            Debug.Assert(myTestComp.getMemory().ReadWord(1) == 2463);
+
+
+            //18914001 (ldm r1, {r1, r15} or something..)
+            //make r1 = memory address 1
+            myTestComp.getRegisters().WriteWord(1, 1);
+            myTestComp.getMemory().WriteWord(1, 2400);
+            myTestComp.getMemory().WriteWord(5, 2402);
+            //so r1 should be 2400 and r15 should be 2402
+            myTestComp.getCPU().Decode((uint)0x18914001); //ldm r1, {r1, r15} or something..
+            myTestComp.getCPU().Execute();  //ldm r1, {r1, r15} or something..
+            Debug.Assert(myTestComp.getRegisters().ReadWord(1) == 2400);
+            Debug.Assert(myTestComp.getRegisters().ReadWord(15) == 2406);
+
+
+
             Console.WriteLine("success!");
             myTestComp.FileStreamClose();
         }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ARMSim
 {
     //YOU LEFT OFF HERE:
-    //1. IMPLEMENT STR, STM/LDM (FD) <<< was working here. copy code from ldr into a separate class and do same stuff for store.
+    //1. IMPLEMENT STM/LDM (FD) <<< was working here. 
     //2. IMPLEMENT EXEC
     //3. TEST CASES
     //4. disassembly and ToString methods
@@ -53,7 +53,6 @@ namespace ARMSim
 
         public abstract void decode();
         public abstract void execute();
-
 
         //returns uint value of a specific selection of bits
         public static uint getSectionValue(int upper, int lower, uint instruction)

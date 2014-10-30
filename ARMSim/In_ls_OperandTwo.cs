@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections;
 
 namespace ARMSim
 {
@@ -10,6 +11,7 @@ namespace ARMSim
     {
         uint type;
         uint instruction, rm, shiftAmt, shift;
+
         Registers myRegisters;
 
         public In_ls_OperandTwo(Registers toRegisters, uint toInstruction)
@@ -37,7 +39,13 @@ namespace ARMSim
             else
             {
                 //register list
-                return Instructions.getSectionValue(15, 0, instruction);
+                uint numOfSetBits = 0;
+                foreach (bool x in new BitArray(BitConverter.GetBytes(Instructions.getSectionValue(15, 0, instruction))))
+                {
+                    if (x)
+                        numOfSetBits++;
+                }
+                return numOfSetBits;
             }
         }
 

@@ -20,7 +20,7 @@ namespace ARMSim
         //Variables:    myOptions - Options handle to options to class
         public static void RunTests(Options myOptions)
         {
-            myOptions.SetFileName("test1.exe");
+            myOptions.SetFileName("ctest.exe");
             Console.WriteLine("testing Computer setup...");
             Computer myTestComp = new Computer(myOptions);
             myTestComp.endRun += new Computer.EventHandler(delegate { });
@@ -28,7 +28,7 @@ namespace ARMSim
             myTestComp.step();
             Debug.Assert(myTestComp.getStepNum() == 1);
             myTestComp.Run();
-            Debug.Assert(myTestComp.getStepNum() == 32);
+            Debug.Assert(myTestComp.getStepNum() == 20);
             Console.WriteLine("success!");
             myTestComp.FileStreamClose();
         }
