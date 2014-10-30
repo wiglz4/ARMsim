@@ -15,8 +15,16 @@ namespace ARMSim
     class Registers : Memory
     {
         public Registers() : base(64) { 
-            //default stack pointer to 0x700
-            WriteWord(13, (uint) 0x700); 
+            //default stack pointer to 0x7000
+            WriteWord(13, (uint) 0x7000); 
+        }
+
+        //Method:       ReadByte
+        //Purpose:      returns a byte of information from ram
+        //Variables:    addr - uint of addr to read a byte from
+        new public byte ReadByte(uint addr)
+        {
+            return ram[(int)addr * 4];
         }
 
         //Method:       ReadWord

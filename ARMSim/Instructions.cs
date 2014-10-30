@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ARMSim
 {
     //YOU LEFT OFF HERE:
-    //1. IMPLEMENT STM/LDM (FD) <<< was working here. 
+    //BUG ON LINE 28/29 IN BTEST.EXE
     //2. IMPLEMENT EXEC
     //3. TEST CASES
     //4. disassembly and ToString methods

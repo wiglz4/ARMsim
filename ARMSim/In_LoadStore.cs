@@ -90,8 +90,8 @@ namespace ARMSim
             if (p == 1) { addr = (uint)(myRegister.ReadWord(rn) + operand2int); }
             else if (p == 0) { addr = myRegister.ReadWord(rn); }
             //performing the store
-            if (bs == 0) { myMemory.WriteWord(rd, myRegister.ReadWord(addr)); }
-            else if (bs == 1) { myMemory.WriteWord(rd, myRegister.ReadByte(addr)); }
+            if (bs == 0) { myMemory.WriteWord(addr, myRegister.ReadWord(rd)); }
+            else if (bs == 1) { myMemory.WriteWord(addr, myRegister.ReadByte(rd)); }
             //writeback?
             if (p == 1 && w == 1) { myRegister.WriteWord(rn, addr); }
         }
@@ -123,12 +123,12 @@ namespace ARMSim
                 {
                     if (incrAfter)
                     {
-                        myRegister.WriteWord(i + 1, myMemory.ReadWord(memAddr));
+                        myRegister.WriteWord(i, myMemory.ReadWord(memAddr));
                         memAddr += 4;
                     }
                     else if (decrBefore) 
                     {
-                        myRegister.WriteWord(i + 1, myMemory.ReadWord(memAddr - (operand2 * 4)));
+                        myRegister.WriteWord(i, myMemory.ReadWord(memAddr - (operand2 * 4)));
                         memAddr += 4;
                     }
                 }
@@ -141,7 +141,45 @@ namespace ARMSim
 
         public void executeSTM()
         {
+            //rn is a pointer in memory
+            //get num of bits set (operand2 = num of bits set)
+            //if increment after, start at address in memory rn. 
+            uint memAddr = myRegister.ReadWord(rn);
+            bool incrAfter = false;
+            bool decrBefore = false;
 
+            //calculate p/u flags
+            if (p == 0 && u == 1)
+            {
+                incrAfter = true;
+            }
+            else if (p == 1 && u == 0)
+            {
+                decrBefore = true;
+            }
+
+            //do the load
+            BitArray myBA = new BitArray(BitConverter.GetBytes(Instructions.getSectionValue(15, 0, instruction)));
+            for (uint i = 0; i < 16; i++)
+            {
+                if (myBA.Get((int)i))
+                {
+                    if (incrAfter)
+                    {
+                        myMemory.WriteWord(memAddr, myRegister.ReadWord(i));
+                        memAddr += 4;
+                    }
+                    else if (decrBefore)
+                    {
+                        myMemory.WriteWord(memAddr - (operand2 * 4), myRegister.ReadWord(i));
+                        memAddr += 4;
+                    }
+                }
+            }
+
+            //do the writeBack
+            if (decrBefore && w == 1) { myRegister.WriteWord(rn, myRegister.ReadWord(rn) - (operand2 * 4)); }
+            if (incrAfter && w == 1) { myRegister.WriteWord(rn, myRegister.ReadWord(rn) + (operand2 * 4)); }
         }
     }
 }
