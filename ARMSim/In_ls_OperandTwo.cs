@@ -11,6 +11,8 @@ namespace ARMSim
     {
         uint type;
         uint instruction, rm, shiftAmt, shift;
+        string uSign = "";
+        string strShiftAmt = "";
 
         Registers myRegisters;
 
@@ -18,6 +20,10 @@ namespace ARMSim
         {
             instruction = toInstruction;
             myRegisters = toRegisters;
+            if (Instructions.getSectionValue(23, 23, instruction) == 0)
+            {
+                uSign = "-";
+            }
         }
 
         public uint getValue()
@@ -26,14 +32,27 @@ namespace ARMSim
             if (type == 2)
             {
                 //immediate
+                if (Instructions.getSectionValue(11, 0, instruction) != 0)
+                {
+                    In_LoadStore.opTwoDissasembly = ", #" + uSign + Convert.ToString(Instructions.getSectionValue(11, 0, instruction));
+                }
+                else
+                {
+                    In_LoadStore.opTwoDissasembly = "";
+                }
                 return Instructions.getSectionValue(11, 0, instruction);
             }
             else if (type == 3)
             {
                 //shift
+                
                 rm = Instructions.getSectionValue(3, 0, instruction);
                 shift = Instructions.getSectionValue(6, 5, instruction);
                 shiftAmt = Instructions.getSectionValue(11, 7, instruction);
+
+                strShiftAmt = '#' + Convert.ToString(Instructions.getSectionValue(11, 7, instruction));
+                In_LoadStore.opTwoDissasembly = ", " + uSign + "r" + Convert.ToString(rm);
+
                 return getShiftDone();
             }
             else
@@ -56,16 +75,29 @@ namespace ARMSim
             {
                 case 0:
                     //LSL
+                    if (shiftAmt != 0)
+                    {
+                        In_LoadStore.opTwoDissasembly += ", lsl " + strShiftAmt;
+                    }
                     return (rm << (int)shiftAmt);
                 case 1:
                     //LSR
+                    if (shiftAmt != 0)
+                    {
+                        In_LoadStore.opTwoDissasembly += ", lsr " + strShiftAmt;
+                    }
                     return (rm >> (int)shiftAmt);
                 case 2:
                     //ASR
                     //CAST TO INT (logic shift becomes arithmaic)
+                    if (shiftAmt != 0)
+                    {
+                        In_LoadStore.opTwoDissasembly += ", asr " + strShiftAmt;
+                    }
                     return (uint)((int)rm >> (int)shiftAmt);
                 default:
                     //ROR
+                    In_LoadStore.opTwoDissasembly += ", ror " + strShiftAmt;
                     return (rm >> (int)shiftAmt) | (rm << (int)(32 - shiftAmt));
             }
         }

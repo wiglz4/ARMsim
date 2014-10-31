@@ -144,11 +144,24 @@ namespace ARMSim
             myBox.Filter = "Applications (*.exe)|*.exe|All files (*.*)|*.*";
             myBox.ShowDialog();
             theseOptions.SetFileName(myBox.FileName);
-            this.OpenedFile.Text = theseOptions.GetFileName();
-            this.OpenedFile.Show();
-            myComputer = new Computer(theseOptions);
-            myComputer.endRun += new Computer.EventHandler(UpdateAllTheThings);
-            this.ResetButton_Click(this.ResetButton, EventArgs.Empty);
+            if (theseOptions.GetFileName() != "") 
+            {
+                myComputer = new Computer(theseOptions);
+                myComputer.endRun += new Computer.EventHandler(UpdateAllTheThings);
+                this.OpenedFile.Text = theseOptions.GetFileName();
+                this.OpenedFile.Show();
+                this.ResetButton_Click(this.ResetButton, EventArgs.Empty);
+            }
+            else
+            {
+                this.RunButton.Enabled = false;
+                this.StepButton.Enabled = false;
+                this.StopButton.Enabled = false;
+                this.ResetButton.Enabled = false;
+                this.LoadFileButton.Enabled = true;
+                this.OpenedFile.Text = ".Please select a file to load";
+                this.OpenedFile.Show();
+            }
         }
 
         private void ResetButton_Click(object sender, EventArgs e)

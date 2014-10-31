@@ -29,7 +29,7 @@ namespace ARMSim
             {
 
                 case "swi":
-                    disassembly = "swi";
+                    disassembly = "swi " + Instructions.getSectionValue(23, 0, instruction);
                     break;
 
                 case "mul":

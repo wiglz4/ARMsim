@@ -49,12 +49,13 @@ namespace ARMSim
                 {
                     case 4:
                         //to string
+                        
                         if (!disassembling) { executeLDM(); }
                         break;
 
                     default:
                         //to string
-                        if (!disassembling) { executeLDR(); }
+                        executeLDR();
                         break;
                 }
             }
@@ -70,7 +71,7 @@ namespace ARMSim
 
                     default:
                         //to string
-                        if (!disassembling) { executeSTR(); }
+                        executeSTR();
                         break;
                 }
             }
@@ -84,10 +85,27 @@ namespace ARMSim
             if (p == 1) { addr = (uint)(myRegister.ReadWord(rn) + operand2int); }
             else if (p == 0) { addr = myRegister.ReadWord(rn); }
             //performing the load
-            if (bs == 0) { myRegister.WriteWord(rd, myMemory.ReadWord(addr)); }
-            else if (bs == 1) { myRegister.WriteWord(rd, myMemory.ReadByte(addr)); }
+            if (bs == 0)
+            {
+                if (!disassembling) { myRegister.WriteWord(rd, myMemory.ReadWord(addr)); }
+                disassembly = "ldr ";
+            }
+            else if (bs == 1) 
+            {
+                if (!disassembling) { myRegister.WriteWord(rd, myMemory.ReadByte(addr)); }
+                disassembly = "ldrb ";
+            }
+
+            disassembly += Convert.ToString(rd);
+
             //writeback?
-            if (p == 1 && w == 1) { myRegister.WriteWord(rn, addr); }
+            if (p == 1 && w == 1)
+            {
+                if (!disassembling) { myRegister.WriteWord(rn, addr); }
+                disassembly += "!";
+            }
+
+            disassembly += ", [r" + Convert.ToString(rn) + opTwoDissasembly + "]";
         }
 
         public void executeSTR()
@@ -98,10 +116,27 @@ namespace ARMSim
             if (p == 1) { addr = (uint)(myRegister.ReadWord(rn) + operand2int); }
             else if (p == 0) { addr = myRegister.ReadWord(rn); }
             //performing the store
-            if (bs == 0) { myMemory.WriteWord(addr, myRegister.ReadWord(rd)); }
-            else if (bs == 1) { myMemory.WriteWord(addr, myRegister.ReadByte(rd)); }
+            if (bs == 0)
+            {
+                if (!disassembling) { myMemory.WriteWord(addr, myRegister.ReadWord(rd)); }
+                disassembly = "str ";
+            }
+            else if (bs == 1)
+            {
+                if (!disassembling) { myMemory.WriteWord(addr, myRegister.ReadByte(rd)); }
+                disassembly = "strb ";
+            }
+
+            disassembly += Convert.ToString(rd);
+
             //writeback?
-            if (p == 1 && w == 1) { myRegister.WriteWord(rn, addr); }
+            if (p == 1 && w == 1)
+            {
+                if (!disassembling) { myRegister.WriteWord(rn, addr); }
+                disassembly += "!";
+            }
+
+            disassembly += ", [r" + Convert.ToString(rn) + opTwoDissasembly + "]";
         }
 
         public void executeLDM()
