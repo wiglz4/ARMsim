@@ -7,13 +7,11 @@ using System.Threading.Tasks;
 namespace ARMSim
 {
     //YOU LEFT OFF HERE:
-    //1. ToString methods
-    //2. TEST CASES
+    //1. TEST CASES
+    //2. REPORT
 
     //TO FIX FROM BEFORE--
     //-setflag
-    //-multiThreading
-    //-run and step need to be disabled after program finishes running (even if you click them they're useless. can cause confusion)
 
     abstract class Instructions
     {

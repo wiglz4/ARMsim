@@ -50,7 +50,7 @@ namespace ARMSim
                     case 4:
                         //to string
                         
-                        if (!disassembling) { executeLDM(); }
+                        executeLDM();
                         break;
 
                     default:
@@ -66,7 +66,7 @@ namespace ARMSim
                 {
                     case 4:
                         //to string
-                        if (!disassembling) { executeSTM(); }
+                        executeSTM();
                         break;
 
                     default:
@@ -96,7 +96,7 @@ namespace ARMSim
                 disassembly = "ldrb ";
             }
 
-            disassembly += Convert.ToString(rd);
+            disassembly += "r" + Convert.ToString(rd);
 
             //writeback?
             if (p == 1 && w == 1)
@@ -127,7 +127,7 @@ namespace ARMSim
                 disassembly = "strb ";
             }
 
-            disassembly += Convert.ToString(rd);
+            disassembly += "r" + Convert.ToString(rd);
 
             //writeback?
             if (p == 1 && w == 1)
@@ -148,15 +148,20 @@ namespace ARMSim
             bool incrAfter = false;
             bool decrBefore = false;
 
+
             //calculate p/u flags
             if (p == 0 && u == 1)
             {
                 incrAfter = true;
+                disassembly = "ldmfd ";
             }
             else if (p == 1 && u == 0)
             {
                 decrBefore = true;
+                disassembly = "ldmea ";
             }
+
+            string addresses = "{";
 
             //do the load
             BitArray myBA = new BitArray(BitConverter.GetBytes(Instructions.getSectionValue(15, 0, instruction)));
@@ -164,22 +169,41 @@ namespace ARMSim
             {
                 if (myBA.Get((int)i))
                 {
-                    if (incrAfter)
+                    addresses += "r" + i + ", ";
+                    if (incrAfter && !disassembling)
                     {
                         myRegister.WriteWord(i, myMemory.ReadWord(memAddr));
                         memAddr += 4;
                     }
-                    else if (decrBefore)
+                    else if (decrBefore && !disassembling)
                     {
                         myRegister.WriteWord(i, myMemory.ReadWord(memAddr - (operand2 * 4)));
                         memAddr += 4;
                     }
                 }
             }
-
+            addresses = addresses.Remove(addresses.Length - 2);
+            addresses += "}";
+            if (rn == 13)
+            {
+                disassembly += "sp";
+            }
+            else
+            {
+                disassembly += "r" + rn;
+            }
             //do the writeBack
-            if (decrBefore && w == 1) { myRegister.WriteWord(rn, myRegister.ReadWord(rn) - (operand2 * 4)); }
-            if (incrAfter && w == 1) { myRegister.WriteWord(rn, myRegister.ReadWord(rn) + (operand2 * 4)); }
+            if (decrBefore && w == 1)
+            {
+                if (!disassembling) { myRegister.WriteWord(rn, myRegister.ReadWord(rn) - (operand2 * 4)); }
+                disassembly += "!";
+            }
+            if (incrAfter && w == 1)
+            {
+                if (!disassembling) { myRegister.WriteWord(rn, myRegister.ReadWord(rn) + (operand2 * 4)); }
+                disassembly += "!";
+            }
+            disassembly += ", " + addresses;
         }
 
         public void executeSTM()
@@ -195,11 +219,15 @@ namespace ARMSim
             if (p == 0 && u == 1)
             {
                 incrAfter = true;
+                disassembly = "stmia ";
             }
             else if (p == 1 && u == 0)
             {
                 decrBefore = true;
+                disassembly = "stmfd ";
             }
+
+            string addresses = "{";
 
             //do the load
             BitArray myBA = new BitArray(BitConverter.GetBytes(Instructions.getSectionValue(15, 0, instruction)));
@@ -207,22 +235,43 @@ namespace ARMSim
             {
                 if (myBA.Get((int)i))
                 {
-                    if (incrAfter)
+                    addresses += "r" + i + ", ";
+                    if (incrAfter && !disassembling)
                     {
                         myMemory.WriteWord(memAddr, myRegister.ReadWord(i));
                         memAddr += 4;
                     }
-                    else if (decrBefore)
+                    else if (decrBefore && !disassembling)
                     {
                         myMemory.WriteWord(memAddr - (operand2 * 4), myRegister.ReadWord(i));
                         memAddr += 4;
                     }
                 }
             }
-
+            addresses = addresses.Remove(addresses.Length - 2);
+            addresses += "}";
+            if (rn == 13)
+            {
+                disassembly += "sp";
+            }
+            else
+            {
+                disassembly += "r" + rn;
+            }
+            
             //do the writeBack
-            if (decrBefore && w == 1) { myRegister.WriteWord(rn, myRegister.ReadWord(rn) - (operand2 * 4)); }
-            if (incrAfter && w == 1) { myRegister.WriteWord(rn, myRegister.ReadWord(rn) + (operand2 * 4)); }
+            if (decrBefore && w == 1)
+            {
+                if (!disassembling) { myRegister.WriteWord(rn, myRegister.ReadWord(rn) - (operand2 * 4)); }
+                disassembly += "!";
+            }
+            if (incrAfter && w == 1)
+            {
+                if (!disassembling) { myRegister.WriteWord(rn, myRegister.ReadWord(rn) + (operand2 * 4)); }
+                disassembly += "!";
+            }
+
+            disassembly += ", " + addresses;
         }
     }
 }
