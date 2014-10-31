@@ -115,7 +115,7 @@ namespace ARMSim
                 toString.Append(mdf[i].ToString("x2"));
             }
             //return hex string
-            return toString.ToString();
+            return toString.ToString().ToUpper();
         }
 
         //Method:       TestFlag

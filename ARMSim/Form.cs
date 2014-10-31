@@ -13,7 +13,6 @@ using System.IO;
 
 namespace ARMSim
 {
-
     public partial class ARMSimForm : Form
     {
         Options theseOptions;
@@ -43,6 +42,10 @@ namespace ARMSim
             for (int i = 0; i < 10; i++)
             {
                 this.StackGridView.Rows.Add();
+            }
+            for (int i = 0; i < 9; i++)
+            {
+                this.disassemblyView.Rows.Add();
             }
 
             //allow to open without any cmd line options
@@ -120,9 +123,9 @@ namespace ARMSim
         private void StepButton_Click(object sender, EventArgs e)
         {
             myThread = new Thread(myComputer.step);
-            myThread.Start();
             this.LoadFileButton.Enabled = false;
             this.StepButton.Enabled = false;
+            myThread.Start();
         }
 
         private void StopButton_Click(object sender, EventArgs e)
@@ -189,12 +192,64 @@ namespace ARMSim
 
         private void UpdateDisassembly()
         {
-            //need stuff here
+            this.ResetDisassembly();
+            uint savePC = myComputer.getRegisters().ReadWord(15);
+            int i = 0;
+            //save register 15 in TEMPVAR
+            if (myComputer.getStepNum() > 4)
+            {
+                myComputer.getRegisters().WriteWord(15, savePC - 16);
+            }
+            else
+            {
+                myComputer.getRegisters().WriteWord(15, (uint)(savePC - (myComputer.getStepNum() * 4)));
+                i = 4 - myComputer.getStepNum();
+            }
+            //set register 15 4 commands back. (sub 16).
+            myComputer.disassembling = true;
+            myComputer.getCPU().disassembling = true;
+            //set computer.disassembling to true
+            //set cpu.disassembling to true
+
+            for (; i < 9; i++)
+            {
+                myComputer.getCPU().disassembly = "";
+                myComputer.step();
+                this.disassemblyView.Rows[i].Cells[0].Value = String.Format("{0:X8}", myComputer.getRegisters().ReadWord(15) - 12);
+                this.disassemblyView.Rows[i].Cells[1].Value = String.Format("{0:X8}", myComputer.getCPU().unDecodedInstruction);
+                this.disassemblyView.Rows[i].Cells[2].Value = myComputer.getCPU().disassembly;
+
+                //stop stepping if swi
+                if (myComputer.getCPU().disassembly.Substring(0, 3) == "swi")
+                {
+                    this.disassemblyView.Rows[i].Cells[0].Value = String.Format("{0:X8}", myComputer.getRegisters().ReadWord(15) - 8);
+                    break;
+                }
+            }
+            //step through 9 times. 
+                //grab computer.getregister.readword(15)
+                //grab computer.getpcu.undecoded instruction
+                //grab computer.getcpu.disassembly after each step.
+
+            this.disassemblyView.Rows[4].DefaultCellStyle.BackColor = Color.LightGray;
+            //highlight the 5th row 
+
+            myComputer.getRegisters().WriteWord(15, savePC);
+            //set register 15 = to TEMPVAR
+            myComputer.disassembling = false;
+            myComputer.getCPU().disassembling = false;
+            //set computer.disassembling to false
         }
 
         private void ResetDisassembly()
         {
-            this.DisBox.Text = "";
+            for (int i = 0; i < 9; i++)
+            {
+                this.disassemblyView.Rows[i].Cells[0].Value = "";
+                this.disassemblyView.Rows[i].Cells[1].Value = "";
+                this.disassemblyView.Rows[i].Cells[2].Value = "";
+            }
+            this.disassemblyView.Rows[4].DefaultCellStyle.BackColor = Color.White;
         }
 
         private void UpdateStack()

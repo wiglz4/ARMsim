@@ -21,6 +21,7 @@ namespace ARMSim
         public delegate void EventHandler(Computer c, EventArgs e);
         private bool trace;
         public bool abort = false;
+        public bool disassembling = false;
         private static StreamWriter myTracer;
         private int stepNum;
 
@@ -68,20 +69,21 @@ namespace ARMSim
         //Purpose:      Steps through one fetch-decode-execute cycle.
         public void step()
         {
-            stepNum++;
+            //when im disassembling i will be running through here and simply not doing the final sub-execute hence the if !disassembly
             uint curCommand = myCPU.Fetch();
             if (curCommand != 0)
             {
+                if (!disassembling) { stepNum++; }
                 if (myCPU.Decode(curCommand))
                 {
                     myCPU.Execute();
-                    if (trace) { WriteTrace(12); }
+                    if (trace && !disassembling) { WriteTrace(12); }
                 }
                 else
                 {
-                    if (trace) { WriteTrace(8); }
+                    if (trace && !disassembling) { WriteTrace(8); }
                 }
-                endRun(this, e);
+                if (!disassembling) { endRun(this, e); }
             }
         }
 
@@ -140,7 +142,7 @@ namespace ARMSim
             myTracer.WriteLine(String.Format("{0:D6}", stepNum) + " " + String.Format("{0:X8}", myRegisters.ReadWord(15) - subPCamt) + " " + myRam.getMDF() + " " + myCPU.getFlagN() + myCPU.getFlagZ() + myCPU.getFlagC() + myCPU.getFlagF() + " 0=" + String.Format("{0:X8}", myRegisters.ReadWord(0)) + " 1=" + String.Format("{0:X8}", myRegisters.ReadWord(1)) + " 2=" + String.Format("{0:X8}", myRegisters.ReadWord(2)) + " 3=" + String.Format("{0:X8}", myRegisters.ReadWord(3)));
             myTracer.WriteLine("        4=" + String.Format("{0:X8}", myRegisters.ReadWord(4)) + " 5=" + String.Format("{0:X8}", myRegisters.ReadWord(5)) + " 6=" + String.Format("{0:X8}", myRegisters.ReadWord(6)) + " 7=" + String.Format("{0:X8}", myRegisters.ReadWord(7)) + " 8=" + String.Format("{0:X8}", myRegisters.ReadWord(8)) + " 9=" + String.Format("{0:X8}", myRegisters.ReadWord(9)));
             myTracer.WriteLine("       10=" + String.Format("{0:X8}", myRegisters.ReadWord(10)) + " 11=" + String.Format("{0:X8}", myRegisters.ReadWord(11)) + " 12=" + String.Format("{0:X8}", myRegisters.ReadWord(12)) + " 13=" + String.Format("{0:X8}", myRegisters.ReadWord(13)) + " 14=" + String.Format("{0:X8}", myRegisters.ReadWord(14)));
-            FileStreamClose();        
+            FileStreamClose();
         }
     }
 }

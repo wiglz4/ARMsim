@@ -7,16 +7,14 @@ using System.Threading.Tasks;
 namespace ARMSim
 {
     //YOU LEFT OFF HERE:
-    //BUG ON LINE 28/29 IN BTEST.EXE
-    //2. IMPLEMENT EXEC
-    //3. TEST CASES
-    //4. disassembly and ToString methods
+    //1. ToString methods
+    //2. TEST CASES
 
     //TO FIX FROM BEFORE--
     //-setflag
     //-multiThreading
     //-run and step need to be disabled after program finishes running (even if you click them they're useless. can cause confusion)
-   
+
     abstract class Instructions
     {
         public static string disassembly;
@@ -24,10 +22,10 @@ namespace ARMSim
         //stores generic information about all decoded arm instructions
 
         //decodes bits 27-26 and returns specified instruction type
-        public static Instructions decode(uint instruction, Registers myRegisters, Memory myMemory)
+        public static Instructions decode(uint instruction, Registers myRegisters, Memory myMemory, bool disassembling)
         {
             //handle specials here
-            In_Special sInstruction = new In_Special(myRegisters, myMemory, instruction);
+            In_Special sInstruction = new In_Special(myRegisters, myMemory, instruction, disassembling);
 
             if (sInstruction.isSpecial())
             {
@@ -38,11 +36,11 @@ namespace ARMSim
                 uint type = getSectionValue(27, 26, instruction);
                 if (type == 0)
                 {
-                    return new In_DataProcessing(myRegisters, myMemory, instruction);
+                    return new In_DataProcessing(myRegisters, myMemory, instruction, disassembling);
                 }
                 if (type == 1 || type == 2)
                 {
-                    return new In_LoadStore(myRegisters, myMemory, instruction);
+                    return new In_LoadStore(myRegisters, myMemory, instruction, disassembling);
                 }
                 else
                 {

@@ -19,6 +19,8 @@ namespace ARMSim
         Registers myRegisters;
         Instructions curInstruction;
         public string disassembly;
+        public uint unDecodedInstruction;
+        public bool disassembling;
         int N, C, Z, F;
 
         //Method:       Constructor
@@ -28,6 +30,7 @@ namespace ARMSim
         //              programCounter - uint signifying where to start fetch at.
         public CPU(Memory toMemory, Registers toRegisters, uint programCounter)
         {
+            disassembling = false;
             myMemory = toMemory;
             myRegisters = toRegisters;
             myRegisters.WriteWord(15, programCounter);
@@ -43,10 +46,9 @@ namespace ARMSim
         {
             //retrive command pointed to by addr stored in register 15
             uint command = myRegisters.ReadWord(15);
-            return myMemory.ReadWord(command-8);
+            return myMemory.ReadWord(command - 8);
             //read word from RAM address specified by program counter register 
             //(program counter register is 15)
-            //increments counter by 4
         }
 
         //Method:       Decode
@@ -54,11 +56,13 @@ namespace ARMSim
         //Variables:    thisCommand - uint containing undecoded command
         public bool Decode(uint thisCommand)
         {
-            curInstruction = Instructions.decode(thisCommand, myRegisters, myMemory);
+            unDecodedInstruction = thisCommand;
+            curInstruction = Instructions.decode(thisCommand, myRegisters, myMemory, disassembling);
             curInstruction.decode();
             //if its a software interruper return false
             if (curInstruction.instructionName == "swi")
             {
+                disassembly = Instructions.disassembly;
                 return false;
             }
             return true;

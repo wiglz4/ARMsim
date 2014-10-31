@@ -13,13 +13,15 @@ namespace ARMSim
         uint operand2, p, u, bs, w, l, rn, rd, condition, instruction, type, addr;
         Registers myRegister;
         Memory myMemory;
+        bool disassembling;
         public static string opTwoDissasembly;
 
 
-        public In_LoadStore(Registers toRegister, Memory toMemory, uint toInstruction)
+        public In_LoadStore(Registers toRegister, Memory toMemory, uint toInstruction, bool toDisassembling)
         {
             myRegister = toRegister;
             myMemory = toMemory;
+            disassembling = toDisassembling;
             instruction = toInstruction;
         }
 
@@ -46,10 +48,13 @@ namespace ARMSim
                 switch (type)
                 {
                     case 4:
-                        executeLDM();
+                        //to string
+                        if (!disassembling) { executeLDM(); }
                         break;
+
                     default:
-                        executeLDR();
+                        //to string
+                        if (!disassembling) { executeLDR(); }
                         break;
                 }
             }
@@ -59,10 +64,13 @@ namespace ARMSim
                 switch (type)
                 {
                     case 4:
-                        executeSTM();
+                        //to string
+                        if (!disassembling) { executeSTM(); }
                         break;
+
                     default:
-                        executeSTR();
+                        //to string
+                        if (!disassembling) { executeSTR(); }
                         break;
                 }
             }
@@ -105,7 +113,7 @@ namespace ARMSim
             bool incrAfter = false;
             bool decrBefore = false;
 
-           //calculate p/u flags
+            //calculate p/u flags
             if (p == 0 && u == 1)
             {
                 incrAfter = true;
@@ -126,7 +134,7 @@ namespace ARMSim
                         myRegister.WriteWord(i, myMemory.ReadWord(memAddr));
                         memAddr += 4;
                     }
-                    else if (decrBefore) 
+                    else if (decrBefore)
                     {
                         myRegister.WriteWord(i, myMemory.ReadWord(memAddr - (operand2 * 4)));
                         memAddr += 4;

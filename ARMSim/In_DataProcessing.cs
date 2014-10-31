@@ -12,13 +12,15 @@ namespace ARMSim
         uint operand2, opcode, rn, rd, condition, instruction;
         Registers myRegister;
         Memory myMemory;
+        bool disassembling;
         public static string opTwoDissasembly;
 
-        
-        public In_DataProcessing(Registers toRegister, Memory toMemory, uint toInstruction)
+
+        public In_DataProcessing(Registers toRegister, Memory toMemory, uint toInstruction, bool toDisassembling)
         {
             myRegister = toRegister;
             myMemory = toMemory;
+            disassembling = toDisassembling;
             instruction = toInstruction;
         }
 
@@ -39,48 +41,55 @@ namespace ARMSim
             {
                 case 0:
                     //to string
-                    executeAND();
+                    disassembly = "and " + 'r' + rd + ", " + 'r' + rn + ", " + opTwoDissasembly;
+                    if (!disassembling) { executeAND(); }
                     break;
 
                 case 1:
-                    //to string
-                    executeEOR();
+                    disassembly = "eor " + 'r' + rd + ", " + 'r' + rn + ", " + opTwoDissasembly;
+                    if (!disassembling) { executeEOR(); }
                     break;
 
                 case 2:
                     //to string
-                    executeSUB();
+                    disassembly = "sub " + 'r' + rd + ", " + 'r' + rn + ", " + opTwoDissasembly;
+                    if (!disassembling) { executeSUB(); }
                     break;
 
                 case 3:
                     //to string
-                    executeRSB();
+                    disassembly = "rsb " + 'r' + rd + ", " + 'r' + rn + ", " + opTwoDissasembly;
+                    if (!disassembling) { executeRSB(); }
                     break;
 
                 case 4:
                     //to string
-                    executeADD();
+                    disassembly = "add " + 'r' + rd + ", " + 'r' + rn + ", " + opTwoDissasembly;
+                    if (!disassembling) { executeADD(); }
                     break;
 
                 case 12:
                     //to string
-                    executeORR();
+                    disassembly = "orr " + 'r' + rd + ", " + 'r' + rn + ", " + opTwoDissasembly;
+                    if (!disassembling) { executeORR(); }
                     break;
 
                 case 13:
                     //to string
                     disassembly = "mov " + 'r' + rd + ", " + opTwoDissasembly;
-                    executeMOV();
+                    if (!disassembling) { executeMOV(); }
                     break;
 
                 case 14:
                     //to string
-                    executeBIC();
+                    disassembly = "bic " + 'r' + rd + ", " + 'r' + rn + ", " + opTwoDissasembly;
+                    if (!disassembling) { executeBIC(); }
                     break;
 
                 case 15:
                     //to string
-                    executeMVN();
+                    disassembly = "mvn " + 'r' + rd + ", " + opTwoDissasembly;
+                    if (!disassembling) { executeMVN(); }
                     break;
 
                 default:
@@ -100,37 +109,37 @@ namespace ARMSim
 
         public void executeADD()
         {
-            myRegister.WriteWord(rd, (rn + operand2));
+            myRegister.WriteWord(rd, (myRegister.ReadWord(rn) + operand2));
         }
 
         public void executeSUB()
         {
-            myRegister.WriteWord(rd, (rn - operand2));
+            myRegister.WriteWord(rd, (myRegister.ReadWord(rn) - operand2));
         }
 
         public void executeRSB()
         {
-            myRegister.WriteWord(rd, (operand2 - rn));
+            myRegister.WriteWord(rd, (operand2 - myRegister.ReadWord(rn)));
         }
 
         public void executeAND()
         {
-            myRegister.WriteWord(rd, (rn & operand2));
+            myRegister.WriteWord(rd, (myRegister.ReadWord(rn) & operand2));
         }
 
         public void executeORR()
         {
-            myRegister.WriteWord(rd, (rn | operand2));
+            myRegister.WriteWord(rd, (myRegister.ReadWord(rn) | operand2));
         }
 
         public void executeEOR()
         {
-            myRegister.WriteWord(rd, (rn ^ operand2));
+            myRegister.WriteWord(rd, (myRegister.ReadWord(rn) ^ operand2));
         }
 
         public void executeBIC()
         {
-            myRegister.WriteWord(rd, (rn & (~operand2)));
+            myRegister.WriteWord(rd, (myRegister.ReadWord(rn) & (~operand2)));
         }
     }
 }

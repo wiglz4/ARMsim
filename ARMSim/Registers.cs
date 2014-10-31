@@ -14,9 +14,11 @@ namespace ARMSim
     //Purpose:      Creates and holds byte array to store registers in.
     class Registers : Memory
     {
-        public Registers() : base(64) { 
+        public Registers()
+            : base(64)
+        {
             //default stack pointer to 0x7000
-            WriteWord(13, (uint) 0x7000); 
+            WriteWord(13, (uint)0x7000);
         }
 
         //Method:       ReadByte

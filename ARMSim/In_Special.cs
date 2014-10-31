@@ -10,13 +10,16 @@ namespace ARMSim
     {
         Registers myRegister;
         Memory myMemory;
+        bool disassembling;
         uint instruction, rd, rs, rm;
+        public static string opTwoDissasembly;
 
 
-        public In_Special(Registers toRegister, Memory toMemory, uint toInstruction)
+        public In_Special(Registers toRegister, Memory toMemory, uint toInstruction, bool toDisassembling)
         {
             myRegister = toRegister;
             myMemory = toMemory;
+            disassembling = toDisassembling;
             instruction = toInstruction;
         }
 
@@ -26,6 +29,7 @@ namespace ARMSim
             {
 
                 case "swi":
+                    disassembly = "swi";
                     break;
 
                 case "mul":
@@ -45,13 +49,13 @@ namespace ARMSim
             {
 
                 case "swi":
-                    //to string
                     executeSWI();
                     break;
 
                 case "mul":
                     //to string
-                    executeMUL();
+                    disassembly = "mul " + 'r' + rd + ", " + 'r' + rm + ", " + 'r' + rs;
+                    if (!disassembling) { executeMUL(); }
                     break;
 
                 default:
@@ -62,7 +66,7 @@ namespace ARMSim
 
         public void executeSWI()
         {
-            //blow up here.
+            //never happens
         }
 
         public void executeMUL()

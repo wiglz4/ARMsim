@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace ARMSim
 {
@@ -24,12 +25,15 @@ namespace ARMSim
             Options myOptions = new Options();
             myOptions.Parse(args);
 
-            //if myoptions.getexec && myoptions.getloadfile
-            //new computer
-            //run computer
-            //exit program
-
-            if (myOptions.GetTest())
+            if (myOptions.GetExec() && myOptions.GetLoad())
+            {
+                Computer myComputer = new Computer(myOptions);
+                myComputer.endRun += new Computer.EventHandler(delegate { });
+                myComputer.abort = false;
+                myComputer.Run();
+                Environment.Exit(0);
+            }
+            else if (myOptions.GetTest())
             {
                 TestMemory.RunTests();
                 TestLoader.RunTests(myOptions);
