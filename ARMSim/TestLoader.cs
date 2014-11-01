@@ -26,7 +26,7 @@ namespace ARMSim
             Console.WriteLine("testing Loader...");
             myLoader.Load();
             Console.Write("verifying MD5 hash...");
-            Debug.Assert(myRam.getMDF() == "3500a8bef72dfed358b25b61b7602cf1");
+            Debug.Assert(myRam.getMDF() == "3500A8BEF72DFED358B25B61B7602CF1");
             Console.WriteLine("success!");
         }
     }

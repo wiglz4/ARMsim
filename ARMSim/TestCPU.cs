@@ -65,6 +65,7 @@ namespace ARMSim
             Debug.Assert(myTestComp.getMemory().ReadWord(1) == 2463);
 
 
+            //test LDM
             //18914001 (ldm r1, {r0, r14} or something..)
             //make r1 = memory address 1
             myTestComp.getRegisters().WriteWord(1, 1);
