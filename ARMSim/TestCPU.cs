@@ -46,6 +46,35 @@ namespace ARMSim
             myTestComp.getCPU().Execute();  //mul r2, r4, r2
             Debug.Assert(myTestComp.getRegisters().ReadWord(2) == 16);
 
+            //test SUB
+            myTestComp.getRegisters().WriteWord(4, 10);
+            myTestComp.getCPU().Decode((uint)0xE2445003); //sub r5, r4, #3
+            myTestComp.getCPU().Execute();  //sub r5, r4, #3
+            Debug.Assert(myTestComp.getRegisters().ReadWord(5) == 7);
+
+            //test RSB
+            myTestComp.getRegisters().WriteWord(4, 10);
+            myTestComp.getCPU().Decode((uint)0xE2645003); //rsb r5, r4, #3
+            myTestComp.getCPU().Execute();  //rsb r5, r4, #3
+            Debug.Assert(myTestComp.getRegisters().ReadWord(5) == 4294967289);
+
+            //test AND
+            myTestComp.getRegisters().WriteWord(0, 0xFFFF);
+            myTestComp.getCPU().Decode((uint)0xE20020FF); //and r2, r0, #255
+            myTestComp.getCPU().Execute();  //and r2, r0, #255
+            Debug.Assert(myTestComp.getRegisters().ReadWord(2) == 255);
+
+            //test ORR
+            myTestComp.getRegisters().WriteWord(0, 0);
+            myTestComp.getCPU().Decode((uint)0xE3802012); //orr r2, r0, #18
+            myTestComp.getCPU().Execute();  //orr r2, r0, #18
+            Debug.Assert(myTestComp.getRegisters().ReadWord(2) == 18);
+
+            //test EOR
+            myTestComp.getRegisters().WriteWord(0, 732);
+            myTestComp.getCPU().Decode((uint)0xE2202FB7); // eor r2, r0, #732
+            myTestComp.getCPU().Execute();  // eor r2, r0, #732
+            Debug.Assert(myTestComp.getRegisters().ReadWord(2) == 0);
 
             //test LDR
             //E5925000 (LDR r5, r2)
