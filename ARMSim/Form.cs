@@ -48,6 +48,7 @@ namespace ARMSim
                 this.disassemblyView.Rows.Add();
             }
 
+
             //allow to open without any cmd line options
             if (theseOptions.GetFileName() == "")
             {
@@ -394,7 +395,7 @@ namespace ARMSim
             }
         }
 
-        private void GoButton_Click_1(object sender, EventArgs e)
+        private void GoButton_Click(object sender, EventArgs e)
         {
             this.UpdateMemory();
         }
