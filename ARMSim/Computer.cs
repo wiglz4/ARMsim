@@ -52,7 +52,14 @@ namespace ARMSim
                 stepNum++;
                 if (myCPU.Decode(curCommand))
                 {
-                    myCPU.Execute();
+                    if (Instructions.dontDoItBro == false)
+                    {
+                        myCPU.Execute();
+                    }
+                    else
+                    {
+                        myRegisters.IncrCounter();
+                    }
                     curCommand = myCPU.Fetch();
                     if (trace) { WriteTrace(12); }
                 }
@@ -76,7 +83,14 @@ namespace ARMSim
                 if (!disassembling) { stepNum++; }
                 if (myCPU.Decode(curCommand))
                 {
-                    myCPU.Execute();
+                    if (Instructions.dontDoItBro == false)
+                    {
+                        myCPU.Execute();
+                    }
+                    else
+                    {
+                        myRegisters.IncrCounter();
+                    }
                     if (trace && !disassembling) { WriteTrace(12); }
                 }
                 else

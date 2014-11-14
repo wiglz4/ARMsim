@@ -234,7 +234,7 @@ namespace ARMSim
                 this.disassemblyView.Rows[i].Cells[2].Value = myComputer.getCPU().disassembly;
 
                 //stop stepping if swi
-                if (myComputer.getCPU().disassembly.Substring(0, 3) == "swi")
+                if (myComputer.getCPU().disassembly.Length >= 3 && myComputer.getCPU().disassembly.Substring(0, 3) == "swi")
                 {
                     this.disassemblyView.Rows[i].Cells[0].Value = String.Format("{0:X8}", myComputer.getRegisters().ReadWord(15) - 8);
                     break;

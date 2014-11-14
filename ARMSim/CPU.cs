@@ -58,12 +58,16 @@ namespace ARMSim
         {
             unDecodedInstruction = thisCommand;
             curInstruction = Instructions.decode(thisCommand, myRegisters, myMemory, disassembling);
-            curInstruction.decode();
-            //if its a software interruper return false
-            if (curInstruction.instructionName == "swi")
+            //making sure the opcode is valid
+            if (curInstruction != null)
             {
-                disassembly = Instructions.disassembly;
-                return false;
+                curInstruction.decode();
+                //if its a software interruper return false
+                if (curInstruction.instructionName == "swi")
+                {
+                    disassembly = Instructions.disassembly;
+                    return false;
+                }
             }
             return true;
         }

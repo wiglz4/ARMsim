@@ -16,10 +16,10 @@ namespace ARMSim
     {
         protected byte[] ram;
         private uint myFlags;
-        //1 is N
-        //2 is Z
-        //3 is C
-        //4 is F
+        //0 is N
+        //1 is Z
+        //2 is C
+        //3 is F/V
 
 
         //Method:       Memory
@@ -28,6 +28,7 @@ namespace ARMSim
         public Memory(int memsize)
         {
             ram = new byte[memsize];
+            myFlags = 0;
         }
 
         //Method:       PopulateRam
@@ -157,7 +158,7 @@ namespace ARMSim
 
         public void SetFlags(uint toFlags)
         {
-            myFlags = toFlags;
+            //myFlags = toFlags;
         }
 
         public uint GetFlags()
