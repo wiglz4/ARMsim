@@ -89,7 +89,7 @@ namespace ARMSim
 
                     //this really should be changed to be in memory class
                     programCounter = elfHeader.e_entry + 8;
-                    myRam.SetFlagAddr(elfHeader.e_flags);
+                    myRam.SetFlags(elfHeader.e_flags);
                     Debug.WriteLine("Loader.Load: Entry point: " + elfHeader.e_entry.ToString("X4"));
                     Debug.WriteLine("Loader.Load: Number of program header entries: " + elfHeader.e_phnum);
                     Debug.WriteLine("Loader.Load: Reading program header entries...");

@@ -338,13 +338,14 @@ namespace ARMSim
 
         private void UpdateFlags()
         {
-            this.FlagGridView.Rows[0].Cells[1].Value = myComputer.getCPU().getFlagN();
+            //fix to correspond w/ memory flags then delete this stuff outta CPU
+            this.FlagGridView.Rows[0].Cells[1].Value = myComputer.getMemory().TestFlag(0);
             this.FlagGridView.Rows[0].Cells[0].Value = 'N';
-            this.FlagGridView.Rows[1].Cells[1].Value = myComputer.getCPU().getFlagZ();
+            this.FlagGridView.Rows[1].Cells[1].Value = myComputer.getMemory().TestFlag(1);
             this.FlagGridView.Rows[1].Cells[0].Value = 'Z';
-            this.FlagGridView.Rows[2].Cells[1].Value = myComputer.getCPU().getFlagC();
+            this.FlagGridView.Rows[2].Cells[1].Value = myComputer.getMemory().TestFlag(2);
             this.FlagGridView.Rows[2].Cells[0].Value = 'C';
-            this.FlagGridView.Rows[3].Cells[1].Value = myComputer.getCPU().getFlagF();
+            this.FlagGridView.Rows[3].Cells[1].Value = myComputer.getMemory().TestFlag(3);
             this.FlagGridView.Rows[3].Cells[0].Value = 'F';
         }
 

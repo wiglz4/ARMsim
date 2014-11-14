@@ -16,6 +16,10 @@ namespace ARMSim
     {
         protected byte[] ram;
         private uint myFlags;
+        //1 is N
+        //2 is Z
+        //3 is C
+        //4 is F
 
 
         //Method:       Memory
@@ -120,47 +124,43 @@ namespace ARMSim
 
         //Method:       TestFlag
         //Purpose:      tests a specific bit and returns the corresponding bool
-        //Variables:    addr - uint of addr to read a word from
-        //              bit - int of location in addr where the bit to check is stored
-        public bool TestFlag(uint addr, int bit)
+        //Variables:    bit - int of location in myflagsaddr where the bit to check is stored
+        public int TestFlag(int bit)
         {
-            uint word = ReadWord(addr);
-            word = word >> bit;
-            return (word & 1) == 1 ? true : false;
+            //"that should work" - austin
+            return ((myFlags >> bit) & 1) == 1 ? 1 : 0;
         }
 
         //Method:       SetFlag
         //Purpose:      sets a specific bit in ram
-        //Variables:    addr - uint of addr to read a word from
-        //              bit - int of location in addr where the bit to change is stored
+        //Variables:    bit - int of location in myflagaddr where the bit to change is stored
         //              bool - value of bit to be set
-        public void SetFlag(uint addr, int bit, bool flag)
+        public void SetFlag(int bit, bool flag)
         {
             uint bitLoc = 1;
-            uint word = ReadWord(addr);
             bitLoc = bitLoc << bit;
 
             if (flag)
             {
                 //logic for setting to 1
-                word = word ^ bitLoc;
+                //WriteWord(myFlags, (ReadWord(myFlags) | bitLoc));
+                myFlags = myFlags | bitLoc;
             }
             else
             {
                 //logic for setting to 0
                 bitLoc = ~(bitLoc);
-                word = word & bitLoc;
+                myFlags = myFlags & bitLoc;
+                //WriteWord(myFlags, (ReadWord(myFlags) & bitLoc));
             }
-
-            WriteWord(addr, word);
         }
 
-        public void SetFlagAddr(uint toFlags)
+        public void SetFlags(uint toFlags)
         {
             myFlags = toFlags;
         }
 
-        public uint GetFlagAddr()
+        public uint GetFlags()
         {
             return myFlags;
         }

@@ -68,6 +68,12 @@ namespace ARMSim
                     if (!disassembling) { executeADD(); }
                     break;
 
+                case 10:
+                    //to string
+                    disassembly = "cmp r" + rn + ", " + opTwoDissasembly;
+                    if (!disassembling) { executeCMP(); }
+                    break;
+
                 case 12:
                     //to string
                     disassembly = "orr " + 'r' + rd + ", " + 'r' + rn + ", " + opTwoDissasembly;
@@ -140,6 +146,33 @@ namespace ARMSim
         public void executeBIC()
         {
             myRegister.WriteWord(rd, (myRegister.ReadWord(rn) & (~operand2)));
+        }
+
+        public void executeCMP()
+        {
+            uint meinKmp = myRegister.ReadWord(rn) - operand2;
+
+            //set N flag
+            myMemory.SetFlag(0, (Instructions.getSectionValue(31, 31, meinKmp) == 0 ? false : true));
+            
+            //set Z flag
+            myMemory.SetFlag(1, (meinKmp == 0 ? true : false));
+            
+            //set C flag
+            myMemory.SetFlag(2, (operand2 > myRegister.ReadWord(rn) ? false : true));
+
+            //set F flag
+            try
+            {
+                myMemory.SetFlag(3, false);
+                int tempRN = (int)myRegister.ReadWord(rn);
+                int iop2 = (int)operand2;
+                int f = checked(tempRN - iop2);
+            }
+            catch (OverflowException e)
+            {
+                myMemory.SetFlag(3, true);
+            }
         }
     }
 }

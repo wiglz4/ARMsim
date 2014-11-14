@@ -29,13 +29,13 @@ namespace ARMSim
             Debug.Assert(ram.ReadHalfWord(1) == 0xAAAA);
             Console.WriteLine("success!");
 
-            //test set/test flag methods
+            /*test set/test flag methods
             Console.Write("verifying SetFlag/TestFlag...");
             ram.SetFlag(1, 6, true);
             Debug.Assert(ram.TestFlag(1, 6));
             ram.SetFlag(1, 6, false);
             Debug.Assert(!(ram.TestFlag(1, 6)));
-            Console.WriteLine("success!");
+            Console.WriteLine("success!");*/
 
             //test read/write methods
             Console.Write("verifying Read/Write Word...");
