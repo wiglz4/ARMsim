@@ -9,7 +9,14 @@ namespace ARMSim
     class In_Branch : Instructions
     {
         //TODO
-        //NEED TO HANDLE COND 31-28 ON THIS AND CMP INSTRUCTIONS
+        //YOU ARE HERE:
+        //
+        //
+        //YOU'RE HAVIN ISSUES WITH 74 AN 75 IN THE BRANCH TRACE FILE SON.
+        //maybe w/ program counter? idk good luck.
+
+
+
         Registers myRegister;
         Memory myMemory;
         bool disassembling;
@@ -64,17 +71,23 @@ namespace ARMSim
         public void executeB()
         {
             myRegister.WriteWord(15, myRegister.ReadWord(15) + 4 + targetAddr);
+            //adjust trace file sub pc amt
+            Computer.tracePCNum = 16;
         }
 
         public void executeBL()
         {
-            myRegister.WriteWord(14, myRegister.ReadWord(15));
+            myRegister.WriteWord(14, myRegister.ReadWord(15) - 4);
             myRegister.WriteWord(15, myRegister.ReadWord(15) + 4 + targetAddr);
+            //adjust trace file sub pc amt
+            Computer.tracePCNum = 16;
         }
 
         public void executeBX()
         {
-            myRegister.WriteWord(15, myRegister.ReadWord(getSectionValue(3, 0, instruction)));
+            myRegister.WriteWord(15, myRegister.ReadWord(getSectionValue(3, 0, instruction)) + 4);
+            //adjust trace file sub pc amt
+            Computer.tracePCNum = 4;
         }
 
         public uint calcTargetAddr()

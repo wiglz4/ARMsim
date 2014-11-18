@@ -6,12 +6,6 @@ using System.Threading.Tasks;
 
 namespace ARMSim
 {
-    //YOU LEFT OFF HERE:
-    //1. TEST CASES
-    //2. REPORT
-
-    //TO FIX FROM BEFORE--
-    //-setflag
 
     abstract class Instructions
     {
@@ -43,7 +37,7 @@ namespace ARMSim
                 return sInstruction;
             }
 
-            if (getSectionValue(27, 4, instruction) == 0x120001)
+            if (getSectionValue(27, 20, instruction) == 18 && getSectionValue(7, 4, instruction) == 1)
             {
                 return new In_Branch(myRegisters, myMemory, instruction, disassembling);
             }
@@ -118,7 +112,7 @@ namespace ARMSim
 
                 case 9:
                     // LS
-                    return (myMemory.TestFlag(2) == 0) && (myMemory.TestFlag(1) == 1) ? "LS" : null;
+                    return (myMemory.TestFlag(2) == 0) || (myMemory.TestFlag(1) == 1) ? "LS" : null;
 
                 case 10:
                     // GE

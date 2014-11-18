@@ -24,6 +24,7 @@ namespace ARMSim
         public bool disassembling = false;
         private static StreamWriter myTracer;
         private int stepNum;
+        public static int tracePCNum;
 
         //Method:       Constructor
         //Purpose:      Sets Computer up for use.
@@ -40,6 +41,7 @@ namespace ARMSim
             FileStream myFileStream = new FileStream("trace.log", FileMode.Create);
             myFileStream.Close();
             stepNum = 0;
+            tracePCNum = 12;
         }
 
         //Method:       Run
@@ -61,7 +63,11 @@ namespace ARMSim
                         myRegisters.IncrCounter();
                     }
                     curCommand = myCPU.Fetch();
-                    if (trace) { WriteTrace(12); }
+                    if (trace) { 
+                        WriteTrace(tracePCNum);
+                        //when dealing w/ branch instructions gotta have a way to adjust this guy
+                        tracePCNum = 12;
+                    }
                 }
                 else
                 {
@@ -91,7 +97,11 @@ namespace ARMSim
                     {
                         myRegisters.IncrCounter();
                     }
-                    if (trace && !disassembling) { WriteTrace(12); }
+                    if (trace && !disassembling) { WriteTrace(12);
+                        WriteTrace(tracePCNum);
+                        //when dealing w/ branch instructions gotta have a way to adjust this guy
+                        tracePCNum = 12;
+                    }
                 }
                 else
                 {
