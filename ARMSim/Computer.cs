@@ -7,6 +7,16 @@ using System.IO;
 
 namespace ARMSim
 {
+    //YOU ARE HERE
+    //TODO
+
+    //implement memory I/O
+    //after every execute if mem addr #0x00100000's value has been udpated spit it onto screen (handler)
+    //
+    //put data queue in computer. (with insert method) every time someone enters something in console call insert method from form and put the char in queue
+    //in memory. if the readbyte is trying to read from address #0x00100001 , retrieve ascii char from top of queue and return that.
+
+
     //Class:        Computer
     //Purpose:      Represents simulated computer.
     class Computer
