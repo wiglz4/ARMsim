@@ -41,60 +41,60 @@ namespace ARMSim
             {
                 case 0:
                     //to string
-                    disassembly = "and " + 'r' + rd + ", " + 'r' + rn + ", " + opTwoDissasembly;
+                    disassembly = "and" + Instructions.firstOpcode + " " + 'r' + rd + ", " + 'r' + rn + ", " + opTwoDissasembly;
                     if (!disassembling) { executeAND(); }
                     break;
 
                 case 1:
-                    disassembly = "eor " + 'r' + rd + ", " + 'r' + rn + ", " + opTwoDissasembly;
+                    disassembly = "eor" + Instructions.firstOpcode + " " + 'r' + rd + ", " + 'r' + rn + ", " + opTwoDissasembly;
                     if (!disassembling) { executeEOR(); }
                     break;
 
                 case 2:
                     //to string
-                    disassembly = "sub " + 'r' + rd + ", " + 'r' + rn + ", " + opTwoDissasembly;
+                    disassembly = "sub" + Instructions.firstOpcode + " " + 'r' + rd + ", " + 'r' + rn + ", " + opTwoDissasembly;
                     if (!disassembling) { executeSUB(); }
                     break;
 
                 case 3:
                     //to string
-                    disassembly = "rsb " + 'r' + rd + ", " + 'r' + rn + ", " + opTwoDissasembly;
+                    disassembly = "rsb" + Instructions.firstOpcode + " " + 'r' + rd + ", " + 'r' + rn + ", " + opTwoDissasembly;
                     if (!disassembling) { executeRSB(); }
                     break;
 
                 case 4:
                     //to string
-                    disassembly = "add " + 'r' + rd + ", " + 'r' + rn + ", " + opTwoDissasembly;
+                    disassembly = "add" + Instructions.firstOpcode + " " + 'r' + rd + ", " + 'r' + rn + ", " + opTwoDissasembly;
                     if (!disassembling) { executeADD(); }
                     break;
 
                 case 10:
                     //to string
-                    disassembly = "cmp r" + rn + ", " + opTwoDissasembly;
+                    disassembly = "cmp" + Instructions.firstOpcode + " r" + rn + ", " + opTwoDissasembly;
                     if (!disassembling) { executeCMP(); }
                     break;
 
                 case 12:
                     //to string
-                    disassembly = "orr " + 'r' + rd + ", " + 'r' + rn + ", " + opTwoDissasembly;
+                    disassembly = "orr" + Instructions.firstOpcode + " r" + rd + ", " + 'r' + rn + ", " + opTwoDissasembly;
                     if (!disassembling) { executeORR(); }
                     break;
 
                 case 13:
                     //to string
-                    disassembly = "mov " + 'r' + rd + ", " + opTwoDissasembly;
+                    disassembly = "mov" + Instructions.firstOpcode + " " + 'r' + rd + ", " + opTwoDissasembly;
                     if (!disassembling) { executeMOV(); }
                     break;
 
                 case 14:
                     //to string
-                    disassembly = "bic " + 'r' + rd + ", " + 'r' + rn + ", " + opTwoDissasembly;
+                    disassembly = "bic" + Instructions.firstOpcode + " " + 'r' + rd + ", " + 'r' + rn + ", " + opTwoDissasembly;
                     if (!disassembling) { executeBIC(); }
                     break;
 
                 case 15:
                     //to string
-                    disassembly = "mvn " + 'r' + rd + ", " + opTwoDissasembly;
+                    disassembly = "mvn" + Instructions.firstOpcode + " " + 'r' + rd + ", " + opTwoDissasembly;
                     if (!disassembling) { executeMVN(); }
                     break;
 

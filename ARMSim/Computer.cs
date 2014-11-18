@@ -24,7 +24,7 @@ namespace ARMSim
         public bool disassembling = false;
         private static StreamWriter myTracer;
         private int stepNum;
-        public static int tracePCNum;
+        public static int storedBranchPC;
 
         //Method:       Constructor
         //Purpose:      Sets Computer up for use.
@@ -41,7 +41,7 @@ namespace ARMSim
             FileStream myFileStream = new FileStream("trace.log", FileMode.Create);
             myFileStream.Close();
             stepNum = 0;
-            tracePCNum = 12;
+            storedBranchPC = 0;
         }
 
         //Method:       Run
@@ -51,6 +51,7 @@ namespace ARMSim
             uint curCommand = myCPU.Fetch();
             while (curCommand != 0 && !abort)
             {
+                storedBranchPC = 0;
                 stepNum++;
                 if (myCPU.Decode(curCommand))
                 {
@@ -63,15 +64,20 @@ namespace ARMSim
                         myRegisters.IncrCounter();
                     }
                     curCommand = myCPU.Fetch();
-                    if (trace) { 
-                        WriteTrace(tracePCNum);
-                        //when dealing w/ branch instructions gotta have a way to adjust this guy
-                        tracePCNum = 12;
+                    if (trace) {
+                        if (storedBranchPC == 0)
+                        {
+                            WriteTrace((int)myRegisters.ReadWord(15) - 12);
+                        }
+                        else
+                        {
+                            WriteTrace(storedBranchPC);
+                        }
                     }
                 }
                 else
                 {
-                    if (trace) { WriteTrace(8); }
+                    if (trace) { WriteTrace((int)myRegisters.ReadWord(15) - 8); }
                     curCommand = 0;
                 }
             }
@@ -83,6 +89,7 @@ namespace ARMSim
         public void step()
         {
             //when im disassembling i will be running through here and simply not doing the final sub-execute hence the if !disassembly
+            storedBranchPC = 0;
             uint curCommand = myCPU.Fetch();
             if (curCommand != 0)
             {
@@ -97,15 +104,21 @@ namespace ARMSim
                     {
                         myRegisters.IncrCounter();
                     }
-                    if (trace && !disassembling) { WriteTrace(12);
-                        WriteTrace(tracePCNum);
-                        //when dealing w/ branch instructions gotta have a way to adjust this guy
-                        tracePCNum = 12;
+                    if (trace && !disassembling) 
+                    {
+                        if (storedBranchPC == 0)
+                        {
+                            WriteTrace((int)myRegisters.ReadWord(15) - 12);
+                        }
+                        else
+                        {
+                            WriteTrace(storedBranchPC);
+                        }
                     }
                 }
                 else
                 {
-                    if (trace && !disassembling) { WriteTrace(8); }
+                    if (trace && !disassembling) { WriteTrace((int)myRegisters.ReadWord(15) - 8); }
                 }
                 if (!disassembling) { endRun(this, e); }
             }
@@ -160,10 +173,10 @@ namespace ARMSim
             return stepNum;
         }
 
-        public void WriteTrace(int subPCamt)
+        public void WriteTrace(int PC)
         {
             FileStreamOpen();
-            myTracer.WriteLine(String.Format("{0:D6}", stepNum) + " " + String.Format("{0:X8}", myRegisters.ReadWord(15) - subPCamt) + " [sys] " + getMemory().TestFlag(0) + getMemory().TestFlag(1) + getMemory().TestFlag(2) + getMemory().TestFlag(3) + " 0=" + String.Format("{0:X8}", myRegisters.ReadWord(0)) + " 1=" + String.Format("{0:X8}", myRegisters.ReadWord(1)) + " 2=" + String.Format("{0:X8}", myRegisters.ReadWord(2)) + " 3=" + String.Format("{0:X8}", myRegisters.ReadWord(3)));
+            myTracer.WriteLine(String.Format("{0:D6}", stepNum) + " " + String.Format("{0:X8}", PC) + " [sys] " + getMemory().TestFlag(0) + getMemory().TestFlag(1) + getMemory().TestFlag(2) + getMemory().TestFlag(3) + " 0=" + String.Format("{0:X8}", myRegisters.ReadWord(0)) + " 1=" + String.Format("{0:X8}", myRegisters.ReadWord(1)) + " 2=" + String.Format("{0:X8}", myRegisters.ReadWord(2)) + " 3=" + String.Format("{0:X8}", myRegisters.ReadWord(3)));
             myTracer.WriteLine("        4=" + String.Format("{0:X8}", myRegisters.ReadWord(4)) + " 5=" + String.Format("{0:X8}", myRegisters.ReadWord(5)) + " 6=" + String.Format("{0:X8}", myRegisters.ReadWord(6)) + " 7=" + String.Format("{0:X8}", myRegisters.ReadWord(7)) + " 8=" + String.Format("{0:X8}", myRegisters.ReadWord(8)) + " 9=" + String.Format("{0:X8}", myRegisters.ReadWord(9)));
             myTracer.WriteLine("       10=" + String.Format("{0:X8}", myRegisters.ReadWord(10)) + " 11=" + String.Format("{0:X8}", myRegisters.ReadWord(11)) + " 12=" + String.Format("{0:X8}", myRegisters.ReadWord(12)) + " 13=" + String.Format("{0:X8}", myRegisters.ReadWord(13)) + " 14=" + String.Format("{0:X8}", myRegisters.ReadWord(14)));
             FileStreamClose();

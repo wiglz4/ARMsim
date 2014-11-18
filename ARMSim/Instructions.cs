@@ -19,7 +19,7 @@ namespace ARMSim
         public static Instructions decode(uint instruction, Registers myRegisters, Memory myMemory, bool disassembling)
         {
 
-            // check opcodes here....
+            // check opcodes here
             dontDoItBro = false;
             firstOpcode = passOpcode(getSectionValue(31, 28, instruction), myMemory);
             if (firstOpcode == null)

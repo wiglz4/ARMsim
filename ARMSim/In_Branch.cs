@@ -8,14 +8,6 @@ namespace ARMSim
 {
     class In_Branch : Instructions
     {
-        //TODO
-        //YOU ARE HERE:
-        //
-        //
-        //YOU'RE HAVIN ISSUES WITH 74 AN 75 IN THE BRANCH TRACE FILE SON.
-        //maybe w/ program counter? idk good luck.
-
-
 
         Registers myRegister;
         Memory myMemory;
@@ -47,19 +39,19 @@ namespace ARMSim
             {
                 case 1:
                     //to string
-                    disassembly = "bx r" + getSectionValue(3, 0, instruction);
+                    disassembly = "bx"  + Instructions.firstOpcode + (myRegister.ReadWord(getSectionValue(3, 0, instruction)));
                     if (!disassembling) { executeBX(); }
                     break;
 
                 case 10:
                     //to string
-                    disassembly = "b" + Instructions.firstOpcode + " " + getSectionValue(23, 0, instruction);
+                    disassembly = "b" + Instructions.firstOpcode + " " + (myRegister.ReadWord(15) + targetAddr);
                     if (!disassembling) { executeB(); }
                     break;
 
                 case 11:
                     //to string
-                    disassembly = "bl " + getSectionValue(23, 0, instruction);
+                    disassembly = "bl" + Instructions.firstOpcode + " " + (myRegister.ReadWord(15) + targetAddr);
                     if (!disassembling) { executeBL(); }
                     break;
 
@@ -70,24 +62,21 @@ namespace ARMSim
 
         public void executeB()
         {
+            Computer.storedBranchPC = (int)myRegister.ReadWord(15) - 8;
             myRegister.WriteWord(15, myRegister.ReadWord(15) + 4 + targetAddr);
-            //adjust trace file sub pc amt
-            Computer.tracePCNum = 16;
         }
 
         public void executeBL()
         {
+            Computer.storedBranchPC = (int)myRegister.ReadWord(15) - 8;
             myRegister.WriteWord(14, myRegister.ReadWord(15) - 4);
             myRegister.WriteWord(15, myRegister.ReadWord(15) + 4 + targetAddr);
-            //adjust trace file sub pc amt
-            Computer.tracePCNum = 16;
         }
 
         public void executeBX()
         {
+            Computer.storedBranchPC = (int)myRegister.ReadWord(15) - 8;
             myRegister.WriteWord(15, myRegister.ReadWord(getSectionValue(3, 0, instruction)) + 4);
-            //adjust trace file sub pc amt
-            Computer.tracePCNum = 4;
         }
 
         public uint calcTargetAddr()

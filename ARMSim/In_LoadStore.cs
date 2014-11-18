@@ -88,12 +88,12 @@ namespace ARMSim
             if (bs == 0)
             {
                 if (!disassembling) { myRegister.WriteWord(rd, myMemory.ReadWord(addr)); }
-                disassembly = "ldr ";
+                disassembly = "ldr" + Instructions.firstOpcode + " ";
             }
             else if (bs == 1) 
             {
                 if (!disassembling) { myRegister.WriteWord(rd, myMemory.ReadByte(addr)); }
-                disassembly = "ldrb ";
+                disassembly = "ldrb" + Instructions.firstOpcode + " ";
             }
 
             disassembly += "r" + Convert.ToString(rd);
@@ -119,12 +119,12 @@ namespace ARMSim
             if (bs == 0)
             {
                 if (!disassembling) { myMemory.WriteWord(addr, myRegister.ReadWord(rd)); }
-                disassembly = "str ";
+                disassembly = "str" + Instructions.firstOpcode + " ";
             }
             else if (bs == 1)
             {
                 if (!disassembling) { myMemory.WriteWord(addr, myRegister.ReadByte(rd)); }
-                disassembly = "strb ";
+                disassembly = "strb" + Instructions.firstOpcode + " ";
             }
 
             disassembly += "r" + Convert.ToString(rd);
@@ -153,12 +153,12 @@ namespace ARMSim
             if (p == 0 && u == 1)
             {
                 incrAfter = true;
-                disassembly = "ldmfd ";
+                disassembly = "ldmfd" + Instructions.firstOpcode + " ";
             }
             else if (p == 1 && u == 0)
             {
                 decrBefore = true;
-                disassembly = "ldmea ";
+                disassembly = "ldmea" + Instructions.firstOpcode + " ";
             }
 
             string addresses = "{";
@@ -219,12 +219,12 @@ namespace ARMSim
             if (p == 0 && u == 1)
             {
                 incrAfter = true;
-                disassembly = "stmia ";
+                disassembly = "stmia" + Instructions.firstOpcode + " ";
             }
             else if (p == 1 && u == 0)
             {
                 decrBefore = true;
-                disassembly = "stmfd ";
+                disassembly = "stmfd" + Instructions.firstOpcode + " ";
             }
 
             string addresses = "{";
