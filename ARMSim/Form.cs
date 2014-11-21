@@ -63,6 +63,7 @@ namespace ARMSim
                 //these two lines used to be in run
                 myComputer = new Computer(theseOptions);
                 myComputer.endRun += new Computer.EventHandler(UpdateAllTheThings);
+                myComputer.putChar += new Computer.EventHandler(charToScreen);
                 //starts running on file that opened program
                 this.RunButton_Click(this.RunButton, EventArgs.Empty);
             }
@@ -149,6 +150,7 @@ namespace ARMSim
             {
                 myComputer = new Computer(theseOptions);
                 myComputer.endRun += new Computer.EventHandler(UpdateAllTheThings);
+                myComputer.putChar += new Computer.EventHandler(charToScreen);
                 this.OpenedFile.Text = theseOptions.GetFileName();
                 this.OpenedFile.Show();
                 this.ResetButton_Click(this.ResetButton, EventArgs.Empty);
@@ -181,6 +183,7 @@ namespace ARMSim
             this.ResetTracer();
             myComputer = new Computer(theseOptions);
             myComputer.endRun += new Computer.EventHandler(UpdateAllTheThings);
+            myComputer.putChar += new Computer.EventHandler(charToScreen);
         }
 
         private void UpdateAllTheThings(Computer c, EventArgs e)
@@ -202,6 +205,11 @@ namespace ARMSim
             this.UpdateTracer();
 
             //spit random junk in the text box
+        }
+
+        private void charToScreen(Computer c, EventArgs e)
+        {
+            this.myConsole.AppendText(c.output.ToString());
         }
 
         private void UpdateDisassembly()
@@ -338,7 +346,6 @@ namespace ARMSim
 
         private void UpdateFlags()
         {
-            //fix to correspond w/ memory flags then delete this stuff outta CPU
             this.FlagGridView.Rows[0].Cells[1].Value = myComputer.getMemory().TestFlag(0);
             this.FlagGridView.Rows[0].Cells[0].Value = 'N';
             this.FlagGridView.Rows[1].Cells[1].Value = myComputer.getMemory().TestFlag(1);
@@ -359,9 +366,9 @@ namespace ARMSim
 
         private void UpdateConsoleBox()
         {
-            this.theseOptions.FileStreamClose();
-            this.myConsole.Text = File.ReadAllText("Console.txt");
-            this.theseOptions.FileStreamOpen();
+            //this.theseOptions.FileStreamClose();
+            //this.myConsole.Text = File.ReadAllText("Console.txt");
+            //this.theseOptions.FileStreamOpen();
         }
 
         private void ResetConsoleBox()
@@ -399,6 +406,11 @@ namespace ARMSim
         private void GoButton_Click(object sender, EventArgs e)
         {
             this.UpdateMemory();
+        }
+
+        private void myConsole_KeyDown(object sender, KeyEventArgs e)
+        {
+            myComputer.input.Enqueue((char)(e.KeyValue));
         }
     }
 }

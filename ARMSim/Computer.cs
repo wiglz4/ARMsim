@@ -11,10 +11,6 @@ namespace ARMSim
     //TODO
 
     //implement memory I/O
-    //after every execute if mem addr #0x00100000's value has been udpated spit it onto screen (handler)
-    //
-    //put data queue in computer. (with insert method) every time someone enters something in console call insert method from form and put the char in queue
-    //in memory. if the readbyte is trying to read from address #0x00100001 , retrieve ascii char from top of queue and return that.
 
 
     //Class:        Computer
@@ -26,7 +22,7 @@ namespace ARMSim
         private Loader myLoader;
         private Registers myRegisters;
         private CPU myCPU;
-        public event EventHandler endRun;
+        public event EventHandler endRun, putChar;
         public EventArgs e = null;
         public delegate void EventHandler(Computer c, EventArgs e);
         private bool trace;
@@ -35,6 +31,9 @@ namespace ARMSim
         private static StreamWriter myTracer;
         private int stepNum;
         public static int storedBranchPC;
+        public Queue<char> input;
+        public Queue<char> outputQ;
+        public char output;
 
         //Method:       Constructor
         //Purpose:      Sets Computer up for use.
@@ -43,6 +42,7 @@ namespace ARMSim
         {
             myOptions = toOptions;
             myRam = new Memory(myOptions.GetMemSize());
+            myRam.myComputer = this;
             myLoader = new Loader(myOptions, myRam);
             myLoader.Load();
             myRegisters = new Registers();
@@ -52,6 +52,8 @@ namespace ARMSim
             myFileStream.Close();
             stepNum = 0;
             storedBranchPC = 0;
+            input = new Queue<char>();
+            outputQ = new Queue<char>();
         }
 
         //Method:       Run
@@ -63,11 +65,35 @@ namespace ARMSim
             {
                 storedBranchPC = 0;
                 stepNum++;
+                //used for debugging stuffs
+                //check stepnum OR pc counter
+                /* if (stepNum == 2396)
+                {
+                    string x;
+                }*/
                 if (myCPU.Decode(curCommand))
                 {
                     if (Instructions.dontDoItBro == false)
                     {
                         myCPU.Execute();
+
+                        //check to see if we wrote word to 100000
+                        if (myRam.output)
+                        {
+                            //prompt user for input
+                            //call event handler to update screen 
+
+                            if (outputQ.Count == 0)
+                            {
+                                output = '0';
+                            }
+                            else
+                            {
+                                output = outputQ.Dequeue();
+                            }
+                            myRam.output = false;
+                            putChar(this, e);
+                        }
                     }
                     else
                     {
@@ -109,6 +135,23 @@ namespace ARMSim
                     if (Instructions.dontDoItBro == false)
                     {
                         myCPU.Execute();
+                        if (myRam.output)
+                        {
+                            //prompt user for input
+                            //call event handler to update screen 
+                            //
+                            //HOUSTON WE HAVE OUTPUT 
+                            if (outputQ.Count == 0)
+                            {
+                                output = '0';
+                            }
+                            else
+                            {
+                                output = outputQ.Dequeue();
+                            }
+                            myRam.output = false;
+                            putChar(this, e);
+                        }
                     }
                     else
                     {

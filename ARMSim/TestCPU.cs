@@ -24,6 +24,7 @@ namespace ARMSim
             Console.WriteLine("testing CPU...");
             Computer myTestComp = new Computer(myOptions);
             myTestComp.endRun += new Computer.EventHandler(delegate { });
+            myTestComp.putChar += new Computer.EventHandler(delegate { });
             Console.WriteLine("testing Fetch, Decode, and Execute methods...");
 
             //test MOV register

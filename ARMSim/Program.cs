@@ -29,6 +29,7 @@ namespace ARMSim
             {
                 Computer myComputer = new Computer(myOptions);
                 myComputer.endRun += new Computer.EventHandler(delegate { });
+                myComputer.putChar += new Computer.EventHandler(delegate { });
                 myComputer.abort = false;
                 myComputer.Run();
                 Environment.Exit(0);

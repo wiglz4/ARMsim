@@ -24,6 +24,7 @@ namespace ARMSim
             Console.WriteLine("testing Computer setup...");
             Computer myTestComp = new Computer(myOptions);
             myTestComp.endRun += new Computer.EventHandler(delegate { });
+            myTestComp.putChar += new Computer.EventHandler(delegate { });
             Console.WriteLine("testing Computer Running...");
             myTestComp.step();
             Debug.Assert(myTestComp.getStepNum() == 1);

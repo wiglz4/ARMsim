@@ -21,7 +21,6 @@ namespace ARMSim
         public string disassembly;
         public uint unDecodedInstruction;
         public bool disassembling;
-        int N, C, Z, F;
 
         //Method:       Constructor
         //Purpose:      Sets CPU up for use.
@@ -34,10 +33,6 @@ namespace ARMSim
             myMemory = toMemory;
             myRegisters = toRegisters;
             myRegisters.WriteWord(15, programCounter);
-            N = 0;
-            C = 0;
-            Z = 0;
-            F = 0;
         }
 
         //Method:       Fetch
@@ -80,23 +75,6 @@ namespace ARMSim
             disassembly = Instructions.disassembly;
             myRegisters.IncrCounter();
             // Thread.Sleep(250);
-        }
-
-        public int getFlagN()
-        {
-            return N;
-        }
-        public int getFlagZ()
-        {
-            return Z;
-        }
-        public int getFlagC()
-        {
-            return C;
-        }
-        public int getFlagF()
-        {
-            return F;
         }
     }
 }

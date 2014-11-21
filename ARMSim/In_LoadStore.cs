@@ -123,7 +123,7 @@ namespace ARMSim
             }
             else if (bs == 1)
             {
-                if (!disassembling) { myMemory.WriteWord(addr, myRegister.ReadByte(rd)); }
+                if (!disassembling) { myMemory.WriteByte(addr, myRegister.ReadByte(rd)); }
                 disassembly = "strb" + Instructions.firstOpcode + " ";
             }
 

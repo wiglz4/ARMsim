@@ -16,6 +16,8 @@ namespace ARMSim
     {
         protected byte[] ram;
         private uint myFlags;
+        public bool output;
+        public Computer myComputer;
         //0 is N
         //1 is Z
         //2 is C
@@ -29,6 +31,7 @@ namespace ARMSim
         {
             ram = new byte[memsize];
             myFlags = 0;
+            output = false;
         }
 
         //Method:       PopulateRam
@@ -50,7 +53,21 @@ namespace ARMSim
         //Variables:    addr - uint of addr to read a word from
         public uint ReadWord(uint addr)
         {
-            return BitConverter.ToUInt32(ram, (int)addr);
+            if (addr == 0x00100001)
+            {
+                if (myComputer.input.Count != 0)
+                {
+                    return Convert.ToUInt32(myComputer.input.Dequeue());
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            else
+            {
+                return BitConverter.ToUInt32(ram, (int)addr);
+            }
         }
 
 
@@ -60,12 +77,20 @@ namespace ARMSim
         //              toRam - uint to populate ram with
         public void WriteWord(uint addr, uint toRam)
         {
-            int counter = 0;
-            byte[] toRamBA = BitConverter.GetBytes(toRam);
-            foreach (byte x in toRamBA)
+            if (addr == 0x00100000)
             {
-                ram[addr + counter] = x;
-                counter++;
+                output = true;
+                myComputer.outputQ.Enqueue(Convert.ToChar(toRam));
+            }
+            else
+            {
+                int counter = 0;
+                byte[] toRamBA = BitConverter.GetBytes(toRam);
+                foreach (byte x in toRamBA)
+                {
+                    ram[addr + counter] = x;
+                    counter++;
+                }
             }
         }
 
@@ -74,7 +99,21 @@ namespace ARMSim
         //Variables:    addr - uint of addr to read a half word from
         public uint ReadHalfWord(uint addr)
         {
-            return BitConverter.ToUInt16(ram, (int)addr);
+            if (addr == 0x00100001)
+            {
+                if (myComputer.input.Count != 0)
+                {
+                    return Convert.ToUInt32(myComputer.input.Dequeue());
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            else
+            {
+                return BitConverter.ToUInt16(ram, (int)addr);
+            }
         }
 
         //Method:       WriteHalfWord
@@ -83,12 +122,20 @@ namespace ARMSim
         //              toRam - uint to populate ram with
         public void WriteHalfWord(uint addr, short toRam)
         {
-            int counter = 0;
-            byte[] toRamBA = BitConverter.GetBytes(toRam);
-            foreach (byte x in toRamBA)
+            if (addr == 0x00100000)
             {
-                ram[addr + counter] = x;
-                counter++;
+                output = true;
+                myComputer.outputQ.Enqueue(Convert.ToChar(toRam));
+            }
+            else
+            {
+                int counter = 0;
+                byte[] toRamBA = BitConverter.GetBytes(toRam);
+                foreach (byte x in toRamBA)
+                {
+                    ram[addr + counter] = x;
+                    counter++;
+                }
             }
         }
 
@@ -97,7 +144,21 @@ namespace ARMSim
         //Variables:    addr - uint of addr to read a byte from
         public byte ReadByte(uint addr)
         {
-            return ram[addr];
+            if (addr == 0x00100001)
+            {
+                if (myComputer.input.Count != 0)
+                {
+                    return Convert.ToByte(myComputer.input.Dequeue());
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            else
+            {
+                return ram[addr];
+            }
         }
 
         //Method:       WriteByte
@@ -106,7 +167,15 @@ namespace ARMSim
         //              toRam - uint to populate ram with
         public void WriteByte(uint addr, byte toRam)
         {
-            ram[addr] = toRam;
+            if (addr == 0x00100000)
+            {
+                output = true;
+                myComputer.outputQ.Enqueue(Convert.ToChar(toRam));
+            }
+            else
+            {
+                ram[addr] = toRam;
+            }
         }
 
         //Method:       getMDF
